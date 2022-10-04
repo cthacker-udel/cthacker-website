@@ -6,19 +6,48 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rimraf .next",
+    "full-clean": "rimraf .next node_modules",
+    "format": "prettier --config .prettierrc --write src/**/*.{ts,tsx}"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.36.1",
+    "swr": "^1.3.0"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.3.1",
     "@types/node": "18.8.1",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
-    "eslint": "8.24.0",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "babel-plugin-react-intl": "^8.2.25",
+    "eslint": "^8.24.0",
+    "eslint-config-intense": "^0.8.1",
     "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.0",
+    "eslint-plugin-jest-formatting": "^3.1.0",
+    "eslint-plugin-no-secrets": "^0.8.9",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-ramda": "^2.5.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-sonarjs": "^0.15.0",
+    "eslint-plugin-unicorn": "^44.0.0",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1",
     "typescript": "4.8.4"
   }
 }
