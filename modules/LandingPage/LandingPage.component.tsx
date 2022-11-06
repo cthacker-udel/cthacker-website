@@ -2,6 +2,7 @@ import "./LandingPage.module.css";
 
 import React from "react";
 
+import { AboutMeSection } from "./AboutMeSection";
 import { ContactInfoSection } from "./ContactInfoSection";
 import { LanguageSection } from "./LanguageSection";
 import { NameSection } from "./NameSection";
@@ -20,6 +21,7 @@ export const LandingPage = (): JSX.Element => (
 		<WorkHistorySection />
 		<SchoolSection />
 		<LanguageSection />
+		<AboutMeSection />
 		<ContactInfoSection />
 	</div>
 );
