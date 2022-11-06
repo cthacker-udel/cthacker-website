@@ -5,9 +5,28 @@ import React from "react";
  *
  * @returns The contact info section
  */
-export const ContactInfoSection = (): JSX.Element => (
-	<div className="d-flex flex-row justify-content-center w-100">
-		<i className="fa-solid fa-xl fa-shake fa-phone my-auto" />
-		<div className="fs-4 ms-3 section_link">{"Contact Info"}</div>
-	</div>
-);
+export const ContactInfoSection = (): JSX.Element => {
+	const [isHovering, setIsHovering] = React.useState<boolean>(false);
+	/**
+	 * Toggles the hovering state
+	 */
+	const toggleHover = (): void => {
+		setIsHovering(!isHovering);
+	};
+	return (
+		<div className="d-flex flex-row justify-content-center w-100">
+			<i
+				className={`fa-solid fa-xl fa-phone my-auto ${
+					isHovering && "fa-shake"
+				}`}
+			/>
+			<div
+				className="fs-4 ms-3 section_link"
+				onMouseEnter={toggleHover}
+				onMouseLeave={toggleHover}
+			>
+				{"Contact Info"}
+			</div>
+		</div>
+	);
+};

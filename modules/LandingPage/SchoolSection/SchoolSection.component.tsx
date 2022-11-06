@@ -5,9 +5,28 @@ import React from "react";
  *
  * @returns The school section component
  */
-export const SchoolSection = (): JSX.Element => (
-	<div className="d-flex flex-row w-100 justify-content-center">
-		<i className="fa-solid fa-school fa-xl my-auto fa-fade" />
-		<div className="fs-4 ms-3 section_link">{"School"}</div>
-	</div>
-);
+export const SchoolSection = (): JSX.Element => {
+	const [isHovering, setIsHovering] = React.useState<boolean>(false);
+	/**
+	 * Toggles the hover state
+	 */
+	const toggleHover = (): void => {
+		setIsHovering(!isHovering);
+	};
+	return (
+		<div className="d-flex flex-row w-100 justify-content-center">
+			<i
+				className={`fa-solid fa-school fa-xl my-auto ${
+					isHovering && "fa-bounce"
+				}`}
+			/>
+			<div
+				className="fs-4 ms-3 section_link"
+				onMouseEnter={toggleHover}
+				onMouseLeave={toggleHover}
+			>
+				{"School"}
+			</div>
+		</div>
+	);
+};

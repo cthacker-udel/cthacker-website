@@ -19,4 +19,5 @@
 
 .occupation {
     animation: occupation_skew_animation 2s infinite linear;
+    transition: font-weight 1s linear;
 }

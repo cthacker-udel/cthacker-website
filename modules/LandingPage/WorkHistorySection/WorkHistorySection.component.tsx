@@ -5,9 +5,30 @@ import React from "react";
  *
  * @returns The work history section of the landing page
  */
-export const WorkHistorySection = (): JSX.Element => (
-	<div className="d-flex flex-row justify-content-center w-100">
-		<i className="fa-solid fa-building my-auto fa-xl fa-flip" />
-		<div className="fs-4 ms-3 section_link">{"Work History"}</div>
-	</div>
-);
+export const WorkHistorySection = (): JSX.Element => {
+	const [isHovering, setIsHovering] = React.useState<boolean>(false);
+	/**
+	 * Toggles the hover state
+	 *
+	 * @returns void
+	 */
+	const toggleHover = (): void => {
+		setIsHovering(!isHovering);
+	};
+	return (
+		<div className="d-flex flex-row justify-content-center w-100">
+			<i
+				className={`fa-solid fa-building my-auto fa-xl ${
+					isHovering && "fa-bounce"
+				}`}
+			/>
+			<div
+				className="fs-4 ms-3 section_link"
+				onMouseEnter={toggleHover}
+				onMouseLeave={toggleHover}
+			>
+				{"Work History"}
+			</div>
+		</div>
+	);
+};

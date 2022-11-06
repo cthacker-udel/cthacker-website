@@ -4,15 +4,11 @@ Animations
 
 */
 
-@keyframes section_link_anim {
-    from {
-        content: none;
-    } 
-    to {
-        content: "Hello"
-    }
-}
+/*
 
+Globals
+
+*/
 
 #__next {
     height: 100vh;
@@ -24,11 +20,18 @@ Animations
     font-family: 'QuickSand', sans-serif
 }
 
+/*
+
+Landing Page
+
+*/
+
 .section_link {
     color: black;
     text-decoration: none;
     position: relative;
     transition: color .5s ease-in-out;
+    cursor: pointer;
 }
 
 .section_link::after {
