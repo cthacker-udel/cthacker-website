@@ -8,6 +8,6 @@ import React from "react";
 export const LanguageSection = (): JSX.Element => (
 	<div className="d-flex flex-row w-100 justify-content-center">
 		<i className="fa-solid fa-computer fa-xl my-auto fa-bounce" />
-		<div className="fs-4 ms-3">{"Languages"}</div>
+		<div className="fs-4 ms-3 section_link">{"Languages"}</div>
 	</div>
 );

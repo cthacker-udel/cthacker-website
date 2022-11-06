@@ -8,6 +8,6 @@ import React from "react";
 export const WorkHistorySection = (): JSX.Element => (
 	<div className="d-flex flex-row justify-content-center w-100">
 		<i className="fa-solid fa-building my-auto fa-xl fa-flip" />
-		<div className="fs-4 ms-3">{"Work History"}</div>
+		<div className="fs-4 ms-3 section_link">{"Work History"}</div>
 	</div>
 );

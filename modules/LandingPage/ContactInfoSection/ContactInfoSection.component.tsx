@@ -8,6 +8,6 @@ import React from "react";
 export const ContactInfoSection = (): JSX.Element => (
 	<div className="d-flex flex-row justify-content-center w-100">
 		<i className="fa-solid fa-xl fa-shake fa-phone my-auto" />
-		<div className="fs-4 ms-3">{"Contact Info"}</div>
+		<div className="fs-4 ms-3 section_link">{"Contact Info"}</div>
 	</div>
 );
