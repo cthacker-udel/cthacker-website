@@ -9,6 +9,13 @@
     }
 }
 
+@media only screen and (max-width: 992px) {
+    .about_me_text {
+        max-height: 50vh;
+        overflow-y: scroll;
+    }
+}
+
 .about_me_text {
     animation-name: about_me_text_anim;
     animation-timing-function: ease-in-out;
