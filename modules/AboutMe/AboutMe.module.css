@@ -1,0 +1,17 @@
+@keyframes about_me_text_anim {
+    0% {
+        opacity: 0%;
+        margin-left: -100vw;
+    }
+    100% {
+        opacity: 100%;
+        margin-left: 0vw;
+    }
+}
+
+.about_me_text {
+    animation-name: about_me_text_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}

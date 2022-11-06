@@ -1,6 +1,6 @@
 import React, { type ReactNode } from "react";
-import { Navbar } from "../Navbar";
 
+import { Navbar } from "../Navbar";
 import basicLayoutStyles from "./BasicLayout.module.css";
 
 type BasicLayoutProperties = {
@@ -16,11 +16,9 @@ type BasicLayoutProperties = {
  */
 export const BasicLayout = ({
 	children,
-}: BasicLayoutProperties): JSX.Element => {
-	return (
-		<div className={`${basicLayoutStyles.basic_layout} d-flex flex-column`}>
-			<Navbar />
-			{children}
-		</div>
-	);
-};
+}: BasicLayoutProperties): JSX.Element => (
+	<div className={`${basicLayoutStyles.basic_layout}`}>
+		<Navbar />
+		{children}
+	</div>
+);
