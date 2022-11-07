@@ -21,4 +21,15 @@
     animation-timing-function: ease-in-out;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    max-height: 65vh;
+    overflow-y: scroll;
+}
+
+.about_me_paragraph {
+    text-indent: 3.5vw;
+    font-weight: 1.1em;
+    font-size: 1.8em;
+    line-height: 2;
+    margin-left: 5em;
+    margin-right: 5em;
 }
