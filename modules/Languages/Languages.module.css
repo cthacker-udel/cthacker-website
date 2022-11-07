@@ -1,0 +1,36 @@
+
+@keyframes languages_page_anim {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+@keyframes languages_page_and_many_more_anim {
+    from {
+        margin-top: 50vh;
+    }
+    to {
+        margin-top: 1rem;
+    }
+}
+
+.languages_accordion {
+    max-height: 70vh;
+}
+
+.languages_page {
+    animation-name: languages_page_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.languages_page_and_many_more {
+    animation-name: languages_page_and_many_more_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
