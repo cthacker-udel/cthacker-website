@@ -30,6 +30,7 @@ const Document = (): JSX.Element => (
 				href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto+Condensed:wght@300;400&display=swap"
 				rel="stylesheet"
 			/>
+			<link href="/headshot.ico" rel="icon" type="image/png" />
 		</Head>
 		<body>
 			<Main />
