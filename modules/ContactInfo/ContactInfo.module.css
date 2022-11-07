@@ -1,0 +1,16 @@
+
+@keyframes contact_info_section_anim {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+.contact_info_section {
+    animation-name: contact_info_section_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}

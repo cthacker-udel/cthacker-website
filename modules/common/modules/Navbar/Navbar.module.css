@@ -12,7 +12,7 @@ Animation
     }
     to {
         letter-spacing: .15em;
-        background-color: rgba(227, 181, 164, .25);
+        background-color: rgba(227, 181, 164, .5);
     }
 }
 
