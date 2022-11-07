@@ -10,7 +10,9 @@ import languagesStyles from "./Languages.module.css";
  */
 export const Languages = (): JSX.Element => (
 	<BasicLayout>
-		<div className="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+		<div
+			className={`w-100 h-100 d-flex flex-column justify-content-center align-items-center ${languagesStyles.languages_page}`}
+		>
 			<div className="fs-2 text-decoration-underline mb-3">
 				{"Languages"}
 			</div>
@@ -144,7 +146,10 @@ export const Languages = (): JSX.Element => (
 						}
 					</Accordion.Body>
 				</Accordion.Item>
-				<Accordion.Item className="text-center mt-3" eventKey="12">
+				<Accordion.Item
+					className={`text-center ${languagesStyles.languages_page_and_many_more}`}
+					eventKey="12"
+				>
 					<div>
 						{"... and many more!"}
 						<i className="ms-1 fa-solid fa-dragon fa-flip" />
