@@ -10,7 +10,7 @@ export const ContactInfo = (): JSX.Element => (
 	<BasicLayout>
 		<div className="d-flex flex-column w-100 h-100 justify-content-center align-items-center">
 			<div className={`${contactInfoStyles.contact_info_section}`}>
-				<div className="fs-2 text-decoration-underline mb-2">
+				<div className="fs-2 text-decoration-underline mb-2 text-center">
 					{"Contact Info"}
 				</div>
 				<ul className="fa-ul m-0">
