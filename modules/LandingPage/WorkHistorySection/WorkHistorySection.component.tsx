@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 /**
@@ -22,13 +23,15 @@ export const WorkHistorySection = (): JSX.Element => {
 					isHovering && "fa-bounce"
 				}`}
 			/>
-			<div
-				className="fs-4 ms-3 section_link"
-				onMouseEnter={toggleHover}
-				onMouseLeave={toggleHover}
-			>
-				{"Work History"}
-			</div>
+			<Link className="text-decoration-none" href="workhistory">
+				<div
+					className="fs-4 ms-3 section_link"
+					onMouseEnter={toggleHover}
+					onMouseLeave={toggleHover}
+				>
+					{"Work History"}
+				</div>
+			</Link>
 		</div>
 	);
 };
