@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
+import { NavLink } from "../NavLink";
 import navbarStyles from "./Navbar.module.css";
 
 /**
@@ -13,42 +14,42 @@ export const Navbar = (): JSX.Element => (
 		<div
 			className={`${navbarStyles.navbar} d-flex flex-row justify-content-between d-none d-md-flex`}
 		>
-			<Link
+			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="aboutme"
 			>
 				<div>{"About Me"}</div>
-			</Link>
-			<Link
+			</NavLink>
+			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="contactinfo"
 			>
 				<div>{"Contact Info"}</div>
-			</Link>
-			<Link
+			</NavLink>
+			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="languages"
 			>
 				<div>{"Languages"}</div>
-			</Link>
-			<Link
+			</NavLink>
+			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="projects"
 			>
 				<div>{"Projects"}</div>
-			</Link>
-			<Link
+			</NavLink>
+			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="school"
 			>
 				<div>{"School"}</div>
-			</Link>
-			<Link
+			</NavLink>
+			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="workhistory"
 			>
 				<div>{"Work History"}</div>
-			</Link>
+			</NavLink>
 		</div>
 		<div
 			className={`d-md-none d-flex flex-row justify-content-around ${navbarStyles.navbar} `}

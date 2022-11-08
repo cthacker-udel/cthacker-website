@@ -22,6 +22,7 @@
     --bs-accordion-bg: transparent !important;
     --bs-accordion-border-color: black;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .languages_accordion * {
