@@ -10,7 +10,9 @@ import aboutMeStyles from "./AboutMe.module.css";
  */
 export const AboutMe = (): JSX.Element => (
 	<BasicLayout>
-		<div className="d-flex flex-column justify-content-center align-items-center h-100 w-100">
+		<div
+			className={`d-flex flex-column justify-content-center align-items-center h-100 w-100 ${aboutMeStyles.about_me_page}`}
+		>
 			<div
 				className={`fs-1 fw-bold mb-4 ${aboutMeStyles.about_me_text_header}`}
 			>
