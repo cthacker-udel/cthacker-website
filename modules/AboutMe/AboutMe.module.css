@@ -16,6 +16,20 @@
     }
 }
 
+/* xs */
+@media only screen and (max-width: 575px) {
+    .about_me_paragraph {
+        font-size: .75em !important;
+    }
+}
+
+/* sm -- md */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .about_me_paragraph {
+        font-size: .75em !important;
+    }
+}
+
 .about_me_page {
     background-color: #85FFBD;
     background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
