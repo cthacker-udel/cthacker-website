@@ -23,9 +23,7 @@ export const NameSection = (): JSX.Element => (
 				src="https://avatars.githubusercontent.com/u/70614147?v=4"
 			/>
 		</div>
-		<div
-			className={`fs-2 fw-semibold text-muted my-auto ms-4 ${styles.occupation}`}
-		>
+		<div className={`fs-2 my-auto ms-4 ${styles.occupation}`}>
 			{"Full Stack Developer"}
 		</div>
 	</div>

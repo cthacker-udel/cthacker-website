@@ -11,11 +11,52 @@ import aboutMeStyles from "./AboutMe.module.css";
 export const AboutMe = (): JSX.Element => (
 	<BasicLayout>
 		<div className="d-flex flex-column justify-content-center align-items-center h-100 w-100">
-			<div className="fs-3 fw-bold border-bottom mb-3">{"About Me"}</div>
+			<div
+				className={`fs-1 fw-bold mb-4 ${aboutMeStyles.about_me_text_header}`}
+			>
+				{"About Me"}
+			</div>
 			<div className={`${aboutMeStyles.about_me_text} w-75`}>
-				{
-					"Full-Stack developer from Newark, DE. Knowledgeable in the fundamentals but also the specifics of languages. I've been learning CS for years now it seems, and have made it my mission to practice every day to always improve my skills. I am primarily self-taught for all my languages, and all my projects, I always make it my mission to put my work out there first and foremost, or else how will I ever be able to describe what it does if I am questioned? I've learned primarily through practice, I read textbooks occasionally, but I've always found that practice really teaches me the most. I always find that helping others teaches me the most about any subject, whether it be CS or generally anything, that's why when I received the offer from the University to become a TA for a Java class, I immediately accepted it, because I've always enjoyed helping others, and providing any assistance for any of their needs. I've been a private tutor, I've helped and mentored interns and my current job as a Junior React Dev. I've even helped people prepare for coding interviews. I've spent countless hours practicing along whether it's with websites like Codewars, Edabit, or LeetCode, and countless others I've found to pique my interests of a viable challenge. My first class was CISC101 - Fundamentals of Computing, and that covered the really, almost trivial basics, and although that class felt like a waste at the time, it actually served a good purpose of building my confidence for the ability to succeed in this subject. I then began to take the two Python courses the school had to offer, CISC106 and CISC108, both which utilized python, I self-taught myself python over the summer before taking CISC108, and I managed to finish the class a full month and a half early. I should've skipped that class, but the relationship I would form with the staff by displaying exceptional skills was ever so worth spending unecessary time taking classes I was already full prepared for. I would then take my skills to Java, which was an entirely new concept to me, an OOP language, something I had not experienced in my previous classes, and I hit that class out of the park, finishing with an 118% in the class due to getting full points on the extra credit and acing all the projects. That journey kept progressing, to learning C, then the linux terminal, then C++, then HTML, CSS, and JS/TS, then SQL and C#. I've learned tons of different concepts and languages over my undergrad education here at UD, and met new friends as well along the way, who all share the same devotion to learning and becoming an excellent computer scientist. Switching subjects off of the Computer Science side of my journey, I've been an athlete all my years growing up, whether it's playing sports, or going to the gym. I am a black belt in Tang-Soo-Do, which is a martial art. I was a travel soccer player for a local team in Hockessin for 10+ years. I practiced lacrosse with my family while my big brother played for his high school, I played baseball, basketball. I went to the gym countless times during my freshman year of college, even eventually being able to bench 440 pounds, which is not so bad for someone who weighs 135. I went to Salesianum High School, where I would further my studies and finish with an average 3.1 gpa, and I decided to apply to UD, which my top choice, and I got accepted! My journey at this institution has been nothing short of amazing, and I can't wait to begin working after graduation, or even taking grad school. I wouldn't of made it this far in my journey as well if it was not for the support of all my friends and family, I have always been a humble person, and I must give gratitude for those who allow me to be my best. I have always been a team worker, and always strived to form friendships, rather then enemies. I'm always the one who tries to ease the situation, and provide a positive light to every negative light out there. As you are reading this, I have most likely committed to my github repo or am currently reading new methodologies, solving new problems, or helping someone out with problems."
-				}
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"Avid developer from Newark, DE. Knowledgeable in the fundamentals but also the specifics of languages. I've been learning CS for many years, possessing a drive to improve my skills through rigorous practice. I'm a primarily self-taught programmer and have augmented my foundation through academia and extracurricular side projects. My high-frequency inclination is to always put others above me. I am an extrovert and embody a mission of helping others above everything else. Holding multiple jobs as a helper and a provider, I cultivate the next generation of programmers and provide that foundation simultaneously. Those who I've interacted with have nothing but positive comments. I'm a people pleaser and prioritize getting the work done efficiently first and foremost."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"To describe my history in Delaware, let's start at the beginning. I was born in Christiana Hospital, minutes after my twin brother, so I am the youngest. I grew up with two brothers, who all went to the same kindergarten-middle school. It was a private school with massive green recreational fields with trees surrounding them like a forest; all you could hear was nature when you were alone. The gigantic maze of metal bars and basketball hoops stood next to the retro-looking school, constructed with red brick back when that was the main building ingredient. The walk up to the playground was a long asphalt path that would leave you sweating when you got to the top. We would always play pick-up football in the field behind it after school, with no pads, and get our school uniforms as dirty as can be. We would sneak out of recess and go into the computer lab to play flash player games when we had a supervisor we knew was relaxed."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"That wasn't the only activity I did besides recess. I did choir and was very good at it; we still have tapes of our recitals in my parent's house, filmed on our old camcorder that you see in 90's nostalgia videos. I went from choir to playing in the school band as a percussionist. My twin played the saxophone. I remember getting my first drum set. I immediately started playing on it until one of my drumsticks broke. It's so tiny now I can't even sit on the seat."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"During all these musical adventures, I was also playing on a travel soccer team, a local team in Hockessin. We all would meet up at the soccer fields next to the mushroom farms, behind the train tracks, during the week. The drive there would feel like we were entering a different realm, bumpy dirt roads, no buildings, unmarked streets. We would practice drills and play scrimmages until the sun was setting. We went to regional tournaments and even placed 2nd one time! That was a phenomenal achievement for all of us, we were frustrated about not getting first, but we were so proud of having a trophy to show."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"The minuscule amount of these soccer trophies barely compares to my successful time as a martial artist. I am a black belt in Tang-Soo-Do, training under some of the greatest martial artists, those who won world championships, and I would soon enough as well. I was a worldwide Tang-Soo-Do competitor, winning local tournaments without a challenge; I had to seek tougher ones. I learned sacred techniques passed down from generation to generation from my masters. Revered in the Hockessin martial arts circuit; if the name Thacker is ever said, they know who you are talking about since we were famous locals."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"However, once high school struck, we did not have as much time as we'd liked to spend practicing the arts, so we eventually shelved it. I received a generous scholarship from Salesianum High School, which was a famous high school known for its sports program and academics. There have been champions of the NFL and the NBA who graduated from there; while I was attending. The school was stellar. I met so many talented and unique people there. That's where I found my drive for Computer Science as well. I was taking an Introductory to Web Applications class, and that was my first experience with Javascript and HTML. I tried to build a beautiful web page and created one about cars. I was amazed by the creations of other students. They could author these self-expressions through just words given to a computer left me in astonishment."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"College applications began to approach, and I had multiple choices, but my first one was The University of Delaware. I heard they have an excellent curriculum and many famous graduates. I wanted to go there more than anything, so I sent my application and prayed just like everyone else. I got the letter back, and I was so nervous. I was accepted! I was very joyous that day, knowing I would be moving onto the next stage, where I would formulate and build the foundation of my career. I got accepted into the SEEDS scholarship, which granted students free tuition if they maintained above a 3.0 GPA. I had to take classes in Wilmington, DE, where UD had a remote campus. I took courses there, ones to fill up the requirements. My goal was to reach UD in Newark and take the classes I wanted to take. I finally completed that goal after traversing hurdle after hurdle, and I was extremely excited."
+					}
+				</div>
+				<div className={`${aboutMeStyles.about_me_paragraph}`}>
+					{
+						"I immediately signed up for computing classes, rushing to my computer and occupying those seats as soon as course registration was open. I knew this was what I wanted to do. I was right, as I completed those courses exceptionally well. In some classes, I even scored above hundred percent. Eventually, my performance finally received recognition. Checking my email inbox one morning,  I saw a professor offering me the job of monitoring their lab sessions and grading class assignments. I immediately accepted, haphazardly running to my computer to follow the links they sent to enroll. This success would not subside, as I would become highly successful in all my future classes, maintaining a 4.0 GPA in all computer classes I took during my college career."
+					}
+				</div>
 			</div>
 		</div>
 	</BasicLayout>

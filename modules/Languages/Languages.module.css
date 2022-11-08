@@ -19,6 +19,16 @@
 
 .languages_accordion {
     max-height: 70vh;
+    --bs-accordion-bg: transparent !important;
+    --bs-accordion-border-color: black;
+}
+
+.languages_accordion * {
+    background-color: transparent !important;
+}
+
+.language_text {
+    font-size: 1.25em;
 }
 
 .languages_page {
