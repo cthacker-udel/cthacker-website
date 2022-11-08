@@ -8,7 +8,9 @@ import contactInfoStyles from "./ContactInfo.module.css";
  */
 export const ContactInfo = (): JSX.Element => (
 	<BasicLayout>
-		<div className="d-flex flex-column w-100 h-100 justify-content-center align-items-center">
+		<div
+			className={`d-flex flex-column w-100 h-100 justify-content-center align-items-center ${contactInfoStyles.contact_info_page}`}
+		>
 			<div className={`${contactInfoStyles.contact_info_section}`}>
 				<div className="fs-1 text-decoration-underline mb-2 text-center">
 					{"Contact Info"}
