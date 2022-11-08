@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 /**
@@ -20,13 +21,15 @@ export const ContactInfoSection = (): JSX.Element => {
 					isHovering && "fa-shake"
 				}`}
 			/>
-			<div
-				className="fs-4 ms-3 section_link"
-				onMouseEnter={toggleHover}
-				onMouseLeave={toggleHover}
-			>
-				{"Contact Info"}
-			</div>
+			<Link className="text-decoration-none" href="contactinfo">
+				<div
+					className="fs-4 ms-3 section_link"
+					onMouseEnter={toggleHover}
+					onMouseLeave={toggleHover}
+				>
+					{"Contact Info"}
+				</div>
+			</Link>
 		</div>
 	);
 };

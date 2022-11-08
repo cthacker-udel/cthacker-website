@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 /**
@@ -20,13 +21,15 @@ export const SchoolSection = (): JSX.Element => {
 					isHovering && "fa-bounce"
 				}`}
 			/>
-			<div
-				className="fs-4 ms-3 section_link"
-				onMouseEnter={toggleHover}
-				onMouseLeave={toggleHover}
-			>
-				{"School"}
-			</div>
+			<Link className="text-decoration-none" href="school">
+				<div
+					className="fs-4 ms-3 section_link"
+					onMouseEnter={toggleHover}
+					onMouseLeave={toggleHover}
+				>
+					{"School"}
+				</div>
+			</Link>
 		</div>
 	);
 };

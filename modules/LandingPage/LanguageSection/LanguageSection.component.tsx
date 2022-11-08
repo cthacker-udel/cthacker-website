@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 /**
@@ -21,13 +22,15 @@ export const LanguageSection = (): JSX.Element => {
 					isHovering && "fa-bounce"
 				}`}
 			/>
-			<div
-				className="fs-4 ms-3 section_link"
-				onMouseEnter={toggleHover}
-				onMouseLeave={toggleHover}
-			>
-				{"Languages"}
-			</div>
+			<Link className="text-decoration-none" href="languages">
+				<div
+					className="fs-4 ms-3 section_link"
+					onMouseEnter={toggleHover}
+					onMouseLeave={toggleHover}
+				>
+					{"Languages"}
+				</div>
+			</Link>
 		</div>
 	);
 };
