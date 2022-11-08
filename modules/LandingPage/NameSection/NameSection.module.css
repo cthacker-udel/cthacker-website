@@ -1,28 +1,10 @@
-
-@keyframes occupation_skew_animation {
-    0% {
-        transform: none;
-    }
-    25% {
-        transform: skew(-30deg, 0deg);
-    }
-    50% {
-        transform: none;
-    }
-    75% {
-        transform: skew(30deg, 0deg);
-    }
-    100% {
-        transform: none;
-    }
-}
-
 .img_container {
     width: 20vh;
     height: 20vh;
 }
 
 .occupation {
-    animation: occupation_skew_animation 2s infinite linear;
-    transition: font-weight 1s linear;
+    color: #A3362A;
+    transform: skew(-15deg, 0deg);
+    font-weight: 800;
 }
