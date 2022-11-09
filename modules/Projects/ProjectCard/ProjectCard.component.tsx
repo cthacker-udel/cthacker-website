@@ -18,9 +18,9 @@ export const ProjectCard = ({
 	name,
 }: ProjectCardProperties): JSX.Element => (
 	<Card className={`p-3 mx-2 shadow ${projectCardStyles.project_card}`}>
-		<Card.Title
-			className={`${projectCardStyles.project_card_title}`}
-		>{`${name}`}</Card.Title>
+		<Card.Title className={`${projectCardStyles.project_card_title}`}>
+			{`${name}`}
+		</Card.Title>
 		<div className="border border-success my-2" />
 		<Card.Text>{description}</Card.Text>
 		<Card.Footer className={`${projectCardStyles.project_card_footer}`}>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- disabled */
 import React from "react";
 
-import { Winter as TTTWinter } from "../2022/winter/winter";
+import { Winter as tttWinter } from "../2022/winter/winter";
 import type { ProjectSeason } from "../ProjectSeason";
 import type { ProjectYear } from "../ProjectYear";
 
@@ -10,11 +10,7 @@ type ProjectContainerProperties = {
 	season: ProjectSeason;
 };
 
-const PROJECT_MAPPING: any = [
-	[],
-	[],
-	[<TTTWinter key="tttWinter" />, [], [], []],
-];
+const PROJECT_MAPPING: any = [[], [], [tttWinter(), [], [], []]];
 
 /**
  * A container which will house all the projects of the given year and the given season
