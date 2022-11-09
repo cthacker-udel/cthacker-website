@@ -23,6 +23,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="0">
 					<Accordion.Header>
 						<i className="fa-brands fa-python" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"Python"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -35,6 +40,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="1">
 					<Accordion.Header>
 						<i className="fa-brands fa-java" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"Java"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -86,6 +96,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="5">
 					<Accordion.Header>
 						<i className="fa-brands fa-js" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"Javascript"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -99,6 +114,11 @@ export const Languages = (): JSX.Element => (
 					<Accordion.Header>
 						<i className="fa-solid fa-t" />
 						<i className="fa-solid fa-s" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"Typescript"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -125,6 +145,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="8">
 					<Accordion.Header>
 						<i className="fa-solid fa-terminal" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"Linux Scripting"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -137,6 +162,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="9">
 					<Accordion.Header>
 						<i className="fa-brands fa-node" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"NodeJS"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -149,6 +179,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="10">
 					<Accordion.Header>
 						<i className="fa-brands fa-html5" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"HTML"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
@@ -161,6 +196,11 @@ export const Languages = (): JSX.Element => (
 				<Accordion.Item eventKey="11">
 					<Accordion.Header>
 						<i className="fa-brands fa-css3-alt" />
+						<div
+							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
+						>
+							{"CSS"}
+						</div>
 					</Accordion.Header>
 					<Accordion.Body
 						className={`${languagesStyles.language_text}`}
