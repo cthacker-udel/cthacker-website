@@ -7,9 +7,9 @@
 
 import { BasicLayout } from "modules/common";
 import Image from "next/image";
-import React, { type ReactNode } from "react";
+import React from "react";
 
-import schoolStyles from "./SchoolAlt.module.css";
+import schoolStyles from "./School.module.css";
 
 enum SCHOOL_SELECTED {
 	MIDDLE_SCHOOL = 0,
@@ -220,7 +220,7 @@ export const School = (): JSX.Element => {
 						<div
 							className={`p-2 rounded-circle ${
 								schoolStyles.toggle_caret
-							} ${disableLeftButton ? "opacity-25" : ""}`}
+							} ${disableLeftButton ? "opacity-25 pe-none" : ""}`}
 							id="left_button"
 							onClick={
 								disableLeftButton ? undefined : toggleLeftClick
@@ -231,7 +231,9 @@ export const School = (): JSX.Element => {
 						<div
 							className={`p-2 rounded-circle ${
 								schoolStyles.toggle_caret
-							} ${disableRightButton ? "opacity-25" : ""}`}
+							} ${
+								disableRightButton ? "opacity-25 pe-none" : ""
+							}`}
 							id="right_button"
 							onClick={
 								disableRightButton
