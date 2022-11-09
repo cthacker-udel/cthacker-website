@@ -1,4 +1,12 @@
 
+@keyframes swing_right_anim {
+    from {
+        margin-right: -100%;
+    }
+    to {
+        margin-right: 0%;
+    }
+}
 
 .school_page {
     background-color: #85FFBD;
@@ -7,13 +15,14 @@
 
 .school_row {
     width: 85%;
-    height: 85%;
+    height: fit-content;
 }
 
 .school_container {
     border-width: 3.5px;
     border-style: solid;
     border-color: rgba(163, 54, 42, .5);
+    min-height: 75vh;
 }
 
 .school_description {
@@ -35,6 +44,13 @@
 
 .school_description::-webkit-scrollbar {
     display: none;
+}
+
+.swing_right {
+    animation-name: swing_right_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 /* xs */
@@ -65,30 +81,21 @@
     }
 }
 
-.left_toggle {
-    top: 75%;
+.toggle_container {
+    top: 100%;
     left: 45%;
-    border-width: 3.5px;
+    width: 7vw;
+}
+
+.toggle_caret {
+    border-width: 2px;
     border-style: solid;
     border-color: rgba(163, 54, 42, .5);
-    cursor: pointer;
     transition: background-color .5s ease-in-out;
-}
-
-.left_toggle:hover {
-    background-color: white;
-}
-
-.right_toggle {
-    top: 75%;
-    left: 55%;
-    border-width: 3.5px;
-    border-style: solid;
-    border-color: rgba(163, 54, 42, .5);
+    transition: opacity 1s ease-in-out;
     cursor: pointer;
-    transition: background-color .5s ease-in-out;
 }
 
-.right_toggle:hover {
+.toggle_caret:hover {
     background-color: white;
 }

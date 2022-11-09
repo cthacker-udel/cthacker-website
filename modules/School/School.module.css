@@ -1,4 +1,12 @@
 
+@keyframes swing_right_anim {
+    from {
+        margin-right: -100%;
+    }
+    to {
+        margin-right: 0%;
+    }
+}
 
 .school_page {
     background-color: #85FFBD;
@@ -21,6 +29,13 @@
 
 .school_description::-webkit-scrollbar {
     display: none;
+}
+
+.swing_right {
+    animation-name: swing_right_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 /* xs */

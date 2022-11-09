@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow -- disabled */
 /* eslint-disable no-unused-vars -- disabled */
 /* eslint-disable no-magic-numbers -- disabled */
 import { BasicLayout } from "modules/common";

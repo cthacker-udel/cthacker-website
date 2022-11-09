@@ -1,8 +1,13 @@
+/* eslint-disable no-console -- disabled */
+/* eslint-disable require-await -- disabled, need to report non-awaited promise to front-end */
+/* eslint-disable @typescript-eslint/indent -- disabled */
+/* eslint-disable no-shadow -- disabled */
 /* eslint-disable no-unused-vars -- disabled */
 /* eslint-disable no-magic-numbers -- disabled */
+
 import { BasicLayout } from "modules/common";
 import Image from "next/image";
-import React from "react";
+import React, { type ReactNode } from "react";
 
 import schoolStyles from "./SchoolAlt.module.css";
 
@@ -18,6 +23,125 @@ const schoolArray = [
 	SCHOOL_SELECTED.COLLEGE,
 ];
 
+const schoolElements = [
+	<>
+		<div className="d-flex flex-row justify-content-center align-items-center">
+			<Image
+				alt="The Independence School. Newark, DE."
+				className={`${schoolStyles.school_picture}`}
+				height="200"
+				src="/independence_school.jpg"
+				width="200"
+			/>
+		</div>
+		<div className={`${schoolStyles.school_description} text-wrap my-auto`}>
+			<div className="mx-4">
+				{
+					"The Independence School is where I spent all my years as a young middle school student. As you can see, it has a magnificent campus. A campus that spans miles, leaving lots of places to meet new people. Most of us graduated here and went to local high schools. Someone described this school online, and I echo their sentiments as well. That the time I spent at school felt less like a school and more like an actual community."
+				}
+			</div>
+		</div>
+	</>,
+	<>
+		<div className="d-flex flex-row justify-content-center align-items-center">
+			<Image
+				alt="Salesianum School. Wilmington, DE."
+				className={`${schoolStyles.school_picture}`}
+				height="200"
+				src="/salesianum_school.jpg"
+				width="200"
+			/>
+		</div>
+		<div className={`${schoolStyles.school_description} text-wrap my-auto`}>
+			<div className="mx-4">
+				{
+					"Salesianum School was a private high school located in Wilmington, DE. I received generous financial aid to go there, so it was my first choice. It had all the boxes checked, sports and rigorous academia. I played soccer during my first year there and got along well with the academia. I met some great friends along the way, and we would hang out after school every day. The experience was exceptionally bright for all four years I was there."
+				}
+			</div>
+		</div>
+	</>,
+	<>
+		<div className="d-flex flex-row justify-content-center align-items-center">
+			<Image
+				alt="The University of Delaware. Newark, DE."
+				className={`${schoolStyles.school_picture}`}
+				height="200"
+				src="/ud.jpg"
+				width="200"
+			/>
+		</div>
+		<div className={`${schoolStyles.school_description} text-wrap my-auto`}>
+			<div className="mx-4">
+				{
+					"The University of Delaware was such an honor to attend. I've met many amazing people here, from those in my realm of study to those studying archaeology. I settled down with an exceptional friend group at school and have found my place. This university has prepared me for the industry and instilled the drive to keep learning by continuously improving my craft. It's created a highly skilled professional ready and willing to put in the time and effort to achieve a desirable result."
+				}
+			</div>
+		</div>
+	</>,
+];
+
+/**
+ * Swings the school container from the right
+ */
+const swingRight = async (): Promise<Animation | undefined> => {
+	const schoolContainer = document.querySelector("#school_container");
+	const swingRightAnimation = schoolContainer?.animate(
+		[
+			{ opacity: "0%", position: "absolute", right: "100vw" },
+			{ opacity: "75%", position: "absolute", right: "0" },
+			{ opacity: "100%", position: "relative", right: undefined },
+		],
+		{
+			duration: 2000,
+			easing: "cubic-bezier(0.42, 0, 0.58, 1)",
+			fill: "forwards",
+		},
+	);
+	return swingRightAnimation?.finished;
+};
+
+/**
+ * Swings the school container from the left
+ */
+const swingLeft = async (): Promise<Animation | undefined> => {
+	const schoolContainer = document.querySelector("#school_container");
+	const swingLeftAnim = schoolContainer?.animate(
+		[
+			{ left: "100vw", opacity: "0%", position: "absolute" },
+			{ left: "0", opacity: "75%", position: "absolute" },
+			{ left: undefined, opacity: "100%", position: "relative" },
+		],
+		{
+			duration: 2000,
+			easing: "cubic-bezier(0.42, 0, 0.58, 1)",
+			fill: "forwards",
+		},
+	);
+	return swingLeftAnim?.finished;
+};
+
+/**
+ * Spins the left button
+ */
+const spinLeftButton = (): void => {
+	const leftButton = document.querySelector("#left_button");
+	leftButton?.animate([{ transform: "rotate(360deg)" }], {
+		duration: 1000,
+		easing: "ease-in-out",
+	});
+};
+
+/**
+ * Spins the right button
+ */
+const spinRightButton = (): void => {
+	const rightButton = document.querySelector("#right_button");
+	rightButton?.animate([{ transform: "rotate(-360deg)" }], {
+		duration: 1000,
+		easing: "ease-in-out",
+	});
+};
+
 /**
  * The school component, which will list all the schools I've went to, and current curriculum I am undergoing
  *
@@ -27,6 +151,10 @@ export const School = (): JSX.Element => {
 	const [selectedSlide, setSelectedSlide] = React.useState<number>(
 		SCHOOL_SELECTED.MIDDLE_SCHOOL,
 	);
+	const [disableLeftButton, setDisableLeftButton] =
+		React.useState<boolean>(false);
+	const [disableRightButton, setDisableRightButton] =
+		React.useState<boolean>(false);
 
 	/**
 	 * Handles the event when the left button is clicked
@@ -37,6 +165,18 @@ export const School = (): JSX.Element => {
 				? schoolArray[2]
 				: schoolArray[selectedSlide - 1],
 		);
+		setDisableLeftButton(true);
+		swingLeft()
+			.then(() => {
+				setDisableLeftButton(false);
+			})
+			.catch((error: unknown) => {
+				setDisableLeftButton(false);
+				console.error(
+					`Failed to swing school left ${(error as Error).stack}`,
+				);
+			});
+		spinLeftButton();
 	}, [selectedSlide]);
 
 	/**
@@ -48,6 +188,18 @@ export const School = (): JSX.Element => {
 				? schoolArray[0]
 				: schoolArray[selectedSlide + 1],
 		);
+		setDisableRightButton(true);
+		swingRight()
+			.then(() => {
+				setDisableRightButton(false);
+			})
+			.catch((error: unknown) => {
+				setDisableRightButton(false);
+				console.error(
+					`Failed to swing school right ${(error as Error).stack}`,
+				);
+			});
+		spinRightButton();
 	}, [selectedSlide]);
 
 	return (
@@ -57,37 +209,37 @@ export const School = (): JSX.Element => {
 			>
 				<div className={`position-relative ${schoolStyles.school_row}`}>
 					<div
-						className={`${schoolStyles.left_toggle} position-absolute p-3 rounded-circle`}
-						onClick={toggleLeftClick}
+						className={`d-flex flex-row justify-content-between p-4 mb-4 rounded ${schoolStyles.school_container} position-relative`}
+						id="school_container"
 					>
-						<i className="fa-solid fa-caret-left fa-2xl" />
+						{schoolElements[selectedSlide]}
 					</div>
 					<div
-						className={`${schoolStyles.right_toggle} position-absolute p-3 rounded-circle`}
-						onClick={toggleRightClick}
+						className={`position-absolute d-flex flex-row justify-content-between ${schoolStyles.toggle_container}`}
 					>
-						<i className="fa-solid fa-caret-right fa-2xl" />
-					</div>
-					<div
-						className={`d-flex flex-row justify-content-between p-4 mb-4 rounded ${schoolStyles.school_container}`}
-					>
-						<div className="d-flex flex-row justify-content-center align-items-center">
-							<Image
-								alt="The Independence School. Newark, DE."
-								className={`${schoolStyles.school_picture}`}
-								height="200"
-								src="/independence_school.jpg"
-								width="200"
-							/>
+						<div
+							className={`p-2 rounded-circle ${
+								schoolStyles.toggle_caret
+							} ${disableLeftButton ? "opacity-25" : ""}`}
+							id="left_button"
+							onClick={
+								disableLeftButton ? undefined : toggleLeftClick
+							}
+						>
+							<i className="fa-solid fa-caret-left fa-2xl" />
 						</div>
 						<div
-							className={`${schoolStyles.school_description} text-wrap my-auto`}
+							className={`p-2 rounded-circle ${
+								schoolStyles.toggle_caret
+							} ${disableRightButton ? "opacity-25" : ""}`}
+							id="right_button"
+							onClick={
+								disableRightButton
+									? undefined
+									: toggleRightClick
+							}
 						>
-							<div className="mx-4">
-								{
-									"The Independence School is where I spent all my years as a young middle school student. As you can see, it has a magnificent campus. A campus that spans miles, leaving lots of places to meet new people. Most of us graduated here and went to local high schools. Someone described this school online, and I echo their sentiments as well. That the time I spent at school felt less like a school and more like an actual community."
-								}
-							</div>
+							<i className="fa-solid fa-caret-right fa-2xl" />
 						</div>
 					</div>
 				</div>
