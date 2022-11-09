@@ -1,0 +1,25 @@
+
+.project_card {
+    color: #A3362A;
+    font-weight: 500;
+    background-color: transparent;
+    border-color: #A3362A;
+    border-width: 2px;
+    font-size: 1.5em;
+}
+
+.project_card_title {
+    font-weight: 800;
+    text-align: center;
+}
+
+.project_card_footer {
+    font-size: .50em;
+    font-weight: 300;
+    background-color: transparent;
+    border: none;
+    padding-top: auto;
+    padding-right: auto;
+    padding-left: 0%;
+    padding-bottom: 0%;
+}
