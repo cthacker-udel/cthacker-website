@@ -1,1 +1,1 @@
-export { School } from "./School.component";
+export { School } from "./SchoolAlt.component";

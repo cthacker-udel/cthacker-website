@@ -148,7 +148,7 @@ export const Languages = (): JSX.Element => (
 						<div
 							className={`ms-2 ${languagesStyles.languages_accordion_title}`}
 						>
-							{"Linux Scripting"}
+							{"Linux Terminal"}
 						</div>
 					</Accordion.Header>
 					<Accordion.Body

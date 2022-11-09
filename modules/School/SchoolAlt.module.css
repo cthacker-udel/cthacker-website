@@ -1,0 +1,94 @@
+
+
+.school_page {
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+}
+
+.school_row {
+    width: 85%;
+    height: 85%;
+}
+
+.school_container {
+    border-width: 3.5px;
+    border-style: solid;
+    border-color: rgba(163, 54, 42, .5);
+}
+
+.school_description {
+    max-width: 40vw;
+    max-height: 50vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    font-size: 1.5em;
+}
+
+.school_picture {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 1em;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.school_description::-webkit-scrollbar {
+    display: none;
+}
+
+/* xs */
+@media only screen and (max-width: 575px) {
+    .school_description {
+        font-size: .75em;
+    }
+}
+
+/* sm -- md */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .school_description {
+        font-size: .75em;
+    }
+}
+
+/* lg - xl */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .school_description {
+        font-size: 1.75em;
+    }
+}
+
+/* xxl */
+@media only screen and (min-width: 1201px) {
+    .school_description {
+        font-size: 1.75em;
+    }
+}
+
+.left_toggle {
+    top: 75%;
+    left: 45%;
+    border-width: 3.5px;
+    border-style: solid;
+    border-color: rgba(163, 54, 42, .5);
+    cursor: pointer;
+    transition: background-color .5s ease-in-out;
+}
+
+.left_toggle:hover {
+    background-color: white;
+}
+
+.right_toggle {
+    top: 75%;
+    left: 55%;
+    border-width: 3.5px;
+    border-style: solid;
+    border-color: rgba(163, 54, 42, .5);
+    cursor: pointer;
+    transition: background-color .5s ease-in-out;
+}
+
+.right_toggle:hover {
+    background-color: white;
+}
