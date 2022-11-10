@@ -121,35 +121,13 @@ const swingLeft = async (): Promise<Animation | undefined> => {
 };
 
 /**
- * Spins the left button
- */
-const spinLeftButton = (): void => {
-	const leftButton = document.querySelector("#left_button");
-	leftButton?.animate([{ transform: "rotate(360deg)" }], {
-		duration: 1000,
-		easing: "ease-in-out",
-	});
-};
-
-/**
- * Spins the right button
- */
-const spinRightButton = (): void => {
-	const rightButton = document.querySelector("#right_button");
-	rightButton?.animate([{ transform: "rotate(-360deg)" }], {
-		duration: 1000,
-		easing: "ease-in-out",
-	});
-};
-
-/**
  * The school component, which will list all the schools I've went to, and current curriculum I am undergoing
  *
  * @returns The school component
  */
 export const School = (): JSX.Element => {
 	const [selectedSlide, setSelectedSlide] = React.useState<number>(
-		SCHOOL_SELECTED.MIDDLE_SCHOOL,
+		SCHOOL_SELECTED.COLLEGE,
 	);
 	const [disableLeftButton, setDisableLeftButton] =
 		React.useState<boolean>(false);
@@ -176,7 +154,6 @@ export const School = (): JSX.Element => {
 					`Failed to swing school left ${(error as Error).stack}`,
 				);
 			});
-		spinLeftButton();
 	}, [selectedSlide]);
 
 	/**
@@ -199,7 +176,6 @@ export const School = (): JSX.Element => {
 					`Failed to swing school right ${(error as Error).stack}`,
 				);
 			});
-		spinRightButton();
 	}, [selectedSlide]);
 
 	return (
