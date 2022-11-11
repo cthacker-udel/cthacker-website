@@ -1,0 +1,30 @@
+
+.project_container {
+    border-color: #A3362A;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.project_year {
+    top: 5%;
+    left: 5%;
+    font-size: 1.75em;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.project_year_scroll {
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    max-height: 20vh;
+}
+
+.project_year_scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.project_year_selected {
+    transition: color 1s ease-in-out;
+    color: #A3362A;
+}
