@@ -1,0 +1,11 @@
+
+.project_container {
+    max-height: 20vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.project_container::-webkit-scrollbar {
+    display: none;
+}
