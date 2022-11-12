@@ -12,6 +12,7 @@ const nextConfig = {
 			},
 		],
 	},
+	env: { GITHUB_API_TOKEN: process.env.GITHUB_API_TOKEN },
 };
 
 export default nextConfig;
