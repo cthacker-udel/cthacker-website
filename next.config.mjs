@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	assetPrefix: "./",
-	reactStrictMode: true,
+	reactStrictMode: false,
 	swcMinify: true,
 	images: {
 		unoptimized: true,

@@ -1,0 +1,48 @@
+
+.project_container {
+    border-color: #A3362A;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.project_year {
+    top: 5%;
+    left: 5%;
+    font-size: 1.75em;
+    font-weight: bold;
+    overflow: hidden;
+    width: 20vw;
+}
+
+.project_scroll {
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    max-height: 20vh;
+    max-width: 10vw;
+    min-width: 10vw;
+}
+
+.project_scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.project_selected {
+    transition: color 1s ease-in-out;
+    font-size: 1em;
+    color: #A3362A;
+    transition: font-size .25s ease-in-out;
+}
+
+.project_unselected {
+    font-size: .65em;
+    color: rgba(0, 0, 0, .5);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color .5s ease-in-out;
+    transition: font-size .25s ease-in-out;
+}
+
+.project_unselected:hover {
+    background-color: rgba(100, 0, 0, .11);
+}

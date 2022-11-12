@@ -1,0 +1,11 @@
+
+.language_list {
+    max-height: 10vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.language_list::-webkit-scrollbar {
+    display: none;
+}
