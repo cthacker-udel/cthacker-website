@@ -1,4 +1,11 @@
 
-.title {
+
+.description:hover {
     font-size: 1.5em;
+}
+
+.description {
+    transition: font-size 1s ease-in-out;
+    color: #A3362A;
+    font-size: 1.25em;
 }

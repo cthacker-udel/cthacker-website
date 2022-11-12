@@ -15,11 +15,14 @@ import React from "react";
 import { Spinner } from "react-bootstrap";
 
 import {
+	type AggregateRepoStats,
 	type RenderableProject,
 	type Repo,
+	generateAggregateStats,
 	organizeParsedRepos,
 	parseRepos,
 } from "./helpers";
+import { ProjectAggregateStats } from "./ProjectAggregateStats";
 import { ProjectContainer } from "./ProjectContainer";
 import projectStyles from "./Projects.module.css";
 import { Season } from "./Season";
@@ -54,13 +57,27 @@ const Projects = (): JSX.Element => {
 	const [finishedCollecting, setFinishedCollecting] =
 		React.useState<boolean>(false);
 	const [paginationPage, setPaginationPage] = React.useState<number>(1);
+	const [repoAggregateStats, setRepoAggregateStats] =
+		React.useState<AggregateRepoStats | undefined>(undefined);
+	const [rawRepoData, setRawRepoData] = React.useState<Repo[]>([]);
 
 	React.useEffect(() => {
 		if (finishedCollecting) {
 			const organizedRepos = organizeParsedRepos(repoCollection);
 			setOrganizedRepoCollection(organizedRepos);
+			generateAggregateStats(rawRepoData)
+				.then((result: AggregateRepoStats) => {
+					setRepoAggregateStats(result);
+				})
+				.catch((error: unknown) => {
+					console.error(
+						`Unable to set repo aggregate data ${
+							(error as Error).stack
+						}`,
+					);
+				});
 		}
-	}, [finishedCollecting, repoCollection]);
+	}, [finishedCollecting, repoCollection, rawRepoData]);
 
 	React.useEffect(() => {
 		const octokit: Octokit = new Octokit({
@@ -97,7 +114,12 @@ const Projects = (): JSX.Element => {
 					}
 					return parsedReturnedRepositories;
 				});
-				console.log("setting next page to", nextPage);
+				setRawRepoData((oldRepoData: Repo[]) => {
+					if (oldRepoData.length > 0) {
+						return [...oldRepoData, ...repos];
+					}
+					return [...repos];
+				});
 				setPaginationPage((previousPaginationPage) => {
 					if (previousPaginationPage >= nextPage) {
 						setFinishedCollecting(true);
@@ -124,7 +146,7 @@ const Projects = (): JSX.Element => {
 		<BasicLayout>
 			<div className="h-100 w-100 d-flex flex-column justify-content-center align-items-center">
 				<div
-					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-column justify-content-center align-items-center`}
+					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-column justify-content-end align-items-center`}
 				>
 					<div
 						className={`${projectStyles.project_year} position-absolute`}
@@ -188,21 +210,34 @@ const Projects = (): JSX.Element => {
 							</div>
 						</div>
 					</div>
-					{organizedRepoCollection ? (
-						<ProjectContainer
-							projects={
-								organizedRepoCollection[
-									availableYears[selectedYearIndex]
-								] === undefined
-									? []
-									: organizedRepoCollection[
-											availableYears[selectedYearIndex]
-									  ][seasons[selectedSeasonIndex]]
-							}
-						/>
-					) : (
-						<Spinner animation="border" />
-					)}
+					<div className="d-flex flex-row justify-content-around w-100 mb-4">
+						<div className="d-flex flex-column">
+							{repoAggregateStats === undefined ? (
+								<Spinner animation="border" />
+							) : (
+								<ProjectAggregateStats
+									{...repoAggregateStats}
+								/>
+							)}
+						</div>
+						{organizedRepoCollection ? (
+							<ProjectContainer
+								projects={
+									organizedRepoCollection[
+										availableYears[selectedYearIndex]
+									] === undefined
+										? []
+										: organizedRepoCollection[
+												availableYears[
+													selectedYearIndex
+												]
+										  ][seasons[selectedSeasonIndex]]
+								}
+							/>
+						) : (
+							<Spinner animation="border" />
+						)}
+					</div>
 				</div>
 			</div>
 		</BasicLayout>
