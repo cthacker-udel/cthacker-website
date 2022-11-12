@@ -24,6 +24,7 @@ const generateAggregateStats = async (
 	const languages: string[] = [];
 	let totalStars = 0;
 	let totalWatch = 0;
+    console.log(process.env);
 	const octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN });
 	const languagesPromises = [];
 	for (const eachRepo of repos) {
