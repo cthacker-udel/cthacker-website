@@ -4,6 +4,8 @@
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    letter-spacing: .1em;
+    font-size: 1.25em;
 }
 
 .project_container::-webkit-scrollbar {

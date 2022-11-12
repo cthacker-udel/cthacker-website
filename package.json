@@ -17,6 +17,7 @@
 		"@fortawesome/fontawesome-svg-core": "^6.2.0",
 		"@fortawesome/free-solid-svg-icons": "^6.2.0",
 		"next": "^13.0.2",
+		"octokit": "^2.0.10",
 		"react": "18.2.0",
 		"react-bootstrap": "^2.5.0",
 		"react-dom": "18.2.0",
@@ -24,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "^13.0.2",
+		"@octokit/types": "^8.0.0",
 		"@types/node": "^18.11.9",
 		"@types/react": "^18.0.25",
 		"@types/react-dom": "^18.0.8",

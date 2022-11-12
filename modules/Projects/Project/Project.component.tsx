@@ -1,12 +1,7 @@
 import React from "react";
 
+import type { RenderableProject } from "../helpers";
 import projectStyles from "./Project.module.css";
-
-type ProjectProperties = {
-	link: string;
-	isPrivate: boolean;
-	title: string;
-};
 
 /**
  *
@@ -20,15 +15,15 @@ export const Project = ({
 	link,
 	title,
 	isPrivate,
-}: ProjectProperties): JSX.Element => (
+}: RenderableProject): JSX.Element => (
 	<div className="d-flex flex-row">
 		<a className={`${projectStyles.description}`} href={link}>
-			{title}{" "}
-			{isPrivate ? (
-				<i className="fa-solid fa-lock" />
-			) : (
-				<i className="fa-solid fa-unlock" />
-			)}
+			{title.trim()}{" "}
 		</a>
+		{isPrivate ? (
+			<i className="fa-solid fa-eye-slash fa-xs ms-1 my-auto" />
+		) : (
+			<i className="fa-solid fa-eye fa-xs ms-1 my-auto" />
+		)}
 	</div>
 );
