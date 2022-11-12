@@ -81,7 +81,7 @@ const Projects = (): JSX.Element => {
 
 	React.useEffect(() => {
 		const octokit: Octokit = new Octokit({
-			auth: process.env.GITHUB_AUTH_TOKEN,
+			auth: process.env.GITHUB_API_TOKEN,
 		});
 		octokit
 			.request("GET /user/repos", { page: paginationPage, per_page: 100 })
