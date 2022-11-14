@@ -9,3 +9,8 @@
 .language_list::-webkit-scrollbar {
     display: none;
 }
+
+.stat_text {
+    font-size: .75em;
+    opacity: 50%;
+}

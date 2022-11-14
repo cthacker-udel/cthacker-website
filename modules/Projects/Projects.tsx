@@ -146,7 +146,7 @@ const Projects = (): JSX.Element => {
 		<BasicLayout>
 			<div className="h-100 w-100 d-flex flex-column justify-content-center align-items-center">
 				<div
-					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-column justify-content-end align-items-center`}
+					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-column align-items-center`}
 				>
 					<div
 						className={`${projectStyles.project_year} position-absolute`}
@@ -210,33 +210,37 @@ const Projects = (): JSX.Element => {
 							</div>
 						</div>
 					</div>
-					<div className="d-flex flex-row justify-content-around w-100 mb-4">
-						<div className="d-flex flex-column">
-							{repoAggregateStats === undefined ? (
-								<Spinner animation="border" />
-							) : (
-								<ProjectAggregateStats
-									{...repoAggregateStats}
+					<div className="d-flex flex-row h-100 w-100 justify-content-around">
+						<div className="d-flex flex-row justify-content-start h-50 mt-auto m-4 w-25">
+							<div className="d-flex flex-column">
+								{repoAggregateStats === undefined ? (
+									<Spinner animation="border" />
+								) : (
+									<ProjectAggregateStats
+										{...repoAggregateStats}
+									/>
+								)}
+							</div>
+						</div>
+						<div className="me-4 my-4 d-flex flex-column justify-content-center align-items-center w-50">
+							{organizedRepoCollection ? (
+								<ProjectContainer
+									projects={
+										organizedRepoCollection[
+											availableYears[selectedYearIndex]
+										] === undefined
+											? []
+											: organizedRepoCollection[
+													availableYears[
+														selectedYearIndex
+													]
+											  ][seasons[selectedSeasonIndex]]
+									}
 								/>
+							) : (
+								<Spinner animation="border" />
 							)}
 						</div>
-						{organizedRepoCollection ? (
-							<ProjectContainer
-								projects={
-									organizedRepoCollection[
-										availableYears[selectedYearIndex]
-									] === undefined
-										? []
-										: organizedRepoCollection[
-												availableYears[
-													selectedYearIndex
-												]
-										  ][seasons[selectedSeasonIndex]]
-								}
-							/>
-						) : (
-							<Spinner animation="border" />
-						)}
 					</div>
 				</div>
 			</div>
