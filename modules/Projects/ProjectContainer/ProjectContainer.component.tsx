@@ -19,7 +19,7 @@ export const ProjectContainer = ({
 	projects,
 }: ProjectContainerProperties): JSX.Element => (
 	<div
-		className={`${projectContainerProperties.project_container} d-flex flex-column`}
+		className={`${projectContainerProperties.project_container} d-flex flex-column p-3`}
 	>
 		{projects.length > 0 ? (
 			projects.map((eachProject: RenderableProject, _ind: number) => (

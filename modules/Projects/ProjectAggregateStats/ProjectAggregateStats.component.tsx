@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers -- disabled */
 import React from "react";
 import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
+import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
 
 import type { AggregateRepoStats } from "../helpers";
 import projectAggregateStyles from "./ProjectAggregateStats.module.css";
@@ -63,16 +63,17 @@ export const ProjectAggregateStats = ({
 						createProjectTooltip(
 							properties,
 							"numLanguageTooltip",
-							`Number of languages: ${languagesCount}`,
+							"Number of languages",
 						)
 					}
 					placement="right"
 				>
-					<Badge bg="dark">
+					<Badge bg="dark" className="me-1">
 						<i className="fa-solid fa-hashtag fa-sm me-1" />
 						<i className="fa-solid fa-language fa-sm" />
 					</Badge>
 				</OverlayTrigger>
+				{languagesCount}
 			</div>
 			<div>
 				<OverlayTrigger
@@ -81,15 +82,16 @@ export const ProjectAggregateStats = ({
 						createProjectTooltip(
 							properties,
 							"numRepositoryTooltip",
-							`Number of repositories ${totalCount}`,
+							"Number of projects",
 						)
 					}
 					placement="right"
 				>
-					<Badge bg="dark">
+					<Badge bg="dark" className="me-1">
 						<i className="fa-solid fa-folder fa-sm me-1" />
 					</Badge>
 				</OverlayTrigger>
+				{totalCount}
 			</div>
 			<div>
 				<OverlayTrigger
@@ -98,15 +100,16 @@ export const ProjectAggregateStats = ({
 						createProjectTooltip(
 							properties,
 							"numRepositoryFavoritedCount",
-							`Number of repositories starred (favorited): ${totalStars}`,
+							"Number of projects favorited",
 						)
 					}
 					placement="right"
 				>
-					<Badge bg="dark">
+					<Badge bg="dark" className="me-1">
 						<i className="fa-solid fa-star fa-sm me-1" />
 					</Badge>
 				</OverlayTrigger>
+				{totalStars}
 			</div>
 			<div>
 				<OverlayTrigger
@@ -115,15 +118,16 @@ export const ProjectAggregateStats = ({
 						createProjectTooltip(
 							properties,
 							"numRepositoryWatched",
-							`Number of repositories watched ${totalWatch}`,
+							"Number of projects followed",
 						)
 					}
 					placement="right"
 				>
-					<Badge bg="dark">
+					<Badge bg="dark" className="me-1">
 						<i className="fa-solid fa-eye" />
 					</Badge>
 				</OverlayTrigger>
+				{totalWatch}
 			</div>
 		</div>
 	</>

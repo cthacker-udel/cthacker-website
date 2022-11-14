@@ -22,6 +22,7 @@ import {
 	organizeParsedRepos,
 	parseRepos,
 } from "./helpers";
+import { LanguagesBar } from "./LanguagesBar";
 import { ProjectAggregateStats } from "./ProjectAggregateStats";
 import { ProjectContainer } from "./ProjectContainer";
 import projectStyles from "./Projects.module.css";
@@ -57,8 +58,9 @@ const Projects = (): JSX.Element => {
 	const [finishedCollecting, setFinishedCollecting] =
 		React.useState<boolean>(false);
 	const [paginationPage, setPaginationPage] = React.useState<number>(1);
-	const [repoAggregateStats, setRepoAggregateStats] =
-		React.useState<AggregateRepoStats | undefined>(undefined);
+	const [repoAggregateStats, setRepoAggregateStats] = React.useState<
+		AggregateRepoStats | undefined
+	>(undefined);
 	const [rawRepoData, setRawRepoData] = React.useState<Repo[]>([]);
 
 	React.useEffect(() => {
@@ -144,85 +146,98 @@ const Projects = (): JSX.Element => {
 
 	return (
 		<BasicLayout>
-			<div className="h-100 w-100 d-flex flex-column justify-content-center align-items-center">
+			<div
+				className={`h-100 w-100 d-flex flex-column justify-content-center align-items-center ${projectStyles.layout_container}`}
+			>
 				<div
-					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-column align-items-center`}
+					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-row align-items-center`}
 				>
-					<div
-						className={`${projectStyles.project_year} position-absolute`}
-					>
-						<div
-							className={`d-flex flex-row justify-content-between ${projectStyles.project_scrollable_section}`}
-						>
+					<div className="d-flex flex-row position-relative h-100 w-100 justify-content-around">
+						<div className="d-flex flex-column h-100">
 							<div
-								className={`${projectStyles.project_scroll} d-flex flex-column`}
+								className={`${projectStyles.project_year} position-absolute`}
 							>
-								{availableYears.map((eachYear, _index) => (
+								<div
+									className={`d-flex flex-row justify-content-between ${projectStyles.project_scrollable_section}`}
+								>
 									<div
-										className={
-											_index === selectedYearIndex
-												? `${projectStyles.project_selected} text-center`
-												: `${projectStyles.project_unselected} text-center rounded`
-										}
-										id={`year-${eachYear}`}
-										key={eachYear}
-										onClick={(): void => {
-											document
-												.querySelector(
-													`#year-${eachYear}`,
-												)
-												?.scrollIntoView({
-													behavior: "smooth",
-												});
-											setSelectedYearIndex(_index);
-										}}
+										className={`${projectStyles.project_scroll} d-flex flex-column`}
 									>
-										{eachYear}
+										{availableYears.map(
+											(eachYear, _index) => (
+												<div
+													className={
+														_index ===
+														selectedYearIndex
+															? `${projectStyles.project_selected} text-center`
+															: `${projectStyles.project_unselected} text-center rounded`
+													}
+													id={`year-${eachYear}`}
+													key={eachYear}
+													onClick={(): void => {
+														document
+															.querySelector(
+																`#year-${eachYear}`,
+															)
+															?.scrollIntoView({
+																behavior:
+																	"smooth",
+															});
+														setSelectedYearIndex(
+															_index,
+														);
+													}}
+												>
+													{eachYear}
+												</div>
+											),
+										)}
 									</div>
-								))}
+									<div
+										className={`${projectStyles.project_scroll} d-flex flex-column fs-5`}
+									>
+										{seasons.map((eachSeason, _index) => (
+											<div
+												className={
+													_index ===
+													selectedSeasonIndex
+														? `${projectStyles.project_selected} text-center`
+														: `${projectStyles.project_unselected} text-center rounded`
+												}
+												id={`season-${eachSeason}`}
+												key={eachSeason}
+												onClick={(): void => {
+													document
+														.querySelector(
+															`#season-${eachSeason}`,
+														)
+														?.scrollIntoView({
+															behavior: "smooth",
+														});
+													setSelectedSeasonIndex(
+														_index,
+													);
+												}}
+											>
+												{mappedSeasons[eachSeason]}
+											</div>
+										))}
+									</div>
+								</div>
 							</div>
-							<div
-								className={`${projectStyles.project_scroll} d-flex flex-column fs-5`}
-							>
-								{seasons.map((eachSeason, _index) => (
-									<div
-										className={
-											_index === selectedSeasonIndex
-												? `${projectStyles.project_selected} text-center`
-												: `${projectStyles.project_unselected} text-center rounded`
-										}
-										id={`season-${eachSeason}`}
-										key={eachSeason}
-										onClick={(): void => {
-											document
-												.querySelector(
-													`#season-${eachSeason}`,
-												)
-												?.scrollIntoView({
-													behavior: "smooth",
-												});
-											setSelectedSeasonIndex(_index);
-										}}
-									>
-										{mappedSeasons[eachSeason]}
-									</div>
-								))}
+							<div className="d-flex flex-row justify-content-start h-50 mt-auto">
+								<div className="d-flex flex-column">
+									{repoAggregateStats === undefined ? (
+										<Spinner animation="border" />
+									) : (
+										<ProjectAggregateStats
+											{...repoAggregateStats}
+										/>
+									)}
+								</div>
 							</div>
 						</div>
-					</div>
-					<div className="d-flex flex-row h-100 w-100 justify-content-around">
-						<div className="d-flex flex-row justify-content-start h-50 mt-auto m-4 w-25">
-							<div className="d-flex flex-column">
-								{repoAggregateStats === undefined ? (
-									<Spinner animation="border" />
-								) : (
-									<ProjectAggregateStats
-										{...repoAggregateStats}
-									/>
-								)}
-							</div>
-						</div>
-						<div className="me-4 my-4 d-flex flex-column justify-content-center align-items-center w-50">
+						<div className="d-flex flex-column h-75 my-auto">
 							{organizedRepoCollection ? (
 								<ProjectContainer
 									projects={
@@ -239,6 +254,17 @@ const Projects = (): JSX.Element => {
 								/>
 							) : (
 								<Spinner animation="border" />
+							)}
+						</div>
+						<div
+							className={`d-flex flex-row w-100 position-absolute ${projectStyles.project_languages} justify-content-center mt-1`}
+						>
+							{repoAggregateStats ? (
+								<LanguagesBar
+									languages={repoAggregateStats.languages}
+								/>
+							) : (
+								<span />
 							)}
 						</div>
 					</div>
