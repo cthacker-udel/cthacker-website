@@ -257,7 +257,7 @@ const Projects = (): JSX.Element => {
 							)}
 						</div>
 						<div
-							className={`d-flex flex-row w-100 position-absolute ${projectStyles.project_languages} justify-content-center mt-1`}
+							className={`d-flex flex-row w-100 position-absolute ${projectStyles.project_languages} justify-content-center mt-1 text-wrap`}
 						>
 							{repoAggregateStats ? (
 								<LanguagesBar

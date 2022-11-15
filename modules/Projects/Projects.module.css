@@ -58,11 +58,9 @@
 
 .project_languages {
     top: 100%;
-    max-width: 100%;
-    min-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    overflow: scroll;
+    flex-wrap: wrap;
 }
 
 .layout_container {
