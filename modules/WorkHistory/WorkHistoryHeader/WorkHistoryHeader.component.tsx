@@ -3,7 +3,7 @@ import React from "react";
 import workHistoryHeaderStyles from "./WorkHistoryHeader.module.css";
 
 type WorkHistoryHeaderProperties = {
-	displayOrder?: number;
+	// When we have the scrollspy implemented displayOrder?: number;
 	sections?: JSX.Element[];
 	year?: number;
 };
@@ -14,7 +14,6 @@ type WorkHistoryHeaderProperties = {
  * @returns
  */
 export const WorkHistoryHeader = ({
-	displayOrder,
 	sections,
 	year,
 }: WorkHistoryHeaderProperties): JSX.Element => (
