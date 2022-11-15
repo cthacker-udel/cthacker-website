@@ -147,7 +147,7 @@ const Projects = (): JSX.Element => {
 	return (
 		<BasicLayout>
 			<div
-				className={`h-100 w-100 d-flex flex-column justify-content-center align-items-center ${projectStyles.layout_container}`}
+				className={`d-flex flex-column w-100 justify-content-center align-items-center ${projectStyles.layout_container}`}
 			>
 				<div
 					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-row align-items-center`}

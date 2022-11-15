@@ -11,7 +11,7 @@ import languagesStyles from "./Languages.module.css";
 export const Languages = (): JSX.Element => (
 	<BasicLayout>
 		<div
-			className={`w-100 h-100 d-flex flex-column justify-content-center align-items-center ${languagesStyles.languages_page}`}
+			className={`w-100 d-flex flex-column justify-content-center align-items-center ${languagesStyles.languages_page}`}
 		>
 			<div className="fs-2 text-decoration-underline mb-3">
 				{"Languages"}

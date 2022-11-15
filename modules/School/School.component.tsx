@@ -181,7 +181,7 @@ export const School = (): JSX.Element => {
 	return (
 		<BasicLayout>
 			<div
-				className={`d-flex flex-column h-100 w-100 justify-content-center align-items-center ${schoolStyles.school_page}`}
+				className={`d-flex flex-column w-100 justify-content-center align-items-center ${schoolStyles.school_page}`}
 			>
 				<div className={`position-relative ${schoolStyles.school_row}`}>
 					<div
