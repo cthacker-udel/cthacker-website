@@ -13,7 +13,7 @@ export const WorkHistory = (): JSX.Element => (
 	<BasicLayout>
 		<div className="w-100 h-100 d-flex flex-row mt-4">
 			<WorkHistoryHeader
-				displayOrder={0}
+				// When we have scroll-spy implemented displayOrder={0}
 				sections={[...Fall2022]}
 				year={2022}
 			/>
