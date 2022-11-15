@@ -226,7 +226,7 @@ const Projects = (): JSX.Element => {
 								</div>
 							</div>
 							<div className="d-flex flex-row justify-content-start h-50 mt-auto">
-								<div className="d-flex flex-column">
+								<div className="d-flex flex-column p-2">
 									{repoAggregateStats === undefined ? (
 										<Spinner animation="border" />
 									) : (

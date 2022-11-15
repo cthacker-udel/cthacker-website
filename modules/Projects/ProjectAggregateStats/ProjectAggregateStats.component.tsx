@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers -- disabled */
 import React from "react";
-import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
 
 import type { AggregateRepoStats } from "../helpers";
@@ -42,7 +42,9 @@ export const ProjectAggregateStats = ({
 	totalWatch,
 }: AggregateRepoStats): JSX.Element => (
 	<>
-		<div className="fs-4">{"Overall Project Stats"}</div>
+		<div className={`${projectAggregateStyles.aggregate_header} fs-5`}>
+			{"Overall Project Stats"}
+		</div>
 		<div className="d-flex flex-column">
 			<div className="d-flex flex-row">
 				<i className="fa-solid fa-language me-1 my-auto fa-xs" />
@@ -53,7 +55,11 @@ export const ProjectAggregateStats = ({
 						))}
 					</div>
 				) : (
-					<div>{"No Languages"}</div>
+					<div
+						className={`${projectAggregateStyles.aggregate_header}`}
+					>
+						{"No Languages"}
+					</div>
 				)}
 			</div>
 			<div>
@@ -68,10 +74,12 @@ export const ProjectAggregateStats = ({
 					}
 					placement="right"
 				>
-					<Badge bg="dark" className="me-1">
-						<i className="fa-solid fa-hashtag fa-sm me-1" />
-						<i className="fa-solid fa-language fa-sm" />
-					</Badge>
+					<div
+						className={`badge bg-dark align-items-center me-1 ${projectAggregateStyles.project_badge}`}
+					>
+						<i className="fa-solid fa-hashtag fa-xs me-1" />
+						<i className="fa-solid fa-language fa-xs" />
+					</div>
 				</OverlayTrigger>
 				{languagesCount}
 			</div>
@@ -87,9 +95,11 @@ export const ProjectAggregateStats = ({
 					}
 					placement="right"
 				>
-					<Badge bg="dark" className="me-1">
-						<i className="fa-solid fa-folder fa-sm me-1" />
-					</Badge>
+					<div
+						className={`badge bg-dark align-items-center me-1 ${projectAggregateStyles.project_badge}`}
+					>
+						<i className="fa-solid fa-folder fa-xs" />
+					</div>
 				</OverlayTrigger>
 				{totalCount}
 			</div>
@@ -105,9 +115,11 @@ export const ProjectAggregateStats = ({
 					}
 					placement="right"
 				>
-					<Badge bg="dark" className="me-1">
-						<i className="fa-solid fa-star fa-sm me-1" />
-					</Badge>
+					<div
+						className={`badge bg-dark align-items-center me-1 ${projectAggregateStyles.project_badge}`}
+					>
+						<i className="fa-solid fa-star fa-xs me-1" />
+					</div>
 				</OverlayTrigger>
 				{totalStars}
 			</div>
@@ -123,9 +135,11 @@ export const ProjectAggregateStats = ({
 					}
 					placement="right"
 				>
-					<Badge bg="dark" className="me-1">
+					<div
+						className={`badge bg-dark align-items-center me-1 ${projectAggregateStyles.project_badge}`}
+					>
 						<i className="fa-solid fa-eye" />
-					</Badge>
+					</div>
 				</OverlayTrigger>
 				{totalWatch}
 			</div>
