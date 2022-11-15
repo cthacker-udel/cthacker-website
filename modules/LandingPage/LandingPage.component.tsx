@@ -14,7 +14,7 @@ import { WorkHistorySection } from "./WorkHistorySection";
  */
 export const LandingPage = (): JSX.Element => (
 	<div
-		className={`d-flex flex-column w-100 h-100 justify-content-around align-items-center ${landingPageStyles.landing_page}`}
+		className={`d-flex flex-column w-100 justify-content-around align-items-center ${landingPageStyles.landing_page}`}
 	>
 		<NameSection />
 		<div className="border border-dark w-100" />
