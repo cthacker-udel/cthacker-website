@@ -27,6 +27,10 @@ const Document = (): JSX.Element => (
 				rel="preconnect"
 			/>
 			<link
+				href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+				rel="stylesheet"
+			/>
+			<link
 				href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto+Condensed:wght@300;400&display=swap"
 				rel="stylesheet"
 			/>
