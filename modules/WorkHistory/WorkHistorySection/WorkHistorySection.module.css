@@ -1,0 +1,25 @@
+
+.description {
+    font-size: 1.65em;
+    max-width: 60%;
+    min-width: 60%;
+}
+
+.img_subtitle {
+    font-size: .85em;
+}
+
+.job_img {
+    object-fit: cover;
+    height: 25vh;
+    width: 25vh;
+    border-radius: 1em;
+}
+
+.current_badge {
+    width: fit-content;
+}
+
+.start_end_date {
+    font-size: .75em;
+}
