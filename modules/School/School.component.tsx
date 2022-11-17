@@ -83,41 +83,39 @@ const schoolElements = [
 /**
  * Swings the school container from the right
  */
-const swingRight = async (): Promise<Animation | undefined> => {
+const swingRight = (): void => {
 	const schoolContainer = document.querySelector("#school_container");
-	const swingRightAnimation = schoolContainer?.animate(
+	schoolContainer?.animate(
 		[
 			{ opacity: "0%", position: "absolute", right: "100vw" },
 			{ opacity: "75%", position: "absolute", right: "0" },
 			{ opacity: "100%", position: "relative", right: undefined },
 		],
 		{
-			duration: 2000,
+			duration: 1200,
 			easing: "cubic-bezier(0.42, 0, 0.58, 1)",
 			fill: "forwards",
 		},
 	);
-	return swingRightAnimation?.finished;
 };
 
 /**
  * Swings the school container from the left
  */
-const swingLeft = async (): Promise<Animation | undefined> => {
+const swingLeft = (): void => {
 	const schoolContainer = document.querySelector("#school_container");
-	const swingLeftAnim = schoolContainer?.animate(
+	schoolContainer?.animate(
 		[
 			{ left: "100vw", opacity: "0%", position: "absolute" },
 			{ left: "0", opacity: "75%", position: "absolute" },
 			{ left: undefined, opacity: "100%", position: "relative" },
 		],
 		{
-			duration: 2000,
+			duration: 1200,
 			easing: "cubic-bezier(0.42, 0, 0.58, 1)",
 			fill: "forwards",
 		},
 	);
-	return swingLeftAnim?.finished;
 };
 
 /**
@@ -129,10 +127,6 @@ export const School = (): JSX.Element => {
 	const [selectedSlide, setSelectedSlide] = React.useState<number>(
 		SCHOOL_SELECTED.COLLEGE,
 	);
-	const [disableLeftButton, setDisableLeftButton] =
-		React.useState<boolean>(false);
-	const [disableRightButton, setDisableRightButton] =
-		React.useState<boolean>(false);
 
 	/**
 	 * Handles the event when the left button is clicked
@@ -143,17 +137,7 @@ export const School = (): JSX.Element => {
 				? schoolArray[2]
 				: schoolArray[selectedSlide - 1],
 		);
-		setDisableLeftButton(true);
-		swingLeft()
-			.then(() => {
-				setDisableLeftButton(false);
-			})
-			.catch((error: unknown) => {
-				setDisableLeftButton(false);
-				console.error(
-					`Failed to swing school left ${(error as Error).stack}`,
-				);
-			});
+		swingLeft();
 	}, [selectedSlide]);
 
 	/**
@@ -165,17 +149,7 @@ export const School = (): JSX.Element => {
 				? schoolArray[0]
 				: schoolArray[selectedSlide + 1],
 		);
-		setDisableRightButton(true);
-		swingRight()
-			.then(() => {
-				setDisableRightButton(false);
-			})
-			.catch((error: unknown) => {
-				setDisableRightButton(false);
-				console.error(
-					`Failed to swing school right ${(error as Error).stack}`,
-				);
-			});
+		swingRight();
 	}, [selectedSlide]);
 
 	return (
@@ -194,28 +168,16 @@ export const School = (): JSX.Element => {
 						className={`position-absolute d-flex flex-row justify-content-between ${schoolStyles.toggle_container}`}
 					>
 						<div
-							className={`p-2 rounded-circle ${
-								schoolStyles.toggle_caret
-							} ${disableLeftButton ? "opacity-25 pe-none" : ""}`}
+							className={`p-2 rounded-circle ${schoolStyles.toggle_caret}`}
 							id="left_button"
-							onClick={
-								disableLeftButton ? undefined : toggleLeftClick
-							}
+							onClick={toggleLeftClick}
 						>
 							<i className="fa-solid fa-caret-left fa-2xl" />
 						</div>
 						<div
-							className={`p-2 rounded-circle ${
-								schoolStyles.toggle_caret
-							} ${
-								disableRightButton ? "opacity-25 pe-none" : ""
-							}`}
+							className={`p-2 rounded-circle ${schoolStyles.toggle_caret}`}
 							id="right_button"
-							onClick={
-								disableRightButton
-									? undefined
-									: toggleRightClick
-							}
+							onClick={toggleRightClick}
 						>
 							<i className="fa-solid fa-caret-right fa-2xl" />
 						</div>

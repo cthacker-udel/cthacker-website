@@ -17,7 +17,10 @@ export const WorkHistoryHeader = ({
 	sections,
 	year,
 }: WorkHistoryHeaderProperties): JSX.Element => (
-	<div className="h-25 w-100 d-flex flex-column">
+	<div
+		className={`h-25 w-100 d-flex flex-column ${workHistoryHeaderStyles.workhistory_header}`}
+		id={`work-history-header-${year}`}
+	>
 		<div className="d-flex flex-row justify-content-start">
 			<div
 				className={`border border-secondary w-50 ${workHistoryHeaderStyles.workhistory_year_header_border} my-auto mx-2 opacity-50`}

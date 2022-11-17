@@ -69,7 +69,7 @@ export const WorkHistorySection = ({
 					/>
 					{jobTitle && (
 						<div
-							className={`text-center ${workHistorySectionStyles.img_subtitle}`}
+							className={`text-center fw-bold ${workHistorySectionStyles.img_subtitle}`}
 						>
 							{jobTitle}
 						</div>
