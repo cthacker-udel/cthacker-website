@@ -1,8 +1,9 @@
+// eslint-disable-next-line unicorn/filename-case -- disabled
 /* eslint-disable no-magic-numbers -- disabled */
 import { WorkHistorySection } from "modules/WorkHistory/WorkHistorySection";
 import React from "react";
 
-export const Fall2022 = [
+export const WH2022 = [
 	<WorkHistorySection
 		companyName="University of Delaware"
 		current
@@ -11,7 +12,7 @@ export const Fall2022 = [
 		imgLink="/udcampus.jpg"
 		jobLocation="Newark, DE"
 		jobTitle="Teaching Assistant"
-		key="Fall2022-0"
+		key="WH2022-0"
 	/>,
 	<WorkHistorySection
 		companyName="University of Delaware"
@@ -21,7 +22,7 @@ export const Fall2022 = [
 		imgLink="/udcampus2.jpg"
 		jobLocation="Newark, DE"
 		jobTitle="Research Assistant"
-		key="Fall2022-1"
+		key="WH2022-1"
 	/>,
 	<WorkHistorySection
 		companyName="Quantum Strategies LLC"
@@ -31,7 +32,7 @@ export const Fall2022 = [
 		imgLink="/qslogo.jpg"
 		jobLocation="Glen Mills, PA"
 		jobTitle="Junior Full-Stack Developer"
-		key="Fall2022-2"
+		key="WH2022-2"
 	/>,
 	<WorkHistorySection
 		companyName="University of Delaware"
@@ -41,7 +42,7 @@ export const Fall2022 = [
 		imgLink="/udcampus3.jpg"
 		jobLocation="Newark, DE"
 		jobTitle="Computer Science Tutor"
-		key="Fall2022-3"
+		key="WH2022-3"
 	/>,
 	<WorkHistorySection
 		companyName="TherapyNotes LLC"
@@ -51,7 +52,7 @@ export const Fall2022 = [
 		imgLink="/tn.png"
 		jobLocation="Horsham, PA"
 		jobTitle="Co-Op Full-Stack Developer"
-		key="Fall2022-4"
+		key="WH2022-4"
 		startDate={new Date(2022, 1, 1)}
 	/>,
 ];

@@ -1,4 +1,13 @@
 
+@keyframes work_history_header_anim {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
 .workhistory_year_header_border {
     height: 0vh;
 }
@@ -6,4 +15,11 @@
 .workhistory_year_header_year {
     font-size: 1.75em;
     font-weight: 900;
+}
+
+.workhistory_header {
+    animation-name: work_history_header_anim;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
