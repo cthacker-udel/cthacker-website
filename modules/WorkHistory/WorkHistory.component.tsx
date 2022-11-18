@@ -15,6 +15,8 @@ const workHistorySectionArray = [
 	/>,
 ];
 
+const yearArray = [2021];
+
 /**
  * Page detailing all the places I've worked at, along with languages, and tasks.
  *
@@ -34,7 +36,7 @@ export const WorkHistory = (): JSX.Element => {
 	const scrollHandler = React.useCallback(
 		(_event: Event) => {
 			if (
-				window.scrollY + window.innerHeight >=
+				Math.ceil(window.scrollY + window.innerHeight) >=
 					document.body.scrollHeight &&
 				currentAddedIndex < workHistorySectionArray.length
 			) {
@@ -49,6 +51,16 @@ export const WorkHistory = (): JSX.Element => {
 		},
 		[currentAddedIndex],
 	);
+
+	React.useEffect(() => {
+		if (currentAddedIndex) {
+			document
+				.querySelector(
+					`#work-history-header-${yearArray[currentAddedIndex - 1]}`,
+				)
+				?.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [currentAddedIndex]);
 
 	const debouncedMemo = React.useMemo(
 		() => debounce(scrollHandler, 35),
