@@ -36,7 +36,7 @@ export const WorkHistory = (): JSX.Element => {
 	const scrollHandler = React.useCallback(
 		(_event: Event) => {
 			if (
-				Math.round(window.scrollY + window.innerHeight) >=
+				Math.ceil(window.scrollY + window.innerHeight) >=
 					document.body.scrollHeight &&
 				currentAddedIndex < workHistorySectionArray.length
 			) {
