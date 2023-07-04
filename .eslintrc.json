@@ -33,7 +33,7 @@
 		"sonarjs",
 		"unicorn"
 	],
-	"ignorePatterns": ["next.config.js", "next.config.mjs"],
+	"ignorePatterns": ["next.config.js", "next.config.mjs", "next-env.d.ts"],
 	"overrides": [
 		{
 			"files": ["*.js"],
