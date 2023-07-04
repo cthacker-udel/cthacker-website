@@ -10,17 +10,18 @@
 
 import type { OctokitResponse } from "@octokit/types";
 import { BasicLayout } from "modules/common";
+import Head from "next/head";
 import { Octokit } from "octokit";
 import React from "react";
 import { Spinner } from "react-bootstrap";
 
 import {
 	type AggregateRepoStats,
-	type RenderableProject,
-	type Repo,
 	generateAggregateStats,
 	organizeParsedRepos,
 	parseRepos,
+	type RenderableProject,
+	type Repo,
 } from "./helpers";
 import { LanguagesBar } from "./LanguagesBar";
 import { ProjectAggregateStats } from "./ProjectAggregateStats";
@@ -145,132 +146,154 @@ const Projects = (): JSX.Element => {
 	}, [paginationPage]);
 
 	return (
-		<BasicLayout>
-			<div
-				className={`d-flex flex-column w-100 justify-content-center align-items-center ${projectStyles.layout_container}`}
-			>
+		<>
+			<Head>
+				<title>{"Cameron Thacker's Projects"}</title>
+			</Head>
+			<BasicLayout>
 				<div
-					className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-row align-items-center`}
+					className={`d-flex flex-column w-100 justify-content-center align-items-center ${projectStyles.layout_container}`}
 				>
-					<div className="d-flex flex-row position-relative h-100 w-100 justify-content-around">
-						<div className="d-flex flex-column h-100">
-							<div
-								className={`${projectStyles.project_year} position-absolute`}
-							>
+					<div
+						className={`${projectStyles.project_container} rounded w-75 h-75 position-relative d-flex flex-row align-items-center`}
+					>
+						<div className="d-flex flex-row position-relative h-100 w-100 justify-content-around">
+							<div className="d-flex flex-column h-100">
 								<div
-									className={`d-flex flex-row justify-content-between ${projectStyles.project_scrollable_section}`}
+									className={`${projectStyles.project_year} position-absolute`}
 								>
 									<div
-										className={`${projectStyles.project_scroll} d-flex flex-column`}
+										className={`d-flex flex-row justify-content-between ${projectStyles.project_scrollable_section}`}
 									>
-										{availableYears.map(
-											(eachYear, _index) => (
-												<div
-													className={
-														_index ===
-														selectedYearIndex
-															? `${projectStyles.project_selected} text-center`
-															: `${projectStyles.project_unselected} text-center rounded`
-													}
-													id={`year-${eachYear}`}
-													key={eachYear}
-													onClick={(): void => {
-														document
-															.querySelector(
-																`#year-${eachYear}`,
-															)
-															?.scrollIntoView({
-																behavior:
-																	"smooth",
-															});
-														setSelectedYearIndex(
-															_index,
-														);
-													}}
-												>
-													{eachYear}
-												</div>
-											),
+										<div
+											className={`${projectStyles.project_scroll} d-flex flex-column`}
+										>
+											{availableYears.map(
+												(eachYear, _index) => (
+													<div
+														className={
+															_index ===
+															selectedYearIndex
+																? `${projectStyles.project_selected} text-center`
+																: `${projectStyles.project_unselected} text-center rounded`
+														}
+														id={`year-${eachYear}`}
+														key={eachYear}
+														onClick={(): void => {
+															document
+																.querySelector(
+																	`#year-${eachYear}`,
+																)
+																?.scrollIntoView(
+																	{
+																		behavior:
+																			"smooth",
+																	},
+																);
+															setSelectedYearIndex(
+																_index,
+															);
+														}}
+													>
+														{eachYear}
+													</div>
+												),
+											)}
+										</div>
+										<div
+											className={`${projectStyles.project_scroll} d-flex flex-column fs-5`}
+										>
+											{seasons.map(
+												(eachSeason, _index) => (
+													<div
+														className={
+															_index ===
+															selectedSeasonIndex
+																? `${projectStyles.project_selected} text-center`
+																: `${projectStyles.project_unselected} text-center rounded`
+														}
+														id={`season-${eachSeason}`}
+														key={eachSeason}
+														onClick={(): void => {
+															document
+																.querySelector(
+																	`#season-${eachSeason}`,
+																)
+																?.scrollIntoView(
+																	{
+																		behavior:
+																			"smooth",
+																	},
+																);
+															setSelectedSeasonIndex(
+																_index,
+															);
+														}}
+													>
+														{
+															mappedSeasons[
+																eachSeason
+															]
+														}
+													</div>
+												),
+											)}
+										</div>
+									</div>
+								</div>
+								<div className="d-flex flex-row justify-content-start h-50 mt-auto">
+									<div className="d-flex flex-column p-2">
+										{repoAggregateStats === undefined ? (
+											<Spinner animation="border" />
+										) : (
+											<ProjectAggregateStats
+												{...repoAggregateStats}
+											/>
 										)}
 									</div>
-									<div
-										className={`${projectStyles.project_scroll} d-flex flex-column fs-5`}
-									>
-										{seasons.map((eachSeason, _index) => (
-											<div
-												className={
-													_index ===
-													selectedSeasonIndex
-														? `${projectStyles.project_selected} text-center`
-														: `${projectStyles.project_unselected} text-center rounded`
-												}
-												id={`season-${eachSeason}`}
-												key={eachSeason}
-												onClick={(): void => {
-													document
-														.querySelector(
-															`#season-${eachSeason}`,
-														)
-														?.scrollIntoView({
-															behavior: "smooth",
-														});
-													setSelectedSeasonIndex(
-														_index,
-													);
-												}}
-											>
-												{mappedSeasons[eachSeason]}
-											</div>
-										))}
-									</div>
 								</div>
 							</div>
-							<div className="d-flex flex-row justify-content-start h-50 mt-auto">
-								<div className="d-flex flex-column p-2">
-									{repoAggregateStats === undefined ? (
-										<Spinner animation="border" />
-									) : (
-										<ProjectAggregateStats
-											{...repoAggregateStats}
-										/>
-									)}
-								</div>
+							<div className="d-flex flex-column h-75 my-auto">
+								{organizedRepoCollection ? (
+									<ProjectContainer
+										projects={
+											organizedRepoCollection[
+												availableYears[
+													selectedYearIndex
+												]
+											] === undefined
+												? []
+												: organizedRepoCollection[
+														availableYears[
+															selectedYearIndex
+														]
+												  ][
+														seasons[
+															selectedSeasonIndex
+														]
+												  ]
+										}
+									/>
+								) : (
+									<Spinner animation="border" />
+								)}
 							</div>
-						</div>
-						<div className="d-flex flex-column h-75 my-auto">
-							{organizedRepoCollection ? (
-								<ProjectContainer
-									projects={
-										organizedRepoCollection[
-											availableYears[selectedYearIndex]
-										] === undefined
-											? []
-											: organizedRepoCollection[
-													availableYears[
-														selectedYearIndex
-													]
-											  ][seasons[selectedSeasonIndex]]
-									}
-								/>
-							) : (
-								<Spinner animation="border" />
-							)}
-						</div>
-						<div
-							className={`d-flex flex-row w-100 position-absolute ${projectStyles.project_languages} justify-content-center mt-1 text-wrap`}
-						>
-							{repoAggregateStats ? (
-								<LanguagesBar
-									languages={repoAggregateStats.languages}
-								/>
-							) : (
-								<span />
-							)}
+							<div
+								className={`d-flex flex-row w-100 position-absolute ${projectStyles.project_languages} justify-content-center mt-1 text-wrap`}
+							>
+								{repoAggregateStats ? (
+									<LanguagesBar
+										languages={repoAggregateStats.languages}
+									/>
+								) : (
+									<span />
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</BasicLayout>
+			</BasicLayout>
+		</>
 	);
 };
 

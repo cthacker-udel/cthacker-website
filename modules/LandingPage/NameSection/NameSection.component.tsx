@@ -9,22 +9,19 @@ import styles from "./NameSection.module.css";
  * @returns The name section of the landing page
  */
 export const NameSection = (): JSX.Element => (
-	<div className="d-flex flex-row w-75 mx-auto justify-content-center">
-		<div className="text-start fs-2 fw-bold my-auto me-4">
-			{"Cameron M.C. Thacker"}
-		</div>
-		<div
-			className={`position-relative ${styles.img_container} d-none d-lg-block`}
-		>
+	<div className={styles.main_display}>
+		<div className={styles.name}>{"Cameron M.C. Thacker"}</div>
+		<div className={`${styles.img_container}`}>
 			<Image
 				alt="Profile image"
-				className="border border-dark rounded-circle img-thumbnail"
-				fill
+				className={styles.landing_page_image}
+				height={500}
 				src="https://avatars.githubusercontent.com/u/70614147?v=4"
+				width={500}
 			/>
 		</div>
-		<div className={`fs-2 my-auto ms-4 ${styles.occupation}`}>
-			{"Full Stack Developer"}
+		<div className={styles.occupation}>
+			{"Full Stack Developer & Beginner Data Scientist"}
 		</div>
 	</div>
 );

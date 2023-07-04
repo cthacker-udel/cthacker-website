@@ -17,14 +17,13 @@ export const LandingPage = (): JSX.Element => (
 	<>
 		<Head>
 			<meta
-				content="Cameron Thacker's personal website landing page"
-				name="description"
-			/>
-			<meta
 				content="homepage, personal website, cameron thacker, full-stack developer"
 				name="keywords"
 			/>
-			<meta content="Personal website about full-stack developer Cameron Thacker, who goes to the University of Delaware" />
+			<meta
+				content="Personal website about full-stack developer Cameron Thacker, who goes to the University of Delaware"
+				name="description"
+			/>
 			<meta content="EN" name="language" />
 			<meta content="Cameron Thacker" name="author" />
 			<title>{"Home Page"}</title>
