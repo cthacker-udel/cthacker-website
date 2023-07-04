@@ -7,7 +7,7 @@ import React from "react";
  * @returns The basic document component, which wraps all pages rendered
  */
 const Document = (): JSX.Element => (
-	<Html>
+	<Html lang="en">
 		<Head>
 			<link
 				crossOrigin="anonymous"

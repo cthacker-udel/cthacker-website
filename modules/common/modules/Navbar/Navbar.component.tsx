@@ -17,24 +17,28 @@ export const Navbar = (): JSX.Element => (
 			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="aboutme"
+				title="About Me"
 			>
 				<div>{"About Me"}</div>
 			</NavLink>
 			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="contactinfo"
+				title="Contact Info"
 			>
 				<div>{"Contact Info"}</div>
 			</NavLink>
 			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="languages"
+				title="Languages"
 			>
 				<div>{"Languages"}</div>
 			</NavLink>
 			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="projects"
+				title="Projects"
 			>
 				<div>{"Projects"}</div>
 			</NavLink>
@@ -47,6 +51,7 @@ export const Navbar = (): JSX.Element => (
 			<NavLink
 				className={`p-1 w-100 text-center rounded-pill mx-1 text-decoration-none text-dark ${navbarStyles.navbar_link}`}
 				href="workhistory"
+				title="Work History"
 			>
 				<div>{"Work History"}</div>
 			</NavLink>
@@ -57,36 +62,42 @@ export const Navbar = (): JSX.Element => (
 			<Link
 				className={`p-1 rounded-circle mx-1 text-dark ${navbarStyles.navbar_link_icon}`}
 				href="aboutme"
+				title="About Me"
 			>
 				<i className="fa-solid fa-user fa-sm" />
 			</Link>
 			<Link
 				className={`p-1 rounded-pill mx-1 text-dark ${navbarStyles.navbar_link_icon}`}
 				href="contactinfo"
+				title="Contact Info"
 			>
 				<i className="fa-solid fa-phone fa-sm" />
 			</Link>
 			<Link
 				className={`p-1 rounded-pill mx-1 text-dark ${navbarStyles.navbar_link_icon}`}
 				href="languages"
+				title="Languages"
 			>
 				<i className="fa-solid fa-computer fa-sm" />
 			</Link>
 			<Link
 				className={`p-1 rounded-pill mx-1 text-dark ${navbarStyles.navbar_link_icon}`}
 				href="projects"
+				title="Projects"
 			>
 				<i className="fa-solid fa-briefcase fa-sm" />
 			</Link>
 			<Link
 				className={`p-1 rounded-pill mx-1 text-dark ${navbarStyles.navbar_link_icon}`}
 				href="school"
+				title="School"
 			>
 				<i className="fa-solid fa-school fa-sm" />
 			</Link>
 			<Link
 				className={`p-1 rounded-pill mx-1 text-dark ${navbarStyles.navbar_link_icon}`}
 				href="workhistory"
+				title="Work History"
 			>
 				<i className="fa-solid fa-building fa-sm" />
 			</Link>
