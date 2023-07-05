@@ -54,7 +54,7 @@ Classes
 	cursor: pointer;
 }
 
-.navbar_link:not(:hover) {
+.reverse_hover {
 	animation: 1s navbar_link_anim_focus_lost ease-in-out;
 	cursor: auto;
 }

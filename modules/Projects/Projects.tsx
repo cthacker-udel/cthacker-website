@@ -7,6 +7,7 @@ import React from "react";
 import { toast } from "react-toastify";
 
 import { Repo } from "./helpers";
+import { useStyleInjector } from "hooks/useStyleInjector";
 
 const STATUS_OK = 200;
 
