@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 import { Repo } from "./helpers";
 import { useStyleInjector } from "hooks/useStyleInjector";
+import { Repository } from "./Repository";
 
 const STATUS_OK = 200;
 
@@ -17,8 +18,9 @@ const STATUS_OK = 200;
  * @returns The projects page
  */
 const Projects = (): JSX.Element => {
+	const [repos, setRepos] = React.useState<Repo[]>([]);
+
 	const getRepos = React.useCallback(async () => {
-		console.log("fetching repos");
 		const gettingRepos = toast.loading("Fetching projects...");
 		const auth = createTokenAuth(
 			process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
@@ -38,7 +40,7 @@ const Projects = (): JSX.Element => {
 				type: "success",
 			});
 			const convertedRepos = response.data as Repo[];
-			console.log(convertedRepos);
+			setRepos(convertedRepos);
 		} else {
 			toast.update(gettingRepos, {
 				autoClose: 1000,
@@ -48,9 +50,6 @@ const Projects = (): JSX.Element => {
 			});
 		}
 	}, []);
-
-	const [repos, setRepos] = React.useState<Repo[]>([]);
-	const [loading, setLoading] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		getRepos()
@@ -73,7 +72,11 @@ const Projects = (): JSX.Element => {
 				<title>{"Cameron Thacker's Projects"}</title>
 			</Head>
 			<BasicLayout>
-				<div>{"hello"}</div>
+				<div>
+					{repos.map((eachRepo: Repo) => (
+						<Repository key={eachRepo.id} {...eachRepo} />
+					))}
+				</div>
 			</BasicLayout>
 		</>
 	);

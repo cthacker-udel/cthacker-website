@@ -1,0 +1,18 @@
+.repository {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5em;
+	align-items: center;
+	padding: 1em;
+	border: 1px solid black;
+	border-radius: 1em;
+	width: fit-content;
+}
+
+.name {
+	font-weight: bold;
+}
+
+.date {
+	font-size: 0.75em;
+}
