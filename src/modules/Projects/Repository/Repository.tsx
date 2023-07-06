@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals -- disabled */
+/* eslint-disable no-alert -- disabled */
 import React from "react";
 
 import type { Repo } from "../helpers";
@@ -21,6 +23,12 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
             className={styles.repository}
             data-reponame={rest.name}
             id="repository"
+            onClick={(): void => {
+                const openInNewTab = confirm(`Open ${rest.name} in new tab?`);
+                if (openInNewTab) {
+                    window.open(rest.html_url, "_newtab");
+                }
+            }}
         >
             <div className={styles.name}>{rest.name}</div>
             <div className={styles.date}>
