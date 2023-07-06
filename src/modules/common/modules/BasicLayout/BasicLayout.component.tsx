@@ -5,6 +5,7 @@ import basicLayoutStyles from "./BasicLayout.module.css";
 
 type BasicLayoutProperties = {
 	children: ReactNode;
+	cssOverride?: string;
 };
 
 /**
@@ -12,12 +13,14 @@ type BasicLayoutProperties = {
  *
  * @param properties - The props of the layout, takes in children because it acts as a HOC component
  * @param properties.children - The html wrapped by this component
+ * @param properties.cssOverride - Overrides the CSS in the layout component
  * @returns The basic layout component
  */
 export const BasicLayout = ({
 	children,
+	cssOverride,
 }: BasicLayoutProperties): JSX.Element => (
-	<div className={`${basicLayoutStyles.basic_layout}`}>
+	<div className={`${basicLayoutStyles.basic_layout} ${cssOverride ?? ""}`}>
 		<Navbar />
 		{children}
 	</div>

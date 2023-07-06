@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import React from "react";
 
-import { LandingPage } from "../modules/LandingPage";
+import { LandingPage } from "@/modules/LandingPage";
 
 /**
  * The home page component, houses only the landing page which is where the user lands on
