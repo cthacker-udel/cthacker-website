@@ -90,6 +90,9 @@ const Projects = (): JSX.Element => {
                     } else {
                         setCurrentlySelectedRepository(
                             (oldSelectedRepository) => {
+                                if (oldSelectedRepository === -1) {
+                                    return oldSelectedRepository;
+                                }
                                 const convertedElement = allRepositories[
                                     oldSelectedRepository
                                 ] as HTMLElement;
@@ -131,7 +134,7 @@ const Projects = (): JSX.Element => {
             </Head>
             <BasicLayout>
                 <div className={styles.repo_layout}>
-                    <div className={styles.repo_multiselect}>
+                    <div>
                         <Form.Control
                             className={styles.repo_search}
                             onChange={changeSearchQuery}
@@ -140,6 +143,9 @@ const Projects = (): JSX.Element => {
                             type="text"
                             value={searchQuery}
                         />
+                    </div>
+                    <div className={styles.repo_count}>
+                        {`${repos.length} projects`}
                     </div>
                     <div className={styles.repo_display}>
                         {repos.map((eachRepo: Repo) => (

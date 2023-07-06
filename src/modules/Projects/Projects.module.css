@@ -8,6 +8,7 @@
     width: fit-content;
     scrollbar-width: none;
     padding-top: 2em;
+    position: relative;
 }
 
 .repo_layout {
@@ -34,4 +35,9 @@
 .currently_selected {
     border: 1px solid rgba(0, 0, 255, 0.5);
     color: rgba(0, 0, 255, 0.85);
+}
+
+.repo_count {
+    font-size: 0.75em;
+    color: rgba(128, 128, 128, 0.75);
 }
