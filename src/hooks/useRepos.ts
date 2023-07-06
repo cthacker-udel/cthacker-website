@@ -77,7 +77,7 @@ export const useRepos = (): useReposReturn => {
             getRepos().catch(() => {
                 startTransition(() => {
                     setIsLoading(false);
-                    setFailed(false);
+                    setFailed(true);
                     setRepos([]);
                 });
             });

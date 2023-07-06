@@ -4,6 +4,7 @@ import React from "react";
 
 import type { Repo } from "../helpers";
 import styles from "./Repository.module.css";
+import { useRepoLanguages } from "@/hooks/useRepoLanguages";
 
 type RepositoryProperties = Repo;
 
@@ -14,9 +15,7 @@ type RepositoryProperties = Repo;
  * @returns The repository
  */
 export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
-    const [languages, setLanguages] = React.useState<string[]>([]);
-
-    const fetchLanguages = React.useCallback(async () => {}, []);
+    const { languages } = useRepoLanguages(rest.owner, rest.name);
 
     return (
         <div
