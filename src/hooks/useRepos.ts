@@ -1,10 +1,12 @@
+/* eslint-disable no-confusing-arrow -- disabled */
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style -- disabled */
+
 import { createTokenAuth } from "@octokit/auth-token";
 import { request } from "@octokit/request";
-import { Repo } from "@/modules/Projects/helpers";
 import React from "react";
 import { toast } from "react-toastify";
 
-const STATUS_OK = 200;
+import type { Repo } from "@/modules/Projects/helpers";
 
 type useReposReturn = {
     failed: boolean;
@@ -19,6 +21,7 @@ type useReposReturn = {
  */
 export const useRepos = (): useReposReturn => {
     const [repos, setRepos] = React.useState<Repo[]>([]);
+    const [nextRepoPage, setNextRepoPage] = React.useState<number>(1);
     const [isLoading, setIsLoading] = React.useState(false);
     const [failed, setFailed] = React.useState<boolean>(false);
     const [_isPending, startTransition] = React.useTransition();
@@ -29,30 +32,38 @@ export const useRepos = (): useReposReturn => {
             process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
         );
         const authToken = await auth();
-        const response = await request("GET /user/repos", {
-            headers: {
-                authorization: `token ${authToken.token}`,
+        const response = await request(
+            `GET /user/repos?per_page=100&page=${nextRepoPage}`,
+            {
+                headers: {
+                    authorization: `token ${authToken.token}`,
+                },
+                type: "all",
             },
-            type: "all",
+        );
+        const {
+            data,
+            headers: { link },
+        } = response;
+        const queryString = new URLSearchParams(link);
+        const convertedRepos = data as Repo[];
+        startTransition(() => {
+            setIsLoading(
+                nextRepoPage !==
+                    Number(queryString.get("page") ?? nextRepoPage),
+            );
+            setRepos((oldRepos: Repo[]) => [...oldRepos, ...convertedRepos]);
+            setNextRepoPage((oldRepoPage) =>
+                oldRepoPage === Number(queryString.get("page") ?? oldRepoPage)
+                    ? oldRepoPage
+                    : Number(queryString.get("page") as string),
+            );
         });
-        if (response.status === STATUS_OK) {
-            toast.update(gettingRepos, {
-                autoClose: 1000,
-                isLoading: false,
-                render: "Successfully fetched projects",
-                type: "success",
-            });
-            const convertedRepos = response.data as Repo[];
-            setRepos(convertedRepos);
-        } else {
-            toast.update(gettingRepos, {
-                autoClose: 1000,
-                isLoading: false,
-                render: "Failed to fetch projects",
-                type: "error",
-            });
-        }
-    }, []);
+    }, [nextRepoPage]);
+
+    React.useEffect(() => {
+        console.log("changing");
+    }, [getRepos]);
 
     React.useEffect(() => {
         getRepos()

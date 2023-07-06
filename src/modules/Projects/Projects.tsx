@@ -1,15 +1,16 @@
 /* eslint-disable node/no-process-env -- disabled */
 import { createTokenAuth } from "@octokit/auth-token";
 import { request } from "@octokit/request";
-import { BasicLayout } from "@/modules/common";
 import Head from "next/head";
 import React from "react";
 import { toast } from "react-toastify";
 
+import { useRepos } from "@/hooks/useRepos";
+import { BasicLayout } from "@/modules/common";
+
 import type { Repo } from "./helpers";
 import styles from "./Projects.module.css";
 import { Repository } from "./Repository";
-import { useRepos } from "@/hooks/useRepos";
 
 const STATUS_OK = 200;
 
@@ -30,7 +31,10 @@ const Projects = (): JSX.Element => {
                 <div className={styles.repo_layout}>
                     <div className={styles.repo_display}>
                         {repos.map((eachRepo: Repo) => (
-                            <Repository key={eachRepo.id} {...eachRepo} />
+                            <Repository
+                                key={eachRepo.id + Date.now()}
+                                {...eachRepo}
+                            />
                         ))}
                     </div>
                 </div>
