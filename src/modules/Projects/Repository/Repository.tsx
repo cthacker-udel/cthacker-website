@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Repo } from "../helpers";
+import type { Repo } from "../helpers";
 import styles from "./Repository.module.css";
 
 type RepositoryProperties = Repo;
@@ -17,7 +17,11 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
     const fetchLanguages = React.useCallback(async () => {}, []);
 
     return (
-        <div className={styles.repository}>
+        <div
+            className={styles.repository}
+            data-reponame={rest.name}
+            id="repository"
+        >
             <div className={styles.name}>{rest.name}</div>
             <div className={styles.date}>
                 {new Date(rest.created_at ?? Date.now()).toLocaleString()}

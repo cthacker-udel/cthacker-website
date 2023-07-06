@@ -7,11 +7,31 @@
     overflow-y: scroll;
     width: fit-content;
     scrollbar-width: none;
+    padding-top: 2em;
 }
 
 .repo_layout {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding-top: 2em;
+}
+
+.repo_search,
+.repo_search:focus {
+    background-color: transparent;
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    text-align: center;
+}
+
+.currently_selected {
+    border: 1px solid rgba(0, 0, 255, 0.5);
+    color: rgba(0, 0, 255, 0.85);
 }
