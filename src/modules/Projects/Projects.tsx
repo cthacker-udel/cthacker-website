@@ -32,7 +32,9 @@ const Projects = (): JSX.Element => {
                     <div className={styles.repo_display}>
                         {repos.map((eachRepo: Repo) => (
                             <Repository
-                                key={eachRepo.id + Date.now()}
+                                key={
+                                    eachRepo.id + Math.random() * Math.random()
+                                }
                                 {...eachRepo}
                             />
                         ))}

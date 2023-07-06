@@ -22,65 +22,67 @@ type useReposReturn = {
 export const useRepos = (): useReposReturn => {
     const [repos, setRepos] = React.useState<Repo[]>([]);
     const [nextRepoPage, setNextRepoPage] = React.useState<number>(1);
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
     const [failed, setFailed] = React.useState<boolean>(false);
-    const [_isPending, startTransition] = React.useTransition();
+    const [_, startTransition] = React.useTransition();
 
-    const getRepos = React.useCallback(async () => {
-        const gettingRepos = toast.loading("Fetching projects...");
-        const auth = createTokenAuth(
-            process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
-        );
-        const authToken = await auth();
-        const response = await request(
-            `GET /user/repos?per_page=100&page=${nextRepoPage}`,
-            {
-                headers: {
-                    authorization: `token ${authToken.token}`,
+    const getRepos = React.useMemo(
+        () => async () => {
+            const auth = createTokenAuth(
+                process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
+            );
+            const authToken = await auth();
+            const response = await toast.promise(
+                request(`GET /user/repos?per_page=100&page=${nextRepoPage}`, {
+                    headers: {
+                        authorization: `token ${authToken.token}`,
+                    },
+                    type: "all",
+                }),
+                {
+                    error: `Failed to fetch repositories from page ${nextRepoPage}`,
+                    pending: `Fetching repositories from page ${nextRepoPage}...`,
+                    success: `Successfully fetched repositories from page ${nextRepoPage}`,
                 },
-                type: "all",
-            },
-        );
-        const {
-            data,
-            headers: { link },
-        } = response;
-        const queryString = new URLSearchParams(link);
-        const convertedRepos = data as Repo[];
-        startTransition(() => {
-            setIsLoading(
-                nextRepoPage !==
-                    Number(queryString.get("page") ?? nextRepoPage),
             );
-            setRepos((oldRepos: Repo[]) => [...oldRepos, ...convertedRepos]);
-            setNextRepoPage((oldRepoPage) =>
-                oldRepoPage === Number(queryString.get("page") ?? oldRepoPage)
-                    ? oldRepoPage
-                    : Number(queryString.get("page") as string),
-            );
-        });
-    }, [nextRepoPage]);
+            const {
+                data,
+                headers: { link },
+            } = response;
+            const queryString = new URLSearchParams(link);
+            const convertedRepos = data as Repo[];
+            startTransition(() => {
+                setIsLoading(
+                    nextRepoPage <
+                        Number(queryString.get("page") ?? nextRepoPage),
+                );
+                setRepos((oldRepos: Repo[]) =>
+                    [...oldRepos, ...convertedRepos].sort((a, b) =>
+                        a.name.localeCompare(b.name),
+                    ),
+                );
+                setNextRepoPage((oldRepoPage) =>
+                    oldRepoPage ===
+                    Number(queryString.get("page") ?? oldRepoPage)
+                        ? oldRepoPage
+                        : Number(queryString.get("page") as string),
+                );
+            });
+        },
+        [nextRepoPage],
+    );
 
     React.useEffect(() => {
-        console.log("changing");
-    }, [getRepos]);
-
-    React.useEffect(() => {
-        getRepos()
-            .then(() => {
-                startTransition(() => {
-                    setIsLoading(false);
-                    setFailed(false);
-                });
-            })
-            .catch(() => {
+        if (isLoading) {
+            getRepos().catch(() => {
                 startTransition(() => {
                     setIsLoading(false);
                     setFailed(false);
                     setRepos([]);
                 });
             });
-    }, []);
+        }
+    }, [getRepos, isLoading]);
 
     return {
         failed,
