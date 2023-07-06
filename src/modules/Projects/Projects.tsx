@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import type { Repo } from "./helpers";
 import styles from "./Projects.module.css";
 import { Repository } from "./Repository";
+import { useRepos } from "@/hooks/useRepos";
 
 const STATUS_OK = 200;
 
@@ -18,53 +19,7 @@ const STATUS_OK = 200;
  * @returns The projects page
  */
 const Projects = (): JSX.Element => {
-    const [repos, setRepos] = React.useState<Repo[]>([]);
-
-    const getRepos = React.useCallback(async () => {
-        const gettingRepos = toast.loading("Fetching projects...");
-        const auth = createTokenAuth(
-            process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
-        );
-        const authToken = await auth();
-        const response = await request("GET /user/repos", {
-            headers: {
-                authorization: `token ${authToken.token}`,
-            },
-            type: "all",
-        });
-        if (response.status === STATUS_OK) {
-            toast.update(gettingRepos, {
-                autoClose: 1000,
-                isLoading: false,
-                render: "Successfully fetched projects",
-                type: "success",
-            });
-            const convertedRepos = response.data as Repo[];
-            setRepos(convertedRepos);
-        } else {
-            toast.update(gettingRepos, {
-                autoClose: 1000,
-                isLoading: false,
-                render: "Failed to fetch projects",
-                type: "error",
-            });
-        }
-    }, []);
-
-    React.useEffect(() => {
-        getRepos()
-            .then(() => {
-                toast.info(
-                    "This is where all the projects are listed, including current and past repositories",
-                    {
-                        autoClose: 5000,
-                    },
-                );
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }, [getRepos]);
+    const { isLoading, repos } = useRepos();
 
     return (
         <>
