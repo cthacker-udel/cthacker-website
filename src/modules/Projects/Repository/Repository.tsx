@@ -2,9 +2,10 @@
 /* eslint-disable no-alert -- disabled */
 import React from "react";
 
+import { useRepoLanguages } from "@/hooks/useRepoLanguages";
+
 import type { Repo } from "../helpers";
 import styles from "./Repository.module.css";
-import { useRepoLanguages } from "@/hooks/useRepoLanguages";
 
 type RepositoryProperties = Repo;
 
@@ -21,6 +22,7 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
         <div
             className={styles.repository}
             data-reponame={rest.name}
+            data-repourl={rest.html_url}
             id="repository"
             onClick={(): void => {
                 const openInNewTab = confirm(`Open ${rest.name} in new tab?`);

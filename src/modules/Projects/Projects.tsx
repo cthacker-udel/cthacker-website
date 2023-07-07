@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unpublished-import -- disabled */
 /* eslint-disable no-extra-boolean-cast -- disabled */
 /* eslint-disable node/no-process-env -- disabled */
 import Head from "next/head";
@@ -126,6 +127,95 @@ const Projects = (): JSX.Element => {
         },
         [],
     );
+
+    const keyPressedDocument = React.useCallback(
+        (event: KeyboardEvent) => {
+            const { key } = event;
+            console.log("firing event");
+            if (key === Key.Enter && currentlySelectedRepository >= 0) {
+                const allRepositories = document.querySelectorAll(
+                    allRepositoryQuerySelector,
+                );
+                if (allRepositories.length > 0) {
+                    const selectedRepository =
+                        allRepositories[currentlySelectedRepository];
+                    const { repourl: repoUrl } = (
+                        selectedRepository as HTMLDivElement
+                    ).dataset;
+                    if (repoUrl !== undefined) {
+                        window.open(repoUrl, "_newtab");
+                    }
+                }
+            } else if (key === Key.ArrowDown) {
+                const allRepositories = document.querySelectorAll(
+                    allRepositoryQuerySelector,
+                );
+                if (allRepositories.length > 0) {
+                    setCurrentlySelectedRepository((oldValue: number) => {
+                        if (oldValue === -1) {
+                            return 0;
+                        }
+                        const convertedElement = allRepositories[
+                            oldValue
+                        ] as HTMLElement;
+                        convertedElement.className =
+                            convertedElement.className.replace(
+                                ` ${styles.currently_selected}`,
+                                "",
+                            );
+                        const newValue =
+                            oldValue === repos.length - 1 ? 0 : oldValue + 1;
+                        const currentElement = allRepositories[newValue];
+                        currentElement.className += ` ${styles.currently_selected}`;
+                        currentElement.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                        });
+                        return newValue;
+                    });
+                }
+            } else if (key === Key.ArrowUp) {
+                const allRepositories = document.querySelectorAll(
+                    allRepositoryQuerySelector,
+                );
+                if (allRepositories.length > 0) {
+                    setCurrentlySelectedRepository((oldValue: number) => {
+                        if (oldValue === -1) {
+                            return repos.length - 1;
+                        }
+                        const convertedElement = allRepositories[
+                            oldValue
+                        ] as HTMLElement;
+                        convertedElement.className =
+                            convertedElement.className.replace(
+                                ` ${styles.currently_selected}`,
+                                "",
+                            );
+                        const newValue =
+                            oldValue === 0 ? repos.length - 1 : oldValue - 1;
+                        const currentElement = allRepositories[newValue];
+                        currentElement.className += ` ${styles.currently_selected}`;
+                        currentElement.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                        });
+                        return newValue;
+                    });
+                }
+            }
+        },
+        [currentlySelectedRepository, repos.length],
+    );
+
+    React.useEffect(() => {
+        if (document !== undefined) {
+            document.addEventListener("keydown", keyPressedDocument);
+        }
+
+        return () => {
+            document.removeEventListener("keydown", keyPressedDocument);
+        };
+    }, [keyPressedDocument]);
 
     return (
         <>

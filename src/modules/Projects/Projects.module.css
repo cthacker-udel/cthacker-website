@@ -5,7 +5,7 @@
     gap: 0.5em;
     max-height: 90vh;
     overflow-y: scroll;
-    width: fit-content;
+    min-width: 50vw;
     scrollbar-width: none;
     padding-top: 2em;
     position: relative;
