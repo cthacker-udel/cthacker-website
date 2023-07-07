@@ -20,8 +20,10 @@
 
 .name {
     font-weight: bold;
+    pointer-events: none;
 }
 
 .date {
     font-size: 0.75em;
+    pointer-events: none;
 }
