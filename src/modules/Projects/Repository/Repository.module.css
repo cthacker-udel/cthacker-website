@@ -9,6 +9,9 @@
     width: 100%;
     justify-content: space-between;
     cursor: pointer;
+    transition:
+        font-size 0.5s ease-in-out,
+        padding 0.5s ease-in-out;
 }
 
 .repository:hover {
