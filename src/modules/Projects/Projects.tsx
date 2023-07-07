@@ -207,15 +207,54 @@ const Projects = (): JSX.Element => {
         [currentlySelectedRepository, repos.length],
     );
 
+    const selectCurrentlySelectedByHover = React.useCallback((event: Event) => {
+        const repoName = (event as CustomEvent).detail;
+        const allRepositories = document.querySelectorAll(
+            allRepositoryQuerySelector,
+        );
+        let ind = 0;
+        for (const eachRepository of allRepositories) {
+            const convertedElement = eachRepository as HTMLDivElement;
+            if (convertedElement.dataset.reponame === repoName) {
+                setCurrentlySelectedRepository(ind);
+                break;
+            }
+            ind += 1;
+        }
+    }, []);
+
+    const deselectCurrentlySelectedByHover = React.useCallback(
+        (event: Event) => {
+            if (searchQuery.length > 0) {
+                const allRepositories = document.querySelectorAll(
+                    allRepositoryQuerySelector,
+                    // TODO: Add query selector, fetch all repositories
+                    // then from that list of repos, set the currently selected to
+                    // the repo that matches the search query, if none, -1.
+                );
+            }
+            // TODO: set currently selected search query to -1
+        },
+        [],
+    );
+
     React.useEffect(() => {
         if (document !== undefined) {
             document.addEventListener("keydown", keyPressedDocument);
+            document.addEventListener(
+                "updateSelection",
+                selectCurrentlySelectedByHover,
+            );
         }
 
         return () => {
             document.removeEventListener("keydown", keyPressedDocument);
+            document.removeEventListener(
+                "updateSelection",
+                selectCurrentlySelectedByHover,
+            );
         };
-    }, [keyPressedDocument]);
+    }, [keyPressedDocument, selectCurrentlySelectedByHover]);
 
     return (
         <>

@@ -21,7 +21,6 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
 
     const mouseEnter = React.useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
-            console.log("entering");
             const { target } = event;
             if (target !== undefined) {
                 const convertedTarget = target as HTMLDivElement;
@@ -30,16 +29,21 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
                         ` ${otherStyles.currently_selected}`,
                     )
                 ) {
+                    const event_ = new CustomEvent("updateSelection", {
+                        bubbles: true,
+                        detail: rest.name,
+                    });
+                    console.log(event_);
+                    convertedTarget.dispatchEvent(event_);
                     convertedTarget.className += ` ${otherStyles.currently_selected}`;
                 }
             }
         },
-        [],
+        [rest.name],
     );
 
     const mouseLeave = React.useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
-            console.log("leaving");
             const { target } = event;
             if (target !== undefined) {
                 const convertedTarget = target as HTMLDivElement;
