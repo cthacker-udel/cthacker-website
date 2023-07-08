@@ -225,17 +225,69 @@ const Projects = (): JSX.Element => {
 
     const deselectCurrentlySelectedByHover = React.useCallback(
         (event: Event) => {
+            const { target } = event;
             if (searchQuery.length > 0) {
                 const allRepositories = document.querySelectorAll(
                     allRepositoryQuerySelector,
-                    // TODO: Add query selector, fetch all repositories
-                    // then from that list of repos, set the currently selected to
-                    // the repo that matches the search query, if none, -1.
                 );
+                if (allRepositories.length > 0) {
+                    const convertedTarget = target as HTMLDivElement;
+
+                    let matchingTargetIndex = 0;
+                    let matchingRepositoryIndex = 0;
+                    for (const eachRepository of allRepositories) {
+                        const convertedElement =
+                            eachRepository as HTMLDivElement;
+                        const { reponame } = convertedElement.dataset;
+                        if (
+                            reponame
+                                ?.toLocaleLowerCase()
+                                .startsWith(searchQuery.toLocaleLowerCase())
+                        ) {
+                            setCurrentlySelectedRepository(
+                                matchingRepositoryIndex,
+                            );
+                            break;
+                        }
+                        matchingRepositoryIndex += 1;
+                    }
+                    for (const eachRepository of allRepositories) {
+                        const convertedElement =
+                            eachRepository as HTMLDivElement;
+                        if (
+                            convertedElement.dataset.reponame?.toLocaleLowerCase() ===
+                            convertedTarget.dataset.reponame?.toLocaleLowerCase()
+                        ) {
+                            break;
+                        }
+                        matchingTargetIndex += 1;
+                    }
+
+                    if (
+                        matchingTargetIndex !== matchingRepositoryIndex &&
+                        target !== undefined
+                    ) {
+                        convertedTarget.className =
+                            convertedTarget.className.replace(
+                                ` ${styles.currently_selected}`,
+                                "",
+                            );
+                        setCurrentlySelectedRepository(-1);
+                    }
+                }
+            } else {
+                if (target !== undefined) {
+                    const convertedTarget = target as HTMLDivElement;
+                    convertedTarget.className =
+                        convertedTarget.className.replace(
+                            ` ${styles.currently_selected}`,
+                            "",
+                        );
+                }
+                setCurrentlySelectedRepository(-1);
             }
-            // TODO: set currently selected search query to -1
         },
-        [],
+        [searchQuery],
     );
 
     React.useEffect(() => {
@@ -245,6 +297,10 @@ const Projects = (): JSX.Element => {
                 "updateSelection",
                 selectCurrentlySelectedByHover,
             );
+            document.addEventListener(
+                "deselectSelection",
+                deselectCurrentlySelectedByHover,
+            );
         }
 
         return () => {
@@ -253,8 +309,20 @@ const Projects = (): JSX.Element => {
                 "updateSelection",
                 selectCurrentlySelectedByHover,
             );
+            document.removeEventListener(
+                "deselectSelection",
+                deselectCurrentlySelectedByHover,
+            );
         };
-    }, [keyPressedDocument, selectCurrentlySelectedByHover]);
+    }, [
+        keyPressedDocument,
+        selectCurrentlySelectedByHover,
+        deselectCurrentlySelectedByHover,
+    ]);
+
+    React.useEffect(() => {
+        console.log(currentlySelectedRepository);
+    }, [currentlySelectedRepository]);
 
     return (
         <>

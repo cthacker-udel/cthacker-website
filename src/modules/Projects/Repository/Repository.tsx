@@ -52,11 +52,10 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
                         ` ${otherStyles.currently_selected}`,
                     )
                 ) {
-                    convertedTarget.className =
-                        convertedTarget.className.replace(
-                            ` ${otherStyles.currently_selected}`,
-                            "",
-                        );
+                    const event_ = new CustomEvent("deselectSelection", {
+                        bubbles: true,
+                    });
+                    convertedTarget.dispatchEvent(event_);
                 }
             }
         },
