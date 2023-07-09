@@ -4,8 +4,8 @@ import { Navbar } from "../Navbar";
 import basicLayoutStyles from "./BasicLayout.module.css";
 
 type BasicLayoutProperties = {
-	children: ReactNode;
-	cssOverride?: string;
+    children: ReactNode;
+    cssOverride?: string;
 };
 
 /**
@@ -17,11 +17,14 @@ type BasicLayoutProperties = {
  * @returns The basic layout component
  */
 export const BasicLayout = ({
-	children,
-	cssOverride,
+    children,
+    cssOverride,
 }: BasicLayoutProperties): JSX.Element => (
-	<div className={`${basicLayoutStyles.basic_layout} ${cssOverride ?? ""}`}>
-		<Navbar />
-		{children}
-	</div>
+    <div
+        className={`${basicLayoutStyles.basic_layout} ${cssOverride ?? ""}`}
+        id="basic_layout"
+    >
+        <Navbar />
+        {children}
+    </div>
 );

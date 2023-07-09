@@ -1,0 +1,1 @@
+export { generateTooltip } from "./generateTooltip";

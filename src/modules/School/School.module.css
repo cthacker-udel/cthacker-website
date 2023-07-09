@@ -1,100 +1,53 @@
-
-@keyframes swing_right_anim {
-    from {
-        margin-right: -100%;
-    }
-    to {
-        margin-right: 0%;
-    }
-}
-
-.school_page {
-    height: 100vh;
-}
-
-.school_row {
-    width: 85%;
-    height: fit-content;
-}
-
-.school_container {
-    border-width: 3.5px;
-    border-style: solid;
-    border-color: rgba(163, 54, 42, .5);
-    min-height: 75vh;
+.school_picture {
+    width: 21.5vw;
+    height: 21.5vw;
+    border-radius: 2em;
+    border-width: 0.25em;
+    border-color: rgba(128, 128, 128, 0.25);
+    border-style: outset;
 }
 
 .school_description {
-    max-width: 40vw;
-    max-height: 50vh;
-    overflow-y: scroll;
+    font-size: 2em;
+    max-height: 21.5vw;
+    overflow-y: auto;
     scrollbar-width: thin;
-    font-size: 1.5em;
 }
 
-.school_picture {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    border-radius: 1em;
-    min-width: 100%;
-    min-height: 100%;
+.school_content {
+    display: flex;
+    flex-direction: row;
+    min-height: 50vh;
+    align-items: center;
 }
 
-.school_description::-webkit-scrollbar {
-    display: none;
+.school_layout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.swing_right {
-    animation-name: swing_right_anim;
-    animation-timing-function: ease-in-out;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+.school_container {
+    width: 85vw;
+    height: fit-content;
+    align-self: center;
+    margin-top: 10%;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 1em;
+    border-radius: 2em;
+    min-height: 50vh;
 }
 
-/* xs */
-@media only screen and (max-width: 575px) {
-    .school_description {
-        font-size: .75em;
-    }
+.button_bar {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-self: center;
+    padding-top: 1em;
+    position: absolute;
+    top: 90%;
 }
 
-/* sm -- md */
-@media only screen and (min-width: 576px) and (max-width: 768px) {
-    .school_description {
-        font-size: .75em;
-    }
-}
-
-/* lg - xl */
-@media only screen and (min-width: 993px) and (max-width: 1200px) {
-    .school_description {
-        font-size: 1.75em;
-    }
-}
-
-/* xxl */
-@media only screen and (min-width: 1201px) {
-    .school_description {
-        font-size: 1.75em;
-    }
-}
-
-.toggle_container {
-    top: 100%;
-    left: 45%;
-    width: 7vw;
-}
-
-.toggle_caret {
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgba(163, 54, 42, .5);
-    transition: background-color .5s ease-in-out;
-    transition: opacity 1s ease-in-out;
-    cursor: pointer;
-}
-
-.toggle_caret:hover {
-    background-color: white;
+.button_bar > button {
+    border-radius: 2em;
 }

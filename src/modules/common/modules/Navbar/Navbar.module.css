@@ -44,6 +44,9 @@ Classes
 .navbar {
     width: 100%;
     padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    height: fit-content;
+    overflow-y: auto;
 }
 
 .navbar_link:hover {
