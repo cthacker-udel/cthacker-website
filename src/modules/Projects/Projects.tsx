@@ -1,6 +1,5 @@
 /* eslint-disable node/no-unpublished-import -- disabled */
 /* eslint-disable no-extra-boolean-cast -- disabled */
-/* eslint-disable node/no-process-env -- disabled */
 import Head from "next/head";
 import React from "react";
 import { Form } from "react-bootstrap";
@@ -24,7 +23,6 @@ const Projects = (): JSX.Element => {
     const { repos } = useRepos();
 
     const [searchQuery, setSearchQuery] = React.useState<string>("");
-    // eslint-disable-next-line no-unused-vars -- disabled
     const [currentlySelectedRepository, setCurrentlySelectedRepository] =
         React.useState<number>(-1);
 
@@ -131,7 +129,6 @@ const Projects = (): JSX.Element => {
     const keyPressedDocument = React.useCallback(
         (event: KeyboardEvent) => {
             const { key } = event;
-            console.log("firing event");
             if (key === Key.Enter && currentlySelectedRepository >= 0) {
                 const allRepositories = document.querySelectorAll(
                     allRepositoryQuerySelector,
@@ -319,10 +316,6 @@ const Projects = (): JSX.Element => {
         selectCurrentlySelectedByHover,
         deselectCurrentlySelectedByHover,
     ]);
-
-    React.useEffect(() => {
-        console.log(currentlySelectedRepository);
-    }, [currentlySelectedRepository]);
 
     return (
         <>
