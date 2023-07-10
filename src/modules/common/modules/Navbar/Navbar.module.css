@@ -1,0 +1,84 @@
+/*
+
+Animation
+
+*/
+
+@keyframes navbar_link_anim {
+    from {
+        letter-spacing: normal;
+        background-color: white;
+    }
+    to {
+        letter-spacing: 0.15em;
+        background-color: rgba(227, 181, 164, 0.5);
+    }
+}
+
+@keyframes navbar_link_anim_focus_lost {
+    from {
+        letter-spacing: 0.15em;
+        background-color: rgba(227, 181, 164, 0.5);
+    }
+    to {
+        letter-spacing: normal;
+        background-color: transparent;
+    }
+}
+
+@keyframes navbar_link_icon_anim {
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: rgba(227, 181, 164, 0.25);
+    }
+}
+
+/*
+
+Classes
+
+*/
+
+.navbar {
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    height: fit-content;
+    overflow-y: auto;
+}
+
+.navbar_link:hover {
+    animation-name: navbar_link_anim;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+
+.reverse_hover {
+    animation: 1s navbar_link_anim_focus_lost ease-in-out;
+    cursor: auto;
+}
+
+.navbar_link {
+    transition: letter-spacing 1s ease-in-out;
+    border-radius: 1em;
+}
+
+.navbar_link_icon {
+    width: fit-content;
+}
+
+.navbar_link_icon:hover {
+    animation-name: navbar_link_icon_anim;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+
+.navbar_link_div {
+    pointer-events: none;
+}

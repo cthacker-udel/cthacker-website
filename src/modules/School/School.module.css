@@ -1,0 +1,58 @@
+.school_picture {
+    width: 21.5vw;
+    height: 21.5vw;
+    border-radius: 2em;
+    border-width: 0.25em;
+    border-color: rgba(128, 128, 128, 0.25);
+    border-style: outset;
+}
+
+.school_description {
+    font-size: 2em;
+    max-height: 21.5vw;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.school_content {
+    display: flex;
+    flex-direction: row;
+    min-height: 50vh;
+    align-items: center;
+}
+
+.school_layout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.school_container {
+    width: 85vw;
+    height: fit-content;
+    align-self: center;
+    margin-top: 10%;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 1em;
+    border-radius: 2em;
+    min-height: 50vh;
+    transition:
+        margin 1s ease-in-out,
+        margin-right 1s ease-in-out,
+        margin-left 1s ease-in-out,
+        opacity 1s ease-in-out;
+}
+
+.button_bar {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-self: center;
+    padding-top: 1em;
+    position: absolute;
+    top: 90%;
+}
+
+.button_bar > button {
+    border-radius: 2em;
+}

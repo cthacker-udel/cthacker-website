@@ -1,0 +1,5 @@
+.active {
+	background-color: rgba(227, 181, 164, 0.5);
+	pointer-events: none;
+	animation: none;
+}

@@ -1,0 +1,29 @@
+.repository {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+    padding: 0.5em;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    transition:
+        font-size 0.5s ease-in-out,
+        padding 0.5s ease-in-out;
+}
+
+.repository:hover {
+    border: 1px solid rgba(0, 0, 255, 0.5);
+}
+
+.name {
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.date {
+    font-size: 0.75em;
+    pointer-events: none;
+}
