@@ -16,7 +16,7 @@ export const WH2023 = [
     <WorkHistorySection
         companyName="University of Delaware"
         current
-        description="Personal tutor for students starting introductory computer science coursework and helped cultivate and improve their understanding of the subject. Lectured programming languages ranging from OOP to Bash Scripting, and all students who signed up for help. I converted their overall grades from a D+ to a B+ with the help I provided playing a factor."
+        description="Personal tutor for students needing an extra help with CISC curriculum. Aiding students from CISC320 to CISC108 with assistance with fundamental curriculum to specialized help."
         imgHrefLink="https://udel.edu"
         imgLink="/udcampus3.jpg"
         jobLocation="Newark, DE"
