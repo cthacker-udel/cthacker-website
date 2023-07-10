@@ -126,7 +126,6 @@ const ANIMATION_CONSTANTS = {
  */
 export const School = (): JSX.Element => {
     useStyleInjector([{ cssQuery: "body", style: { overflowX: "hidden" } }]);
-    const [_, startTransition] = React.useTransition();
 
     const [schoolState, setSchoolState] = React.useState<SchoolState>({
         direction: DIRECTION.NONE,
@@ -245,6 +244,28 @@ export const School = (): JSX.Element => {
         ).finished;
     }, []);
 
+    React.useEffect(() => {
+        if (schoolState.direction === DIRECTION.LEFT) {
+            animateFrom(false)
+                .then(() => {
+                    setSchoolState((oldState) => ({
+                        ...oldState,
+                        direction: DIRECTION.NONE,
+                    }));
+                })
+                .catch(console.error);
+        } else if (schoolState.direction === DIRECTION.RIGHT) {
+            animateFrom(true)
+                .then(() => {
+                    setSchoolState((oldState) => ({
+                        ...oldState,
+                        direction: DIRECTION.NONE,
+                    }));
+                })
+                .catch(console.error);
+        }
+    }, [animateFrom, schoolState]);
+
     return (
         <BasicLayout cssOverride={schoolStyles.school_layout}>
             <div
@@ -292,8 +313,8 @@ export const School = (): JSX.Element => {
                 >
                     <Button
                         onClick={async (): Promise<void> => {
-                            await animateTo(true);
-                            await swapSchoolSides(true);
+                            await animateTo(false);
+                            await swapSchoolSides(false);
                             setSchoolState((oldState) => ({
                                 direction: DIRECTION.RIGHT,
                                 selected:
