@@ -22,6 +22,11 @@ enum SCHOOL_SELECTED {
     COLLEGE = 2,
 }
 
+enum DIRECTION {
+    LEFT = 0,
+    RIGHT = 1,
+}
+
 const SCHOOL_PREVIOUS_TEXT: { [key: number]: string } = {
     "0": "College (University of Delaware)",
     "1": "Middle School (Independence School)",
@@ -114,11 +119,11 @@ const ANIMATION_CONSTANTS = {
  * @returns The school component
  */
 export const School = (): JSX.Element => {
+    useStyleInjector([{ cssQuery: "body", style: { overflowX: "hidden" } }]);
+
     const [selectedSlide, setSelectedSlide] = React.useState<number>(
         SCHOOL_SELECTED.COLLEGE,
     );
-
-    useStyleInjector([{ cssQuery: "body", style: { overflowX: "hidden" } }]);
 
     const swapSchoolSides = React.useCallback(async (leftToRight: boolean) => {
         const schoolContainer = document.querySelector(
@@ -150,7 +155,7 @@ export const School = (): JSX.Element => {
         }).finished;
     }, []);
 
-    const swingSchoolToRight = React.useCallback(async () => {
+    const animateFrom = React.useCallback(async (left: boolean) => {
         const schoolContainer = document.querySelector(
             ANIMATION_CONSTANTS.schoolContainerQuery,
         );
@@ -167,40 +172,54 @@ export const School = (): JSX.Element => {
                 fill: ANIMATION_CONSTANTS.fillDirection,
             },
         ).finished;
-        await schoolContainer?.animate(
-            [
-                {
-                    marginLeft: ANIMATION_CONSTANTS.marginMeasurement,
-                },
-                { marginLeft: "0" },
-            ],
-            {
-                duration: 1000,
-                easing: ANIMATION_CONSTANTS.easingFunction,
-                fill: ANIMATION_CONSTANTS.fillDirection,
-            },
-        ).finished;
+
+        const keyFrames = left
+            ? [
+                  { marginRight: ANIMATION_CONSTANTS.marginMeasurement },
+                  { marginRight: "0" },
+              ]
+            : [
+                  {
+                      marginLeft: ANIMATION_CONSTANTS.marginMeasurement,
+                  },
+                  { marginLeft: "0" },
+              ];
+
+        await schoolContainer?.animate(keyFrames, {
+            duration: 1000,
+            easing: ANIMATION_CONSTANTS.easingFunction,
+            fill: ANIMATION_CONSTANTS.fillDirection,
+        }).finished;
     }, []);
 
-    const swingSchoolToLeft = React.useCallback(async () => {
+    const animateTo = React.useCallback(async (left: boolean) => {
         const schoolContainer = document.querySelector(
             ANIMATION_CONSTANTS.schoolContainerQuery,
         );
-        await schoolContainer?.animate(
-            [
-                {
-                    marginRight: "0",
-                },
-                {
-                    marginRight: ANIMATION_CONSTANTS.marginMeasurement,
-                },
-            ],
-            {
-                duration: 1000,
-                easing: ANIMATION_CONSTANTS.easingFunction,
-                fill: ANIMATION_CONSTANTS.fillDirection,
-            },
-        ).finished;
+
+        const keyframes = left
+            ? [
+                  {
+                      marginRight: "0",
+                  },
+                  {
+                      marginRight: ANIMATION_CONSTANTS.marginMeasurement,
+                  },
+              ]
+            : [
+                  {
+                      marginLeft: "0",
+                  },
+                  {
+                      marginLeft: ANIMATION_CONSTANTS.marginMeasurement,
+                  },
+              ];
+
+        await schoolContainer?.animate(keyframes, {
+            duration: 1000,
+            easing: ANIMATION_CONSTANTS.easingFunction,
+            fill: ANIMATION_CONSTANTS.fillDirection,
+        }).finished;
         await schoolContainer?.animate(
             [
                 {
@@ -236,10 +255,7 @@ export const School = (): JSX.Element => {
                     }
                     placement="top-end"
                 >
-                    <Button
-                        onClick={swingSchoolToLeft}
-                        variant="outline-success"
-                    >
+                    <Button onClick={animateToLeft} variant="outline-success">
                         <i className="fa-solid fa-arrow-left" />
                     </Button>
                 </OverlayTrigger>
