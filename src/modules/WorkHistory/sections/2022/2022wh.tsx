@@ -5,7 +5,6 @@ import { WorkHistorySection } from "@/modules/WorkHistory/WorkHistorySection";
 export const WH2022 = [
     <WorkHistorySection
         companyName="University of Delaware"
-        current
         description="Taught and supervised multiple different programming courses. Ensured grading and delivery of information was top quality; consistently. Taught students Java, Python, and C on an introductory level; while introducing them to new and complicated topics."
         imgHrefLink="https://udel.edu"
         imgLink="/udcampus.jpg"
@@ -15,7 +14,6 @@ export const WH2022 = [
     />,
     <WorkHistorySection
         companyName="University of Delaware"
-        current
         description="Involved in a research project with a team of colleagues under the supervision of Professor Yarrington, one that was tailored towards making assignment timelines more accessible to neuro-divergent students."
         imgHrefLink="https://udel.edu"
         imgLink="/udcampus2.jpg"

@@ -3,7 +3,7 @@ import React from "react";
 
 import { BasicLayout } from "@/modules/common";
 
-import { WH2022 } from "./sections";
+import { WH2022, WH2023 } from "./sections";
 import { WH2021 } from "./sections/2021";
 import { WorkHistoryHeader } from "./WorkHistoryHeader";
 
@@ -25,8 +25,13 @@ const yearArray = [2021];
 export const WorkHistory = (): JSX.Element => {
     const [workHistory, setWorkHistory] = React.useState<JSX.Element[]>([
         <WorkHistoryHeader
-            key="wh-wh-f2022"
+            key="wh-wh-2023"
             // When we have scroll-spy implemented displayOrder={0}
+            sections={[...WH2023]}
+            year={2023}
+        />,
+        <WorkHistoryHeader
+            key="work-history-section-22"
             sections={[...WH2022]}
             year={2022}
         />,
