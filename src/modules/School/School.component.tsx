@@ -11,6 +11,7 @@ import { Button, OverlayTrigger } from "react-bootstrap";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
 
 import { generateTooltip } from "@/helpers";
+import { useStyleInjector } from "@/hooks/useStyleInjector";
 import { BasicLayout } from "@/modules/common";
 
 import schoolStyles from "./School.module.css";
@@ -100,6 +101,13 @@ const schoolElements = [
     </div>,
 ];
 
+const ANIMATION_CONSTANTS = {
+    easingFunction: "ease-in-out",
+    fillDirection: "forwards" as FillMode,
+    marginMeasurement: "calc(100vw + 85vw)",
+    schoolContainerQuery: "#school_container",
+};
+
 /**
  * The school component, which will list all the schools I've went to, and current curriculum I am undergoing
  *
@@ -109,6 +117,106 @@ export const School = (): JSX.Element => {
     const [selectedSlide, setSelectedSlide] = React.useState<number>(
         SCHOOL_SELECTED.COLLEGE,
     );
+
+    useStyleInjector([{ cssQuery: "body", style: { overflowX: "hidden" } }]);
+
+    const swapSchoolSides = React.useCallback(async (leftToRight: boolean) => {
+        const schoolContainer = document.querySelector(
+            ANIMATION_CONSTANTS.schoolContainerQuery,
+        );
+
+        const animationKeyFrames = leftToRight
+            ? [
+                  {
+                      marginRight: ANIMATION_CONSTANTS.marginMeasurement,
+                  },
+                  {
+                      marginLeft: ANIMATION_CONSTANTS.marginMeasurement,
+                      marginRight: "0",
+                  },
+              ]
+            : [
+                  { marginLeft: ANIMATION_CONSTANTS.marginMeasurement },
+                  {
+                      marginLeft: "0",
+                      marginRight: ANIMATION_CONSTANTS.marginMeasurement,
+                  },
+              ];
+
+        await schoolContainer?.animate(animationKeyFrames, {
+            duration: 1000,
+            easing: ANIMATION_CONSTANTS.easingFunction,
+            fill: ANIMATION_CONSTANTS.fillDirection,
+        }).finished;
+    }, []);
+
+    const swingSchoolToRight = React.useCallback(async () => {
+        const schoolContainer = document.querySelector(
+            ANIMATION_CONSTANTS.schoolContainerQuery,
+        );
+        await schoolContainer?.animate(
+            [
+                {
+                    opacity: "0%",
+                },
+                { opacity: "100%" },
+            ],
+            {
+                duration: 1,
+                easing: ANIMATION_CONSTANTS.easingFunction,
+                fill: ANIMATION_CONSTANTS.fillDirection,
+            },
+        ).finished;
+        await schoolContainer?.animate(
+            [
+                {
+                    marginLeft: ANIMATION_CONSTANTS.marginMeasurement,
+                },
+                { marginLeft: "0" },
+            ],
+            {
+                duration: 1000,
+                easing: ANIMATION_CONSTANTS.easingFunction,
+                fill: ANIMATION_CONSTANTS.fillDirection,
+            },
+        ).finished;
+    }, []);
+
+    const swingSchoolToLeft = React.useCallback(async () => {
+        const schoolContainer = document.querySelector(
+            ANIMATION_CONSTANTS.schoolContainerQuery,
+        );
+        await schoolContainer?.animate(
+            [
+                {
+                    marginRight: "0",
+                },
+                {
+                    marginRight: ANIMATION_CONSTANTS.marginMeasurement,
+                },
+            ],
+            {
+                duration: 1000,
+                easing: ANIMATION_CONSTANTS.easingFunction,
+                fill: ANIMATION_CONSTANTS.fillDirection,
+            },
+        ).finished;
+        await schoolContainer?.animate(
+            [
+                {
+                    opacity: "100%",
+                },
+                {
+                    opacity: "0%",
+                },
+            ],
+            {
+                duration: 1,
+                easing: ANIMATION_CONSTANTS.easingFunction,
+                fill: ANIMATION_CONSTANTS.fillDirection,
+            },
+        ).finished;
+    }, []);
 
     return (
         <BasicLayout cssOverride={schoolStyles.school_layout}>
@@ -128,7 +236,10 @@ export const School = (): JSX.Element => {
                     }
                     placement="top-end"
                 >
-                    <Button variant="outline-primary">
+                    <Button
+                        onClick={swingSchoolToLeft}
+                        variant="outline-success"
+                    >
                         <i className="fa-solid fa-arrow-left" />
                     </Button>
                 </OverlayTrigger>
@@ -141,7 +252,7 @@ export const School = (): JSX.Element => {
                     }
                     placement="top-start"
                 >
-                    <Button variant="outline-primary">
+                    <Button variant="outline-success">
                         <i className="fa-solid fa-arrow-right" />
                     </Button>
                 </OverlayTrigger>

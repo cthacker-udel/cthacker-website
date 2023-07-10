@@ -36,6 +36,11 @@
     padding: 1em;
     border-radius: 2em;
     min-height: 50vh;
+    transition:
+        margin 1s ease-in-out,
+        margin-right 1s ease-in-out,
+        margin-left 1s ease-in-out,
+        opacity 1s ease-in-out;
 }
 
 .button_bar {
