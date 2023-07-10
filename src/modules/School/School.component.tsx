@@ -1,11 +1,10 @@
 /* eslint-disable no-console -- disabled */
-/* eslint-disable require-await -- disabled, need to report non-awaited promise to front-end */
 /* eslint-disable @typescript-eslint/indent -- disabled */
 /* eslint-disable no-shadow -- disabled */
 /* eslint-disable no-unused-vars -- disabled */
-/* eslint-disable no-magic-numbers -- disabled */
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Button, OverlayTrigger } from "react-bootstrap";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
@@ -15,7 +14,6 @@ import { useStyleInjector } from "@/hooks/useStyleInjector";
 import { BasicLayout } from "@/modules/common";
 
 import schoolStyles from "./School.module.css";
-import Link from "next/link";
 
 enum SCHOOL_SELECTED {
     MIDDLE_SCHOOL = 0,

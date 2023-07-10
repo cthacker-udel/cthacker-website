@@ -9,19 +9,19 @@ import underConstructionStyles from "./UnderConstruction.module.css";
  * @returns Basic Under Construction page
  */
 export const UnderConstruction = (): JSX.Element => (
-	<BasicLayout>
-		<div
-			className={`w-100 h-100 d-flex flex-column justify-content-center align-items-center ${underConstructionStyles.under_construction_page}`}
-		>
-			<div className="d-flex flex-row">
-				<i className="fa-solid fa-wrench fa-2xl my-auto fa-shake" />
-				<div
-					className={`mx-3 fs-1 fa-flip ${underConstructionStyles.under_construction_main_text}`}
-				>
-					{"Under Construction"}
-				</div>
-				<i className="fa-solid fa-wrench fa-2xl my-auto fa-shake" />
-			</div>
-		</div>
-	</BasicLayout>
+    <BasicLayout>
+        <div
+            className={`w-100 h-100 d-flex flex-column justify-content-center align-items-center ${underConstructionStyles.under_construction_page}`}
+        >
+            <div className="d-flex flex-row">
+                <i className="fa-solid fa-wrench fa-2xl my-auto fa-shake" />
+                <div
+                    className={`mx-3 fs-1 fa-flip ${underConstructionStyles.under_construction_main_text}`}
+                >
+                    {"Under Construction"}
+                </div>
+                <i className="fa-solid fa-wrench fa-2xl my-auto fa-shake" />
+            </div>
+        </div>
+    </BasicLayout>
 );

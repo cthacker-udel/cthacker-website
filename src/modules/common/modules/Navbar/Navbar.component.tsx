@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers -- disabled */
 import Link from "next/link";
 import React from "react";
 

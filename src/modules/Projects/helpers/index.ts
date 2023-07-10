@@ -1,6 +1,6 @@
 export {
-	type AggregateRepoStats,
-	generateAggregateStats,
+    type AggregateRepoStats,
+    generateAggregateStats,
 } from "./generateAggregateStats";
 export { organizeParsedRepos } from "./organizeParsedRepos";
 export { parseRepos } from "./parseRepos";

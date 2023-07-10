@@ -1,49 +1,49 @@
 import React from "react";
 
 type LanguagesBarProperties = {
-	languages: string[];
+    languages: string[];
 };
 
 const customMappings: { [key: string]: string } = {
-	assembly: "git",
-	batchfile: "firefox",
-	brainfuck: "eslint",
-	"c#": "csharp",
-	"c++": "cplusplus",
-	css: "css3",
-	dockerfile: "docker",
-	html: "html5",
-	"jupyter notebook": "jupyter",
-	makefile: "jquery",
-	powershell: "dotnetcore",
-	pug: "linux",
-	shell: "bash",
+    assembly: "git",
+    batchfile: "firefox",
+    brainfuck: "eslint",
+    "c#": "csharp",
+    "c++": "cplusplus",
+    css: "css3",
+    dockerfile: "docker",
+    html: "html5",
+    "jupyter notebook": "jupyter",
+    makefile: "jquery",
+    powershell: "dotnetcore",
+    pug: "linux",
+    shell: "bash",
 };
 
 const addedLanguages = [
-	"bootstrap",
-	"github",
-	"gitlab",
-	"gradle",
-	"heroku",
-	"intellij",
-	"jira",
-	"markdown",
-	"mongodb",
-	"mysql",
-	"nestjs",
-	"nextjs",
-	"nodejs",
-	"postgresql",
-	"pycharm",
-	"react",
-	"redis",
-	"socketio",
-	"spring",
-	"subversion",
-	"trello",
-	"ubuntu",
-	"webpack",
+    "bootstrap",
+    "github",
+    "gitlab",
+    "gradle",
+    "heroku",
+    "intellij",
+    "jira",
+    "markdown",
+    "mongodb",
+    "mysql",
+    "nestjs",
+    "nextjs",
+    "nodejs",
+    "postgresql",
+    "pycharm",
+    "react",
+    "redis",
+    "socketio",
+    "spring",
+    "subversion",
+    "trello",
+    "ubuntu",
+    "webpack",
 ];
 
 /**
@@ -54,17 +54,17 @@ const addedLanguages = [
  * @returns The languages bar at the bottom of the project container
  */
 export const LanguagesBar = ({
-	languages,
+    languages,
 }: LanguagesBarProperties): JSX.Element => (
-	<>
-		{[...languages, ...addedLanguages].map((eachLanguage: string) => (
-			<i
-				className={`p-1 devicon-${
-					customMappings[eachLanguage.toLowerCase()] ??
-					eachLanguage.toLowerCase()
-				}-plain`}
-				key={eachLanguage}
-			/>
-		))}
-	</>
+    <>
+        {[...languages, ...addedLanguages].map((eachLanguage: string) => (
+            <i
+                className={`p-1 devicon-${
+                    customMappings[eachLanguage.toLowerCase()] ??
+                    eachLanguage.toLowerCase()
+                }-plain`}
+                key={eachLanguage}
+            />
+        ))}
+    </>
 );

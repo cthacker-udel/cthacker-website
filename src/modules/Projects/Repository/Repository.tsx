@@ -17,7 +17,7 @@ type RepositoryProperties = Repo;
  * @returns The repository
  */
 export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
-    const { languages } = useRepoLanguages(rest.owner, rest.name);
+    const { languages: _languages } = useRepoLanguages(rest.owner, rest.name);
 
     const mouseEnter = React.useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
@@ -33,7 +33,6 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
                         bubbles: true,
                         detail: rest.name,
                     });
-                    console.log(event_);
                     convertedTarget.dispatchEvent(event_);
                     convertedTarget.className += ` ${otherStyles.currently_selected}`;
                 }

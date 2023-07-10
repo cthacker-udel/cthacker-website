@@ -6,33 +6,33 @@ import React, { type ReactNode } from "react";
 import navLinkStyles from "./NavLink.module.css";
 
 type NavLinkProperties = LinkProps &
-	React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-		exact?: boolean;
-		children: ReactNode;
-	};
+    React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+        exact?: boolean;
+        children: ReactNode;
+    };
 
 /**
  * NavLink component, used for active styling for the navbar
  */
 export const NavLink = ({
-	exact,
-	...properties
+    exact,
+    ...properties
 }: NavLinkProperties): JSX.Element => {
-	const { children, className, href } = properties;
-	const { pathname } = useRouter();
-	const isActive = exact
-		? pathname === href
-		: pathname.startsWith(`/${href}`);
+    const { children, className, href } = properties;
+    const { pathname } = useRouter();
+    const isActive = exact
+        ? pathname === href
+        : pathname.startsWith(`/${href}`);
 
-	if (isActive) {
-		properties.className += ` ${navLinkStyles.active}`;
-	} else {
-		properties.className = className?.replaceAll(" active", "");
-	}
+    if (isActive) {
+        properties.className += ` ${navLinkStyles.active}`;
+    } else {
+        properties.className = className?.replaceAll(" active", "");
+    }
 
-	return (
-		<Link {...properties} href={href}>
-			{children}
-		</Link>
-	);
+    return (
+        <Link {...properties} href={href}>
+            {children}
+        </Link>
+    );
 };
