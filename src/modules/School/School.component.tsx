@@ -15,6 +15,7 @@ import { useStyleInjector } from "@/hooks/useStyleInjector";
 import { BasicLayout } from "@/modules/common";
 
 import schoolStyles from "./School.module.css";
+import Link from "next/link";
 
 enum SCHOOL_SELECTED {
     MIDDLE_SCHOOL = 0,
@@ -45,24 +46,20 @@ const SCHOOL_NEXT_TEXT: { [key: number]: string } = {
     "2": "Middle School (Independence School)",
 };
 
-const schoolArray = [
-    SCHOOL_SELECTED.MIDDLE_SCHOOL,
-    SCHOOL_SELECTED.HIGH_SCHOOL,
-    SCHOOL_SELECTED.COLLEGE,
-];
-
 const schoolElements = [
     <div
         className={schoolStyles.school_content}
         key="Independence School Description"
     >
-        <Image
-            alt="The Independence School. Newark, DE."
-            className={`${schoolStyles.school_picture}`}
-            height="200"
-            src="/independence_school.jpg"
-            width="200"
-        />
+        <Link href="https://www.theindependenceschool.org/" target="_blank">
+            <Image
+                alt="The Independence School. Newark, DE."
+                className={`${schoolStyles.school_picture}`}
+                height="200"
+                src="/independence_school.jpg"
+                width="200"
+            />
+        </Link>
         <div className={`${schoolStyles.school_description}`}>
             <div className="mx-4">
                 {
@@ -76,13 +73,15 @@ const schoolElements = [
         className={schoolStyles.school_content}
         key="Salesianum School Description"
     >
-        <Image
-            alt="Salesianum School. Wilmington, DE."
-            className={`${schoolStyles.school_picture}`}
-            height="200"
-            src="/salesianum_school.jpg"
-            width="200"
-        />
+        <Link href="https://www.salesianum.org/" target="_blank">
+            <Image
+                alt="Salesianum School. Wilmington, DE."
+                className={`${schoolStyles.school_picture}`}
+                height="200"
+                src="/salesianum_school.jpg"
+                width="200"
+            />
+        </Link>
         <div className={`${schoolStyles.school_description}`}>
             <div className="mx-4">
                 {
@@ -95,13 +94,15 @@ const schoolElements = [
         className={schoolStyles.school_content}
         key="University of Delaware school description"
     >
-        <Image
-            alt="The University of Delaware. Newark, DE."
-            className={`${schoolStyles.school_picture}`}
-            height="200"
-            src="/ud.jpg"
-            width="200"
-        />
+        <Link href="https://www.udel.edu/" target="_blank">
+            <Image
+                alt="The University of Delaware. Newark, DE."
+                className={`${schoolStyles.school_picture}`}
+                height="200"
+                src="/ud.jpg"
+                width="200"
+            />
+        </Link>
         <div className={`${schoolStyles.school_description}`}>
             <div className="mx-4">
                 {
