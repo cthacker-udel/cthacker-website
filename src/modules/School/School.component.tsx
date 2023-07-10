@@ -25,7 +25,13 @@ enum SCHOOL_SELECTED {
 enum DIRECTION {
     LEFT = 0,
     RIGHT = 1,
+    NONE = 2,
 }
+
+type SchoolState = {
+    direction: DIRECTION;
+    selected: SCHOOL_SELECTED;
+};
 
 const SCHOOL_PREVIOUS_TEXT: { [key: number]: string } = {
     "0": "College (University of Delaware)",
@@ -120,10 +126,12 @@ const ANIMATION_CONSTANTS = {
  */
 export const School = (): JSX.Element => {
     useStyleInjector([{ cssQuery: "body", style: { overflowX: "hidden" } }]);
+    const [_, startTransition] = React.useTransition();
 
-    const [selectedSlide, setSelectedSlide] = React.useState<number>(
-        SCHOOL_SELECTED.COLLEGE,
-    );
+    const [schoolState, setSchoolState] = React.useState<SchoolState>({
+        direction: DIRECTION.NONE,
+        selected: SCHOOL_SELECTED.COLLEGE,
+    });
 
     const swapSchoolSides = React.useCallback(async (leftToRight: boolean) => {
         const schoolContainer = document.querySelector(
@@ -243,32 +251,60 @@ export const School = (): JSX.Element => {
                 className={schoolStyles.school_container}
                 id="school_container"
             >
-                {schoolElements[selectedSlide]}
+                {schoolElements[schoolState.selected]}
             </div>
             <div className={schoolStyles.button_bar}>
                 <OverlayTrigger
                     overlay={(properties: OverlayInjectedProps): JSX.Element =>
                         generateTooltip({
-                            content: SCHOOL_PREVIOUS_TEXT[selectedSlide],
+                            content: SCHOOL_PREVIOUS_TEXT[schoolState.selected],
                             props: properties,
                         })
                     }
                     placement="top-end"
                 >
-                    <Button onClick={animateToLeft} variant="outline-success">
+                    <Button
+                        onClick={async (): Promise<void> => {
+                            await animateTo(true);
+                            await swapSchoolSides(true);
+                            setSchoolState((oldState) => ({
+                                direction: DIRECTION.LEFT,
+                                selected:
+                                    oldState.selected ===
+                                    SCHOOL_SELECTED.MIDDLE_SCHOOL
+                                        ? SCHOOL_SELECTED.COLLEGE
+                                        : oldState.selected - 1,
+                            }));
+                        }}
+                        variant="outline-success"
+                    >
                         <i className="fa-solid fa-arrow-left" />
                     </Button>
                 </OverlayTrigger>
                 <OverlayTrigger
                     overlay={(properties: OverlayInjectedProps): JSX.Element =>
                         generateTooltip({
-                            content: SCHOOL_NEXT_TEXT[selectedSlide],
+                            content: SCHOOL_NEXT_TEXT[schoolState.selected],
                             props: properties,
                         })
                     }
                     placement="top-start"
                 >
-                    <Button variant="outline-success">
+                    <Button
+                        onClick={async (): Promise<void> => {
+                            await animateTo(true);
+                            await swapSchoolSides(true);
+                            setSchoolState((oldState) => ({
+                                direction: DIRECTION.RIGHT,
+                                selected:
+                                    oldState.selected ===
+                                    SCHOOL_SELECTED.COLLEGE
+                                        ? SCHOOL_SELECTED.MIDDLE_SCHOOL
+                                        : oldState.selected + 1,
+                            }));
+                        }}
+                        variant="outline-success"
+                    >
                         <i className="fa-solid fa-arrow-right" />
                     </Button>
                 </OverlayTrigger>
