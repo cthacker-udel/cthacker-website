@@ -320,6 +320,16 @@ const Projects = (): JSX.Element => {
     return (
         <>
             <Head>
+                <meta
+                    content="homepage, personal website, cameron thacker, full-stack developer"
+                    name="keywords"
+                />
+                <meta
+                    content="Job history of full-stack developer Cameron Thacker"
+                    name="description"
+                />
+                <meta content="EN" name="language" />
+                <meta content="Cameron Thacker" name="author" />
                 <title>{"Cameron Thacker's Projects"}</title>
             </Head>
             <BasicLayout>

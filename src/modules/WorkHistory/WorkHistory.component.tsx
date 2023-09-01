@@ -1,4 +1,5 @@
 import debounce from "lodash.debounce";
+import Head from "next/head";
 import React from "react";
 
 import { BasicLayout } from "@/modules/common";
@@ -83,13 +84,28 @@ export const WorkHistory = (): JSX.Element => {
     }, [debouncedMemo]);
 
     return (
-        <BasicLayout>
-            <div
-                className="w-100 h-100 d-flex flex-column mt-4"
-                id="work-history-container"
-            >
-                {workHistory}
-            </div>
-        </BasicLayout>
+        <>
+            <Head>
+                <meta
+                    content="homepage, personal website, cameron thacker, full-stack developer"
+                    name="keywords"
+                />
+                <meta
+                    content="Job history of full-stack developer Cameron Thacker"
+                    name="description"
+                />
+                <meta content="EN" name="language" />
+                <meta content="Cameron Thacker" name="author" />
+                <title>{"Work History"}</title>
+            </Head>
+            <BasicLayout>
+                <div
+                    className="w-100 h-100 d-flex flex-column mt-4"
+                    id="work-history-container"
+                >
+                    {workHistory}
+                </div>
+            </BasicLayout>
+        </>
     );
 };
