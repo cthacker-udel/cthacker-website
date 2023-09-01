@@ -23,7 +23,7 @@ export const Languages = (): JSX.Element => (
             />
             <meta content="EN" name="language" />
             <meta content="Cameron Thacker" name="author" />
-            <title>{"Cameron Thacker's Projects"}</title>
+            <title>{"Languages"}</title>
         </Head>
         <BasicLayout>
             <div

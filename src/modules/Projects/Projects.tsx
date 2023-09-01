@@ -330,7 +330,7 @@ const Projects = (): JSX.Element => {
                 />
                 <meta content="EN" name="language" />
                 <meta content="Cameron Thacker" name="author" />
-                <title>{"Cameron Thacker's Projects"}</title>
+                <title>{"Projects"}</title>
             </Head>
             <BasicLayout>
                 <div className={styles.repo_layout}>
