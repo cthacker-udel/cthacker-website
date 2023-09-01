@@ -4,7 +4,7 @@
 import { createTokenAuth } from "@octokit/auth-token";
 import { request } from "@octokit/request";
 import React from "react";
-import { toast } from "react-toastify";
+import { type Id, toast } from "react-toastify";
 
 import type { Repo } from "@/modules/Projects/helpers";
 
@@ -25,6 +25,9 @@ export const useRepos = (): useReposReturn => {
     const [isLoading, setIsLoading] = React.useState(true);
     const [failed, setFailed] = React.useState<boolean>(false);
     const [_, startTransition] = React.useTransition();
+    const [loadingToastId, setLoadingToastId] = React.useState<Id | undefined>(
+        undefined,
+    );
 
     const getRepos = React.useMemo(
         () => async () => {
@@ -32,17 +35,13 @@ export const useRepos = (): useReposReturn => {
                 process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
             );
             const authToken = await auth();
-            const response = await toast.promise(
-                request(`GET /user/repos?per_page=100&page=${nextRepoPage}`, {
+            const response = await request(
+                `GET /user/repos?per_page=100&page=${nextRepoPage}`,
+                {
                     headers: {
                         authorization: `token ${authToken.token}`,
                     },
                     type: "all",
-                }),
-                {
-                    error: `Failed to fetch repositories from page ${nextRepoPage}`,
-                    pending: `Fetching repositories from page ${nextRepoPage}...`,
-                    success: `Successfully fetched repositories from page ${nextRepoPage}`,
                 },
             );
             const {
@@ -71,6 +70,29 @@ export const useRepos = (): useReposReturn => {
         },
         [nextRepoPage],
     );
+
+    React.useEffect(() => {
+        if (isLoading) {
+            setLoadingToastId((oldLoadingToastId: Id | undefined) => {
+                if (oldLoadingToastId === undefined) {
+                    return toast.loading("Fetching github repositories");
+                }
+                return oldLoadingToastId;
+            });
+        } else if (!isLoading) {
+            setLoadingToastId((oldLoadingToastId: Id | undefined) => {
+                if (oldLoadingToastId !== undefined) {
+                    toast.update(oldLoadingToastId, {
+                        autoClose: 1000,
+                        isLoading: false,
+                        render: "Completed fetching repositories!",
+                        type: "success",
+                    });
+                }
+                return undefined;
+            });
+        }
+    }, [isLoading, loadingToastId]);
 
     React.useEffect(() => {
         if (isLoading) {
