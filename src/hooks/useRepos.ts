@@ -29,6 +29,10 @@ export const useRepos = (): useReposReturn => {
         undefined,
     );
 
+    /**
+     * Callback hook that fetches all repositories from a user's github account, uses multiple states
+     * to overcome the limit they set on get requests, as it comes paginated
+     */
     const getRepos = React.useMemo(
         () => async () => {
             const auth = createTokenAuth(
@@ -71,6 +75,9 @@ export const useRepos = (): useReposReturn => {
         [nextRepoPage],
     );
 
+    /**
+     * Just for toast management, nothing else
+     */
     React.useEffect(() => {
         if (isLoading) {
             setLoadingToastId((oldLoadingToastId: Id | undefined) => {
@@ -94,6 +101,9 @@ export const useRepos = (): useReposReturn => {
         }
     }, [isLoading, loadingToastId]);
 
+    /**
+     * Firing off the initial getRepos hook
+     */
     React.useEffect(() => {
         if (isLoading) {
             getRepos().catch(() => {
