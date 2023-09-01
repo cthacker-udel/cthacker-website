@@ -4,8 +4,8 @@ import workHistoryHeaderStyles from "./WorkHistoryHeader.module.css";
 
 type WorkHistoryHeaderProperties = {
     // When we have the scrollspy implemented displayOrder?: number;
-    sections?: JSX.Element[];
-    year?: number;
+    readonly sections?: JSX.Element[];
+    readonly year?: number;
 };
 
 /**

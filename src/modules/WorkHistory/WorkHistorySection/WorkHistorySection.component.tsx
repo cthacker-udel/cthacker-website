@@ -6,15 +6,15 @@ import React from "react";
 import workHistorySectionStyles from "./WorkHistorySection.module.css";
 
 type WorkHistorySectionProperties = {
-    current?: boolean;
-    companyName?: string;
-    description: string;
-    endDate?: Date;
-    jobLocation: string;
-    jobTitle: string;
-    imgHrefLink?: string;
-    imgLink?: string;
-    startDate?: Date;
+    readonly current?: boolean;
+    readonly companyName?: string;
+    readonly description: string;
+    readonly endDate?: Date;
+    readonly jobLocation: string;
+    readonly jobTitle: string;
+    readonly imgHrefLink?: string;
+    readonly imgLink?: string;
+    readonly startDate?: Date;
 };
 
 /**

@@ -1,7 +1,7 @@
 import React from "react";
 
 type LanguagesBarProperties = {
-    languages: string[];
+    readonly languages: string[];
 };
 
 const customMappings: { [key: string]: string } = {
