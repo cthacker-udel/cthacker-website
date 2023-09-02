@@ -1,15 +1,18 @@
+/* eslint-disable node/no-unpublished-import -- disabled */
 /* eslint-disable no-restricted-globals -- disabled */
 /* eslint-disable no-alert -- disabled */
 import React from "react";
+import { Key } from "ts-key-enum";
 
 import type { CustomRepoEvent } from "@/@types/repo";
+import { openRepositoryLink } from "@/helpers/repo";
 import { useRepoLanguages } from "@/hooks/useRepoLanguages";
 
 import type { Repo } from "../helpers";
 import otherStyles from "../Projects.module.css";
 import styles from "./Repository.module.css";
 
-type RepositoryProperties = Repo;
+type RepositoryProperties = Repo & { readonly tab: number };
 
 /**
  * Represents a repository created by the user
@@ -17,7 +20,10 @@ type RepositoryProperties = Repo;
  * @param props - The properties of the component, contain all the fields of the `Repo` type
  * @returns The repository
  */
-export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
+export const Repository = ({
+    tab,
+    ...rest
+}: RepositoryProperties): JSX.Element => {
     const { languages: _languages } = useRepoLanguages(rest.owner, rest.name);
 
     const mouseEnter = React.useCallback(
@@ -68,6 +74,17 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
         [rest.name],
     );
 
+    const onKeyDown = React.useCallback((event: React.KeyboardEvent) => {
+        const { key, target } = event;
+        if (
+            document !== undefined &&
+            document.activeElement === target &&
+            key === Key.Enter
+        ) {
+            openRepositoryLink(target as HTMLDivElement);
+        }
+    }, []);
+
     return (
         <div
             className={styles.repository}
@@ -80,9 +97,11 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
                     window.open(rest.html_url, "_newtab");
                 }
             }}
+            onKeyDown={onKeyDown}
             onMouseEnter={mouseEnter}
             onMouseLeave={mouseLeave}
             role="menuitem"
+            tabIndex={tab}
         >
             <div className={styles.name}>{rest.name}</div>
             <div className={styles.date}>

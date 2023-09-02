@@ -251,8 +251,12 @@ const Projects = (): JSX.Element => {
                         {`${repos.length} projects`}
                     </div>
                     <div className={styles.repo_display}>
-                        {repos.map((eachRepo: Repo) => (
-                            <Repository key={eachRepo.id} {...eachRepo} />
+                        {repos.map((eachRepo: Repo, eachRepoIndex: number) => (
+                            <Repository
+                                key={eachRepo.id}
+                                tab={eachRepoIndex}
+                                {...eachRepo}
+                            />
                         ))}
                     </div>
                 </div>
