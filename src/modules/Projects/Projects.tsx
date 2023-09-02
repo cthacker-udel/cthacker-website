@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection -- not applying to indexing with pre-defined numbers */
 /* eslint-disable node/no-unpublished-import -- disabled */
 /* eslint-disable no-extra-boolean-cast -- disabled */
 import Head from "next/head";

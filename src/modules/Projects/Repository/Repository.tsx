@@ -82,6 +82,7 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
             }}
             onMouseEnter={mouseEnter}
             onMouseLeave={mouseLeave}
+            role="menuitem"
         >
             <div className={styles.name}>{rest.name}</div>
             <div className={styles.date}>
