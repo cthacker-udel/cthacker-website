@@ -5,6 +5,14 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { Key } from "ts-key-enum";
 
+import {
+    addCurrentlySelectedClassName,
+    calculateNewSelectedIndex,
+    findRepoNameIndexes,
+    mapReposToDivs,
+    openRepositoryLink,
+    removeCurrentlySelectedClassName,
+} from "@/helpers/repo";
 import { useRepos } from "@/hooks/useRepos";
 import { BasicLayout } from "@/modules/common";
 
@@ -26,90 +34,52 @@ const Projects = (): JSX.Element => {
     const [currentlySelectedRepository, setCurrentlySelectedRepository] =
         React.useState<number>(-1);
 
+    /**
+     * Event that fires when the user inputs a search query, into the name search input
+     * @param event - The event that fires when the user inputs a query into the search query
+     */
     const changeSearchQuery = React.useCallback(
         (event: React.ChangeEvent<HTMLInputElement>) => {
             const { target } = event;
+
             if (Boolean(target)) {
                 const { value } = target;
                 setSearchQuery(value);
                 const allRepositories = document.querySelectorAll(
                     allRepositoryQuerySelector,
                 );
+
                 if (allRepositories.length > 0) {
-                    const matchingRepoNames: number[] = [];
-                    let ind = 0;
-                    for (const eachRepo of allRepositories) {
-                        const { reponame } = (eachRepo as HTMLDivElement)
-                            .dataset;
-                        if (
-                            value.length > 0 &&
-                            reponame
-                                ?.toLowerCase()
-                                .startsWith(value.toLowerCase())
-                        ) {
-                            matchingRepoNames.push(ind);
+                    const allDivRepositories = mapReposToDivs(allRepositories);
+                    const matchingRepoIndexes: number[] = findRepoNameIndexes(
+                        value,
+                        allDivRepositories,
+                        true,
+                    );
+
+                    setCurrentlySelectedRepository((oldSelectedRepository) => {
+                        if (oldSelectedRepository === -1) {
+                            return matchingRepoIndexes[0];
                         }
-                        ind += 1;
-                    }
-                    if (matchingRepoNames.length > 0) {
-                        allRepositories[matchingRepoNames[0]].scrollIntoView({
-                            behavior: "smooth",
-                        });
-                        allRepositories[matchingRepoNames[0]].animate(
-                            [
-                                { border: "1px solid rgba(0, 0, 0, 0.25)" },
-                                { border: "1px solid rgba(0, 0, 255, .5)" },
-                                { border: "1px solid rgba(0, 0, 0, 0.25)" },
-                            ],
-                            {
-                                duration: 2000,
-                                easing: "ease-in-out",
-                                fill: "forwards",
-                            },
+
+                        removeCurrentlySelectedClassName(
+                            allDivRepositories[oldSelectedRepository],
                         );
-                        (
-                            allRepositories[matchingRepoNames[0]] as HTMLElement
-                        ).className += ` ${styles.currently_selected}`;
-                        setCurrentlySelectedRepository(
-                            (oldSelectedRepository) => {
-                                if (oldSelectedRepository === -1) {
-                                    return matchingRepoNames[0];
-                                }
-                                const convertedElement = allRepositories[
-                                    oldSelectedRepository
-                                ] as HTMLElement;
-                                convertedElement.className =
-                                    convertedElement.className.replace(
-                                        ` ${styles.currently_selected}`,
-                                        "",
-                                    );
-                                return matchingRepoNames[0];
-                            },
-                        );
-                    } else {
-                        setCurrentlySelectedRepository(
-                            (oldSelectedRepository) => {
-                                if (oldSelectedRepository === -1) {
-                                    return oldSelectedRepository;
-                                }
-                                const convertedElement = allRepositories[
-                                    oldSelectedRepository
-                                ] as HTMLElement;
-                                convertedElement.className =
-                                    convertedElement.className.replace(
-                                        ` ${styles.currently_selected}`,
-                                        "",
-                                    );
-                                return -1;
-                            },
-                        );
-                    }
+
+                        return matchingRepoIndexes.length > 0
+                            ? matchingRepoIndexes[0]
+                            : -1;
+                    });
                 }
             }
         },
         [],
     );
 
+    /**
+     * Fires when a user inputs keys within the **name search**
+     * @param event - The event that fires when a user inputs keys into the name search input
+     */
     const keyPressedInput = React.useCallback(
         (event: React.KeyboardEvent<HTMLInputElement>) => {
             const { key } = event;
@@ -126,77 +96,44 @@ const Projects = (): JSX.Element => {
         [],
     );
 
+    /**
+     * Fires when the user presses a key **anywhere** on the entire document
+     * @param event - The event that fires when the user presses a key on the document
+     */
     const keyPressedDocument = React.useCallback(
         (event: KeyboardEvent) => {
             const { key } = event;
-            if (key === Key.Enter && currentlySelectedRepository >= 0) {
-                const allRepositories = document.querySelectorAll(
-                    allRepositoryQuerySelector,
-                );
-                if (allRepositories.length > 0) {
-                    const selectedRepository =
-                        allRepositories[currentlySelectedRepository];
-                    const { repourl: repoUrl } = (
-                        selectedRepository as HTMLDivElement
-                    ).dataset;
-                    if (repoUrl !== undefined) {
-                        window.open(repoUrl, "_newtab");
-                    }
-                }
-            } else if (key === Key.ArrowDown) {
-                const allRepositories = document.querySelectorAll(
-                    allRepositoryQuerySelector,
-                );
-                if (allRepositories.length > 0) {
+            const allRepoNodes = document.querySelectorAll(
+                allRepositoryQuerySelector,
+            );
+            if (allRepoNodes.length > 0) {
+                const convertedNodes = mapReposToDivs(allRepoNodes);
+
+                if (key === Key.Enter && currentlySelectedRepository >= 0) {
+                    openRepositoryLink(
+                        convertedNodes[currentlySelectedRepository],
+                    );
+                } else if (key === Key.ArrowDown || key === Key.ArrowUp) {
                     setCurrentlySelectedRepository((oldValue: number) => {
                         if (oldValue === -1) {
-                            return 0;
+                            return key === Key.ArrowDown ? 0 : repos.length - 1;
                         }
-                        const convertedElement = allRepositories[
-                            oldValue
-                        ] as HTMLElement;
-                        convertedElement.className =
-                            convertedElement.className.replace(
-                                ` ${styles.currently_selected}`,
-                                "",
-                            );
-                        const newValue =
-                            oldValue === repos.length - 1 ? 0 : oldValue + 1;
-                        const currentElement = allRepositories[newValue];
-                        currentElement.className += ` ${styles.currently_selected}`;
-                        currentElement.scrollIntoView({
-                            behavior: "smooth",
-                            block: "center",
-                        });
-                        return newValue;
-                    });
-                }
-            } else if (key === Key.ArrowUp) {
-                const allRepositories = document.querySelectorAll(
-                    allRepositoryQuerySelector,
-                );
-                if (allRepositories.length > 0) {
-                    setCurrentlySelectedRepository((oldValue: number) => {
-                        if (oldValue === -1) {
-                            return repos.length - 1;
-                        }
-                        const convertedElement = allRepositories[
-                            oldValue
-                        ] as HTMLElement;
-                        convertedElement.className =
-                            convertedElement.className.replace(
-                                ` ${styles.currently_selected}`,
-                                "",
-                            );
-                        const newValue =
-                            oldValue === 0 ? repos.length - 1 : oldValue - 1;
-                        const currentElement = allRepositories[newValue];
-                        currentElement.className += ` ${styles.currently_selected}`;
-                        currentElement.scrollIntoView({
-                            behavior: "smooth",
-                            block: "center",
-                        });
-                        return newValue;
+
+                        removeCurrentlySelectedClassName(
+                            convertedNodes[oldValue],
+                        );
+
+                        const newIndex = calculateNewSelectedIndex(
+                            key,
+                            repos.length,
+                            oldValue,
+                        );
+
+                        addCurrentlySelectedClassName(
+                            convertedNodes[newIndex],
+                            { behavior: "smooth", block: "center" },
+                        );
+                        return newIndex;
                     });
                 }
             }
@@ -204,89 +141,54 @@ const Projects = (): JSX.Element => {
         [currentlySelectedRepository, repos.length],
     );
 
-    const selectCurrentlySelectedByHover = React.useCallback((event: Event) => {
-        const repoName = (event as CustomEvent).detail;
-        const allRepositories = document.querySelectorAll(
-            allRepositoryQuerySelector,
-        );
-        let ind = 0;
-        for (const eachRepository of allRepositories) {
-            const convertedElement = eachRepository as HTMLDivElement;
-            if (convertedElement.dataset.reponame === repoName) {
-                setCurrentlySelectedRepository(ind);
-                break;
+    /**
+     * Fires when the user hovers their mouse over an repository element
+     * @param event - The custom event that contains the repository name
+     */
+    const selectCurrentlySelectedByHover = React.useCallback(
+        (event: Event) => {
+            const { repoName: eventRepoName } = (event as CustomEvent).detail;
+            const allRepositories = document.querySelectorAll(
+                allRepositoryQuerySelector,
+            );
+            if (allRepositories.length > 0 && searchQuery.length === 0) {
+                const convertedRepo = mapReposToDivs(allRepositories);
+                let ind = 0;
+                for (const eachRepository of convertedRepo) {
+                    const { reponame: repoName } = eachRepository.dataset;
+                    if (repoName === eventRepoName) {
+                        addCurrentlySelectedClassName(eachRepository);
+                        setCurrentlySelectedRepository(ind);
+                        break;
+                    }
+                    ind += 1;
+                }
             }
-            ind += 1;
-        }
-    }, []);
+        },
+        [searchQuery.length],
+    );
 
+    /**
+     * Fires when the user's mouse leaves a repository element (leaves as in exits the boundary of the element)
+     * @param event - The custom event that contains the repository name
+     */
     const deselectCurrentlySelectedByHover = React.useCallback(
         (event: Event) => {
             const { target } = event;
-            if (searchQuery.length > 0) {
-                const allRepositories = document.querySelectorAll(
-                    allRepositoryQuerySelector,
-                );
-                if (allRepositories.length > 0) {
-                    const convertedTarget = target as HTMLDivElement;
-
-                    let matchingTargetIndex = 0;
-                    let matchingRepositoryIndex = 0;
-                    for (const eachRepository of allRepositories) {
-                        const convertedElement =
-                            eachRepository as HTMLDivElement;
-                        const { reponame } = convertedElement.dataset;
-                        if (
-                            reponame
-                                ?.toLocaleLowerCase()
-                                .startsWith(searchQuery.toLocaleLowerCase())
-                        ) {
-                            setCurrentlySelectedRepository(
-                                matchingRepositoryIndex,
-                            );
-                            break;
-                        }
-                        matchingRepositoryIndex += 1;
-                    }
-                    for (const eachRepository of allRepositories) {
-                        const convertedElement =
-                            eachRepository as HTMLDivElement;
-                        if (
-                            convertedElement.dataset.reponame?.toLocaleLowerCase() ===
-                            convertedTarget.dataset.reponame?.toLocaleLowerCase()
-                        ) {
-                            break;
-                        }
-                        matchingTargetIndex += 1;
-                    }
-
-                    if (
-                        matchingTargetIndex !== matchingRepositoryIndex &&
-                        target !== undefined
-                    ) {
-                        convertedTarget.className =
-                            convertedTarget.className.replace(
-                                ` ${styles.currently_selected}`,
-                                "",
-                            );
-                        setCurrentlySelectedRepository(-1);
-                    }
-                }
-            } else {
+            if (searchQuery.length === 0) {
                 if (target !== undefined) {
                     const convertedTarget = target as HTMLDivElement;
-                    convertedTarget.className =
-                        convertedTarget.className.replace(
-                            ` ${styles.currently_selected}`,
-                            "",
-                        );
+                    removeCurrentlySelectedClassName(convertedTarget);
                 }
                 setCurrentlySelectedRepository(-1);
             }
         },
-        [searchQuery],
+        [searchQuery.length],
     );
 
+    /**
+     * Adds and removes the event listeners for the document, those that fire on keydown, and the custom ones as well
+     */
     React.useEffect(() => {
         if (document !== undefined) {
             document.addEventListener("keydown", keyPressedDocument);

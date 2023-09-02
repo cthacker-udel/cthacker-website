@@ -2,6 +2,7 @@
 /* eslint-disable no-alert -- disabled */
 import React from "react";
 
+import type { CustomRepoEvent } from "@/@types/repo";
 import { useRepoLanguages } from "@/hooks/useRepoLanguages";
 
 import type { Repo } from "../helpers";
@@ -29,12 +30,14 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
                         ` ${otherStyles.currently_selected}`,
                     )
                 ) {
-                    const event_ = new CustomEvent("updateSelection", {
-                        bubbles: true,
-                        detail: rest.name,
-                    });
+                    const event_ = new CustomEvent<CustomRepoEvent>(
+                        "updateSelection",
+                        {
+                            bubbles: true,
+                            detail: { repoName: rest.name },
+                        },
+                    );
                     convertedTarget.dispatchEvent(event_);
-                    convertedTarget.className += ` ${otherStyles.currently_selected}`;
                 }
             }
         },
@@ -51,14 +54,18 @@ export const Repository = ({ ...rest }: RepositoryProperties): JSX.Element => {
                         ` ${otherStyles.currently_selected}`,
                     )
                 ) {
-                    const event_ = new CustomEvent("deselectSelection", {
-                        bubbles: true,
-                    });
+                    const event_ = new CustomEvent<CustomRepoEvent>(
+                        "deselectSelection",
+                        {
+                            bubbles: true,
+                            detail: { repoName: rest.name },
+                        },
+                    );
                     convertedTarget.dispatchEvent(event_);
                 }
             }
         },
-        [],
+        [rest.name],
     );
 
     return (
