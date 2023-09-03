@@ -394,7 +394,7 @@
         "no-negated-condition": "error",
         "no-new-object": "error",
         "no-plusplus": "error",
-        "no-restricted-syntax": ["error", "BinaryExpression[operator='in']"],
+        "no-restricted-syntax": ["error", "WithStatement"],
         "no-tabs": "error",
         "no-trailing-spaces": "error",
         "no-unneeded-ternary": "error",
