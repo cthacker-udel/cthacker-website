@@ -20,7 +20,7 @@
         "clean": "rimraf .next",
         "full-clean": "rimraf .next node_modules",
         "format": "prettier --config .prettierrc --write src/**/*.{ts,tsx}",
-        "install-linter": "npm i --save-dev eslint-config-problems eslint-config-intense eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-no-secrets eslint-plugin-node eslint-plugin-prettier eslint-plugin-ramda eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-sonarjs eslint-plugin-unicorn prettier prettier-eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next",
+        "install-linter": "npm i --save-dev eslint eslint-config-intense eslint-config-next eslint-config-prettier eslint-plugin-compat eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-jest eslint-plugin-jest-formatting eslint-plugin-jsx-a11y eslint-plugin-no-secrets eslint-plugin-node eslint-plugin-prettier eslint-plugin-promise eslint-plugin-ramda eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-security eslint-plugin-simple-import-sort eslint-plugin-sonarjs eslint-plugin-tsdoc eslint-plugin-unicorn husky lint-staged prettier prettier-eslint typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser @next/eslint-plugin-next",
         "export": "next export",
         "prepare": "husky install"
     },
