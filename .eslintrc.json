@@ -13,7 +13,8 @@
         "problems",
         "plugin:security/recommended",
         "plugin:jsx-a11y/recommended",
-        "plugin:promise/recommended"
+        "plugin:promise/recommended",
+        "plugin:compat/recommended"
     ],
     "globals": {
         "JSX": true
@@ -39,13 +40,15 @@
         "jest-formatting",
         "simple-import-sort",
         "sonarjs",
-        "unicorn"
+        "unicorn",
+        "eslint-plugin-tsdoc"
     ],
     "ignorePatterns": ["*.js", "next-env.d.ts", "next.config.mjs"],
     "overrides": [
         {
             "files": ["*.js"],
             "rules": {
+                "tsdoc/syntax": "warn",
                 "@typescript-eslint/no-unsafe-assignment": "error",
                 "@typescript-eslint/no-unsafe-call": "error",
                 "@typescript-eslint/no-unsafe-member-access": "error",
