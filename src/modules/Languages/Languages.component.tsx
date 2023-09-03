@@ -29,9 +29,7 @@ export const Languages = (): JSX.Element => (
             <div
                 className={`w-100 d-flex flex-column justify-content-center align-items-center ${languagesStyles.languages_page}`}
             >
-                <div className="fs-2 text-decoration-underline mb-3">
-                    {"Languages"}
-                </div>
+                <div className="fs-2 fw-bold mb-3">{"Languages"}</div>
                 <Accordion
                     className={`w-75 ${languagesStyles.languages_accordion}`}
                     flush

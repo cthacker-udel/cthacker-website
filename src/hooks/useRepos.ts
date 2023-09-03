@@ -82,7 +82,9 @@ export const useRepos = (): useReposReturn => {
         if (isLoading) {
             setLoadingToastId((oldLoadingToastId: Id | undefined) => {
                 if (oldLoadingToastId === undefined) {
-                    return toast.loading("Fetching github repositories");
+                    return toast.loading("Fetching github repositories", {
+                        autoClose: 5000,
+                    });
                 }
                 return oldLoadingToastId;
             });

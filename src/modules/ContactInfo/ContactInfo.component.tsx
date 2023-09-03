@@ -28,7 +28,7 @@ export const ContactInfo = (): JSX.Element => (
                 className={`d-flex flex-column w-100 justify-content-center align-items-center ${styles.contact_info_page}`}
             >
                 <div className={`${styles.contact_info_section}`}>
-                    <div className="fs-1 text-decoration-underline mb-2 text-center">
+                    <div className="fs-1 fw-bold mb-2 text-center">
                         {"Contact Info"}
                     </div>
                     <ul className="fa-ul m-0 fs-4">
