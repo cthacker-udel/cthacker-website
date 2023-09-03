@@ -252,6 +252,7 @@ export const School = (): JSX.Element => {
                         ...oldState,
                         direction: DIRECTION.NONE,
                     }));
+                    return true;
                 })
                 .catch(console.error);
         } else if (schoolState.direction === DIRECTION.RIGHT) {
@@ -261,6 +262,7 @@ export const School = (): JSX.Element => {
                         ...oldState,
                         direction: DIRECTION.NONE,
                     }));
+                    return true;
                 })
                 .catch(console.error);
         }

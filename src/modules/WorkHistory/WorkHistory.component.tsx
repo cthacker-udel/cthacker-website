@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection -- disabled, user input not detected with object bracket notation access */
 import debounce from "lodash.debounce";
 import Head from "next/head";
 import React from "react";
