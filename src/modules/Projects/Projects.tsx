@@ -57,23 +57,19 @@ const Projects = (): JSX.Element => {
                         allDivRepositories,
                         true,
                     );
-                    if (matchingRepoIndexes.length > 0) {
-                        setCurrentlySelectedRepository(
-                            (oldSelectedRepository) => {
-                                if (oldSelectedRepository === -1) {
-                                    return matchingRepoIndexes[0];
-                                }
+                    setCurrentlySelectedRepository((oldSelectedRepository) => {
+                        if (oldSelectedRepository === -1) {
+                            return matchingRepoIndexes[0] ?? -1;
+                        }
 
-                                removeCurrentlySelectedClassName(
-                                    allDivRepositories[oldSelectedRepository],
-                                );
-
-                                return matchingRepoIndexes.length > 0
-                                    ? matchingRepoIndexes[0]
-                                    : -1;
-                            },
+                        removeCurrentlySelectedClassName(
+                            allDivRepositories[oldSelectedRepository],
                         );
-                    }
+
+                        return matchingRepoIndexes.length > 0
+                            ? matchingRepoIndexes[0] ?? -1
+                            : -1;
+                    });
                 }
             }
         },
