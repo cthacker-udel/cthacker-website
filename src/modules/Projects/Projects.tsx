@@ -11,15 +11,20 @@ import {
     calculateNewSelectedIndex,
     findRepoNameIndexes,
     mapReposToDivs,
+    type MonthKeys,
     openRepositoryLink,
     removeCurrentlySelectedClassName,
+    repoCountByMonth,
 } from "@/helpers/repo";
+import { useRepoLanguagesBulk } from "@/hooks/useRepoLanguagesBulk";
 import { useRepos } from "@/hooks/useRepos";
 import { BasicLayout } from "@/modules/common";
 
 import type { Repo } from "./helpers";
 import styles from "./Projects.module.css";
 import { Repository } from "./Repository";
+import { CodeCount } from "./Repository/CodeCount";
+import { MonthCount } from "./Repository/MonthCount";
 
 const allRepositoryQuerySelector = "#repository";
 
@@ -29,7 +34,11 @@ const allRepositoryQuerySelector = "#repository";
  * @returns The projects page
  */
 const Projects = (): JSX.Element => {
-    const { repos } = useRepos();
+    const { failed, isLoading, repos } = useRepos();
+    const { languagesCount } = useRepoLanguagesBulk(
+        !failed && !isLoading,
+        repos,
+    );
 
     const [searchQuery, setSearchQuery] = React.useState<string>("");
     const [currentlySelectedRepository, setCurrentlySelectedRepository] =
@@ -219,6 +228,12 @@ const Projects = (): JSX.Element => {
         deselectCurrentlySelectedByHover,
     ]);
 
+    if (isLoading) {
+        return <span />;
+    }
+
+    const repoMonthCount = repoCountByMonth(repos);
+
     return (
         <>
             <Head>
@@ -236,6 +251,41 @@ const Projects = (): JSX.Element => {
             </Head>
             <BasicLayout>
                 <div className={styles.repo_layout}>
+                    <div className={styles.repo_language_stats}>
+                        {Object.keys(languagesCount).length > 0 && (
+                            <>
+                                <div
+                                    className={
+                                        styles.repo_language_stats_header
+                                    }
+                                >
+                                    {"Lines of Code per Language"}
+                                </div>
+                                <div
+                                    className={styles.repo_language_stats_list}
+                                >
+                                    {Object.keys(languagesCount).length > 0 &&
+                                        Object.keys(languagesCount).map(
+                                            (
+                                                eachLanguage,
+                                                eachLanguageIndex,
+                                            ) => (
+                                                <CodeCount
+                                                    ind={eachLanguageIndex}
+                                                    key={eachLanguage}
+                                                    language={eachLanguage}
+                                                    totalCount={
+                                                        languagesCount[
+                                                            eachLanguage
+                                                        ]
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                </div>
+                            </>
+                        )}
+                    </div>
                     <div className={styles.repo_list}>
                         <div className={styles.repo_search_container}>
                             <Form.Control
@@ -261,6 +311,38 @@ const Projects = (): JSX.Element => {
                                 ),
                             )}
                         </div>
+                    </div>
+                    <div className={styles.repo_month_frequency}>
+                        {Object.keys(repoMonthCount).length > 0 && (
+                            <>
+                                <div
+                                    className={
+                                        styles.repo_month_frequency_title
+                                    }
+                                >
+                                    {"Number of Projects per Month"}
+                                </div>
+                                {Object.keys(repoMonthCount).map(
+                                    (
+                                        eachRepoMonth: string,
+                                        eachRepoMonthIndex: number,
+                                    ) => (
+                                        <MonthCount
+                                            ind={eachRepoMonthIndex}
+                                            key={`repo_month_${eachRepoMonth}`}
+                                            month={eachRepoMonth}
+                                            totalAmount={
+                                                (
+                                                    repoMonthCount as {
+                                                        [_key in MonthKeys]: number;
+                                                    }
+                                                )[eachRepoMonth as MonthKeys]
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </>
+                        )}
                     </div>
                 </div>
             </BasicLayout>

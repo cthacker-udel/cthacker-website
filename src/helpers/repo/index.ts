@@ -4,3 +4,4 @@ export { findRepoNameIndexes } from "./findRepoNameIndexes";
 export { mapReposToDivs } from "./mapReposToDivs";
 export { openRepositoryLink } from "./openRepositoryLink";
 export { removeCurrentlySelectedClassName } from "./removeCurrentlySelectedClassName";
+export * from "./repoCountByMonth";

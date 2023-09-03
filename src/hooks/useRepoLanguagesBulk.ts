@@ -16,11 +16,14 @@ type useRepoLanguagesBulkReturn = {
 };
 
 /**
+ * Fetches all the language data from all the repositories
  *
+ * @param repoLoadingCompleted - Have the repositories completed loading
  * @param repos - The repositories we are grabbing all the languages for
- * @returns
+ * @returns All the languages count from all repos
  */
 export const useRepoLanguagesBulk = (
+    repoLoadingCompleted: boolean,
     repos: Repo[],
 ): useRepoLanguagesBulkReturn => {
     const [failed, setFailed] = React.useState<boolean>(false);
@@ -31,7 +34,11 @@ export const useRepoLanguagesBulk = (
     const [_, startTransition] = React.useTransition();
 
     const getRepoLanguagesBulk = React.useMemo(
-        () => async () => {
+        () => async (): Promise<boolean> => {
+            if (repos === undefined || repos.length === 0) {
+                return false;
+            }
+
             const auth = createTokenAuth(
                 process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
             );
@@ -73,12 +80,14 @@ export const useRepoLanguagesBulk = (
                 setIsLoading(false);
                 setFailed(false);
             });
+
+            return true;
         },
         [repos],
     );
 
     React.useEffect(() => {
-        if (isLoading) {
+        if (isLoading && repoLoadingCompleted) {
             getRepoLanguagesBulk().catch(() => {
                 startTransition(() => {
                     setIsLoading(false);
@@ -86,7 +95,7 @@ export const useRepoLanguagesBulk = (
                 });
             });
         }
-    }, [getRepoLanguagesBulk, isLoading]);
+    }, [getRepoLanguagesBulk, isLoading, repoLoadingCompleted]);
 
     return {
         failed,

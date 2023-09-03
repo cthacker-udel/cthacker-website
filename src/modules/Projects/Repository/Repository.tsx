@@ -6,7 +6,6 @@ import { Key } from "ts-key-enum";
 
 import type { CustomRepoEvent } from "@/@types/repo";
 import { openRepositoryLink } from "@/helpers/repo";
-import { useRepoLanguages } from "@/hooks/useRepoLanguages";
 
 import type { Repo } from "../helpers";
 import otherStyles from "../Projects.module.css";
@@ -24,8 +23,6 @@ export const Repository = ({
     tab,
     ...rest
 }: RepositoryProperties): JSX.Element => {
-    const { languages: _languages } = useRepoLanguages(rest.owner, rest.name);
-
     /**
      * Callback that fires when the mouse hovers over the repository element
      * @param event - The mouse event that fires when the mouse hovers over the repository element
