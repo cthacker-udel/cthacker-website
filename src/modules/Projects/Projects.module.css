@@ -20,6 +20,17 @@
     padding-top: 2em;
 }
 
+.repo_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.repo_search_container {
+    width: fit-content;
+}
+
 .repo_search,
 .repo_search:focus {
     background-color: transparent;
@@ -34,12 +45,14 @@
 
 .currently_selected {
     border: 1px solid rgba(0, 0, 255, 0.5);
+    background-color: rgba(137, 196, 244, 0.15);
     color: rgba(0, 0, 255, 0.85);
-    font-size: 1.5em;
-    padding: 1.5em;
+    font-size: 1.1em;
+    padding: 0.75em;
 }
 
 .repo_count {
     font-size: 0.75em;
     color: rgba(128, 128, 128, 0.75);
+    text-align: center;
 }

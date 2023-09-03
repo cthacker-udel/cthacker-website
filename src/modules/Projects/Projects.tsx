@@ -57,20 +57,23 @@ const Projects = (): JSX.Element => {
                         allDivRepositories,
                         true,
                     );
+                    if (matchingRepoIndexes.length > 0) {
+                        setCurrentlySelectedRepository(
+                            (oldSelectedRepository) => {
+                                if (oldSelectedRepository === -1) {
+                                    return matchingRepoIndexes[0];
+                                }
 
-                    setCurrentlySelectedRepository((oldSelectedRepository) => {
-                        if (oldSelectedRepository === -1) {
-                            return matchingRepoIndexes[0];
-                        }
+                                removeCurrentlySelectedClassName(
+                                    allDivRepositories[oldSelectedRepository],
+                                );
 
-                        removeCurrentlySelectedClassName(
-                            allDivRepositories[oldSelectedRepository],
+                                return matchingRepoIndexes.length > 0
+                                    ? matchingRepoIndexes[0]
+                                    : -1;
+                            },
                         );
-
-                        return matchingRepoIndexes.length > 0
-                            ? matchingRepoIndexes[0]
-                            : -1;
-                    });
+                    }
                 }
             }
         },
@@ -237,27 +240,31 @@ const Projects = (): JSX.Element => {
             </Head>
             <BasicLayout>
                 <div className={styles.repo_layout}>
-                    <div>
-                        <Form.Control
-                            className={styles.repo_search}
-                            onChange={changeSearchQuery}
-                            onKeyDown={keyPressedInput}
-                            placeholder="Name"
-                            type="text"
-                            value={searchQuery}
-                        />
-                    </div>
-                    <div className={styles.repo_count}>
-                        {`${repos.length} projects`}
-                    </div>
-                    <div className={styles.repo_display}>
-                        {repos.map((eachRepo: Repo, eachRepoIndex: number) => (
-                            <Repository
-                                key={eachRepo.id}
-                                tab={eachRepoIndex}
-                                {...eachRepo}
+                    <div className={styles.repo_list}>
+                        <div className={styles.repo_search_container}>
+                            <Form.Control
+                                className={styles.repo_search}
+                                onChange={changeSearchQuery}
+                                onKeyDown={keyPressedInput}
+                                placeholder="Name"
+                                type="text"
+                                value={searchQuery}
                             />
-                        ))}
+                            <div className={styles.repo_count}>
+                                {`${repos.length} projects`}
+                            </div>
+                        </div>
+                        <div className={styles.repo_display}>
+                            {repos.map(
+                                (eachRepo: Repo, eachRepoIndex: number) => (
+                                    <Repository
+                                        key={eachRepo.id}
+                                        tab={eachRepoIndex}
+                                        {...eachRepo}
+                                    />
+                                ),
+                            )}
+                        </div>
                     </div>
                 </div>
             </BasicLayout>

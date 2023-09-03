@@ -26,6 +26,10 @@ export const Repository = ({
 }: RepositoryProperties): JSX.Element => {
     const { languages: _languages } = useRepoLanguages(rest.owner, rest.name);
 
+    /**
+     * Callback that fires when the mouse hovers over the repository element
+     * @param event - The mouse event that fires when the mouse hovers over the repository element
+     */
     const mouseEnter = React.useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
             const { target } = event;
@@ -50,6 +54,10 @@ export const Repository = ({
         [rest.name],
     );
 
+    /**
+     * The callback that fires when the mouse leaves (is not hovered over the element)
+     * @param event - The mouse event that fires when the mouse "leaves" the element
+     */
     const mouseLeave = React.useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
             const { target } = event;
@@ -74,6 +82,10 @@ export const Repository = ({
         [rest.name],
     );
 
+    /**
+     * When the keyboard is pressed while the focus is on a repository element
+     * @param event - The keyboard event that is fired when the repository has focus, and the keyboard is pressed
+     */
     const onKeyDown = React.useCallback((event: React.KeyboardEvent) => {
         const { key, target } = event;
         if (
