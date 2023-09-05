@@ -1,9 +1,10 @@
 import Head from "next/head";
 import React from "react";
 
+import { Divider } from "../common/modules/Divider";
 import { AboutMeSection } from "./AboutMeSection";
 import { ContactInfoSection } from "./ContactInfoSection";
-import landingPageStyles from "./LandingPage.module.css";
+import styles from "./LandingPage.module.css";
 import { LanguageSection } from "./LanguageSection";
 import { NameSection } from "./NameSection";
 import { ProjectSection } from "./ProjectSection";
@@ -29,16 +30,39 @@ export const LandingPage = (): JSX.Element => (
             <title>{"Home Page"}</title>
         </Head>
         <div
-            className={`d-flex flex-column w-100 justify-content-around align-items-center ${landingPageStyles.landing_page}`}
+            className={`d-flex flex-column w-100 justify-content-around align-items-center ${styles.landing_page}`}
         >
             <NameSection />
-            <div className="border border-dark w-100" />
-            <ProjectSection />
-            <WorkHistorySection />
-            <SchoolSection />
-            <LanguageSection />
-            <AboutMeSection />
-            <ContactInfoSection />
+            <Divider />
+            <div className={styles.bottom_section}>
+                <div className={styles.landing_section}>
+                    <div className={styles.landing_section_header}>
+                        {"Work"}
+                    </div>
+                    <div className={styles.landing_section_content}>
+                        <ProjectSection />
+                        <WorkHistorySection />
+                    </div>
+                </div>
+                <div className={styles.landing_section}>
+                    <div className={styles.landing_section_header}>
+                        {"Studies"}
+                    </div>
+                    <div className={styles.landing_section_content}>
+                        <SchoolSection />
+                        <LanguageSection />
+                    </div>
+                </div>
+                <div className={styles.landing_section}>
+                    <div className={styles.landing_section_header}>
+                        {"Personal"}
+                    </div>
+                    <div className={styles.landing_section_content}>
+                        <AboutMeSection />
+                        <ContactInfoSection />
+                    </div>
+                </div>
+            </div>
         </div>
     </>
 );
