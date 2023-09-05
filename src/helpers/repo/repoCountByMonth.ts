@@ -30,6 +30,21 @@ const months: { [key: number]: MonthKeys } = {
     "9": "October",
 };
 
+const monthOrder: MonthKeys[] = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
+
 /**
  *
  * @param repos
@@ -54,7 +69,13 @@ const repoCountByMonth = (
         }
     }
 
-    return monthCount;
+    const orderedMonth: Partial<{ [_key in MonthKeys]: number }> = {};
+
+    for (const eachMonth of monthOrder) {
+        orderedMonth[eachMonth] = monthCount[eachMonth];
+    }
+
+    return orderedMonth;
 };
 
 export { type MonthKeys, repoCountByMonth };

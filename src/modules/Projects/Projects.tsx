@@ -228,10 +228,6 @@ const Projects = (): JSX.Element => {
         deselectCurrentlySelectedByHover,
     ]);
 
-    if (isLoading) {
-        return <span />;
-    }
-
     const repoMonthCount = repoCountByMonth(repos);
 
     return (
