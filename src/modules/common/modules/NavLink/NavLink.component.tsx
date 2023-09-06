@@ -7,8 +7,8 @@ import navLinkStyles from "./NavLink.module.css";
 
 type NavLinkProperties = LinkProps &
     React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-        exact?: boolean;
-        children: ReactNode;
+        readonly exact?: boolean;
+        readonly children: ReactNode;
     };
 
 /**

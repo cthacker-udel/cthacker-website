@@ -1,0 +1,21 @@
+.divider {
+    box-sizing: content-box;
+    border: 1px solid black;
+    width: 100vw;
+}
+
+.divider_sm {
+    margin: 1em;
+}
+
+.divider_md {
+    margin: 2em;
+}
+
+.divider_lg {
+    margin: 3em;
+}
+
+.divider_xl {
+    margin: 4em;
+}

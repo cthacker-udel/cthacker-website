@@ -1,5 +1,34 @@
 .landing_page {
-    background-color: #85FFBD;
-    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+    background-color: #85ffbd;
+    background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
     height: 100vh;
+}
+
+.bottom_section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.landing_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.landing_section_header {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.landing_section_content {
+    padding: 3em;
+    border: 1px solid black;
+    border-radius: 1em;
+    height: fit-content;
+    width: fit-content;
 }

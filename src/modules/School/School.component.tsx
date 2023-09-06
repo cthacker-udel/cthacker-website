@@ -3,6 +3,7 @@
 /* eslint-disable no-shadow -- disabled */
 /* eslint-disable no-unused-vars -- disabled */
 
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -251,6 +252,7 @@ export const School = (): JSX.Element => {
                         ...oldState,
                         direction: DIRECTION.NONE,
                     }));
+                    return true;
                 })
                 .catch(console.error);
         } else if (schoolState.direction === DIRECTION.RIGHT) {
@@ -260,75 +262,96 @@ export const School = (): JSX.Element => {
                         ...oldState,
                         direction: DIRECTION.NONE,
                     }));
+                    return true;
                 })
                 .catch(console.error);
         }
     }, [animateFrom, schoolState]);
 
     return (
-        <BasicLayout cssOverride={schoolStyles.school_layout}>
-            <div
-                className={schoolStyles.school_container}
-                id="school_container"
-            >
-                {schoolElements[schoolState.selected]}
-            </div>
-            <div className={schoolStyles.button_bar}>
-                <OverlayTrigger
-                    overlay={(properties: OverlayInjectedProps): JSX.Element =>
-                        generateTooltip({
-                            content: SCHOOL_PREVIOUS_TEXT[schoolState.selected],
-                            props: properties,
-                        })
-                    }
-                    placement="top-end"
+        <>
+            <Head>
+                <meta
+                    content="homepage, personal website, cameron thacker, full-stack developer"
+                    name="keywords"
+                />
+                <meta
+                    content="School history of full-stack developer Cameron Thacker"
+                    name="description"
+                />
+                <meta content="EN" name="language" />
+                <meta content="Cameron Thacker" name="author" />
+                <title>{"School History"}</title>
+            </Head>
+            <BasicLayout cssOverride={schoolStyles.school_layout}>
+                <div
+                    className={schoolStyles.school_container}
+                    id="school_container"
                 >
-                    <Button
-                        onClick={async (): Promise<void> => {
-                            await animateTo(true);
-                            await swapSchoolSides(true);
-                            setSchoolState((oldState) => ({
-                                direction: DIRECTION.LEFT,
-                                selected:
-                                    oldState.selected ===
-                                    SCHOOL_SELECTED.MIDDLE_SCHOOL
-                                        ? SCHOOL_SELECTED.COLLEGE
-                                        : oldState.selected - 1,
-                            }));
-                        }}
-                        variant="outline-success"
+                    {schoolElements[schoolState.selected]}
+                </div>
+                <div className={schoolStyles.button_bar}>
+                    <OverlayTrigger
+                        overlay={(
+                            properties: OverlayInjectedProps,
+                        ): JSX.Element =>
+                            generateTooltip({
+                                content:
+                                    SCHOOL_PREVIOUS_TEXT[schoolState.selected],
+                                props: properties,
+                            })
+                        }
+                        placement="top-end"
                     >
-                        <i className="fa-solid fa-arrow-left" />
-                    </Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                    overlay={(properties: OverlayInjectedProps): JSX.Element =>
-                        generateTooltip({
-                            content: SCHOOL_NEXT_TEXT[schoolState.selected],
-                            props: properties,
-                        })
-                    }
-                    placement="top-start"
-                >
-                    <Button
-                        onClick={async (): Promise<void> => {
-                            await animateTo(false);
-                            await swapSchoolSides(false);
-                            setSchoolState((oldState) => ({
-                                direction: DIRECTION.RIGHT,
-                                selected:
-                                    oldState.selected ===
-                                    SCHOOL_SELECTED.COLLEGE
-                                        ? SCHOOL_SELECTED.MIDDLE_SCHOOL
-                                        : oldState.selected + 1,
-                            }));
-                        }}
-                        variant="outline-success"
+                        <Button
+                            onClick={async (): Promise<void> => {
+                                await animateTo(true);
+                                await swapSchoolSides(true);
+                                setSchoolState((oldState) => ({
+                                    direction: DIRECTION.LEFT,
+                                    selected:
+                                        oldState.selected ===
+                                        SCHOOL_SELECTED.MIDDLE_SCHOOL
+                                            ? SCHOOL_SELECTED.COLLEGE
+                                            : oldState.selected - 1,
+                                }));
+                            }}
+                            variant="outline-success"
+                        >
+                            <i className="fa-solid fa-arrow-left" />
+                        </Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                        overlay={(
+                            properties: OverlayInjectedProps,
+                        ): JSX.Element =>
+                            generateTooltip({
+                                content: SCHOOL_NEXT_TEXT[schoolState.selected],
+                                props: properties,
+                            })
+                        }
+                        placement="top-start"
                     >
-                        <i className="fa-solid fa-arrow-right" />
-                    </Button>
-                </OverlayTrigger>
-            </div>
-        </BasicLayout>
+                        <Button
+                            onClick={async (): Promise<void> => {
+                                await animateTo(false);
+                                await swapSchoolSides(false);
+                                setSchoolState((oldState) => ({
+                                    direction: DIRECTION.RIGHT,
+                                    selected:
+                                        oldState.selected ===
+                                        SCHOOL_SELECTED.COLLEGE
+                                            ? SCHOOL_SELECTED.MIDDLE_SCHOOL
+                                            : oldState.selected + 1,
+                                }));
+                            }}
+                            variant="outline-success"
+                        >
+                            <i className="fa-solid fa-arrow-right" />
+                        </Button>
+                    </OverlayTrigger>
+                </div>
+            </BasicLayout>
+        </>
     );
 };

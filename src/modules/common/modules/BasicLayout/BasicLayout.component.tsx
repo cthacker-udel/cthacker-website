@@ -4,8 +4,8 @@ import { Navbar } from "../Navbar";
 import basicLayoutStyles from "./BasicLayout.module.css";
 
 type BasicLayoutProperties = {
-    children: ReactNode;
-    cssOverride?: string;
+    readonly children: ReactNode;
+    readonly cssOverride?: string;
 };
 
 /**

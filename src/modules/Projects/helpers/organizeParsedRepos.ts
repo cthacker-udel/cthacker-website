@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection -- disabled, no user input controlling object bracket access */
 /* eslint-disable unicorn/prefer-ternary -- disabled */
 /* eslint-disable unicorn/no-negated-condition -- disabled */
 /* eslint-disable no-negated-condition -- not needed */
