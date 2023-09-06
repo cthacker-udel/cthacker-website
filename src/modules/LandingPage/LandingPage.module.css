@@ -8,35 +8,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    gap: 5em;
-}
-
-.landing_section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 33vw;
-    height: 75%;
-}
-
-.landing_section_header {
-    font-size: 3.5vw;
-    font-weight: bold;
-}
-
-.landing_section_content {
-    padding-left: 2.5vw;
-    padding-right: 2.5vw;
-    padding-top: 2.5vh;
-    padding-bottom: 2.5vh;
-    border: 1px solid black;
-    border-radius: 1em;
-    height: 75%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
 }

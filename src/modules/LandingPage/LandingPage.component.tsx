@@ -30,62 +30,41 @@ export const LandingPage = (): JSX.Element => (
             <NameSection />
             <Divider />
             <div className={styles.bottom_section}>
-                <div className={styles.landing_section}>
-                    <div className={styles.landing_section_header}>
-                        {"Work"}
-                    </div>
-                    <div className={styles.landing_section_content}>
-                        <LandingPageLink
-                            content="Projects"
-                            href="projects"
-                            icon="briefcase"
-                            iconAnimation="bounce"
-                            iconSize="xl"
-                        />
-                        <LandingPageLink
-                            content="Work History"
-                            href="workhistory"
-                            icon="building"
-                            iconAnimation="bounce"
-                            iconSize="xl"
-                        />
-                    </div>
-                </div>
-                <div className={styles.landing_section}>
-                    <div className={styles.landing_section_header}>
-                        {"Studies"}
-                    </div>
-                    <div className={styles.landing_section_content}>
-                        <LandingPageLink
-                            content="School"
-                            href="school"
-                            icon="school"
-                            iconAnimation="bounce"
-                            iconSize="xl"
-                        />
-                    </div>
-                </div>
-                <div className={styles.landing_section}>
-                    <div className={styles.landing_section_header}>
-                        {"Personal"}
-                    </div>
-                    <div className={styles.landing_section_content}>
-                        <LandingPageLink
-                            content="About Me"
-                            href="aboutme"
-                            icon="user"
-                            iconAnimation="bounce"
-                            iconSize="xl"
-                        />
-                        <LandingPageLink
-                            content="Contact Info"
-                            href="contactinfo"
-                            icon="phone"
-                            iconAnimation="shake"
-                            iconSize="xl"
-                        />
-                    </div>
-                </div>
+                <LandingPageLink
+                    content="Projects"
+                    href="projects"
+                    icon="briefcase"
+                    iconAnimation="bounce"
+                    iconSize="xl"
+                />
+                <LandingPageLink
+                    content="Work History"
+                    href="workhistory"
+                    icon="building"
+                    iconAnimation="bounce"
+                    iconSize="xl"
+                />
+                <LandingPageLink
+                    content="School"
+                    href="school"
+                    icon="school"
+                    iconAnimation="bounce"
+                    iconSize="xl"
+                />
+                <LandingPageLink
+                    content="About Me"
+                    href="aboutme"
+                    icon="user"
+                    iconAnimation="bounce"
+                    iconSize="xl"
+                />
+                <LandingPageLink
+                    content="Contact Info"
+                    href="contactinfo"
+                    icon="phone"
+                    iconAnimation="shake"
+                    iconSize="xl"
+                />
             </div>
         </div>
     </>

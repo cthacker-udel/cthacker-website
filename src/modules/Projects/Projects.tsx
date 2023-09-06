@@ -309,15 +309,16 @@ const Projects = (): JSX.Element => {
                             </div>
                         </div>
                         <div className={styles.repo_display}>
-                            {repos.map(
-                                (eachRepo: Repo, eachRepoIndex: number) => (
-                                    <Repository
-                                        key={eachRepo.id}
-                                        tab={eachRepoIndex}
-                                        {...eachRepo}
-                                    />
-                                ),
-                            )}
+                            {!isLoading &&
+                                repos.map(
+                                    (eachRepo: Repo, eachRepoIndex: number) => (
+                                        <Repository
+                                            key={eachRepo.id}
+                                            tab={eachRepoIndex}
+                                            {...eachRepo}
+                                        />
+                                    ),
+                                )}
                         </div>
                     </div>
                     <div className={styles.repo_month_frequency}>
