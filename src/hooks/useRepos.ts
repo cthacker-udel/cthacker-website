@@ -35,6 +35,10 @@ export const useRepos = (): useReposReturn => {
      */
     const getRepos = React.useMemo(
         () => async () => {
+            if (process.env.NEXT_PUBLIC_GITHUB_API_TOKEN === undefined) {
+                throw new Error("No github token present in env");
+            }
+
             const auth = createTokenAuth(
                 process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
             );

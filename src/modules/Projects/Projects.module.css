@@ -70,15 +70,16 @@
 .repo_language_stats {
     display: flex;
     flex-direction: column;
-    min-height: fit-content;
-    max-height: 95vh;
-    overflow-y: auto;
     min-width: 15vw;
 }
 
 .repo_language_stats_list {
     display: flex;
     flex-direction: column;
+    min-height: fit-content;
+    max-height: 95vh;
+    overflow-y: auto;
+    scrollbar-width: none;
     gap: 0.25em;
 }
 

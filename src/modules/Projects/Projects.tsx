@@ -230,6 +230,16 @@ const Projects = (): JSX.Element => {
 
     const repoMonthCount = repoCountByMonth(repos);
 
+    if (failed) {
+        return (
+            <span>
+                {
+                    "No github token detected in env, please contact author of website"
+                }
+            </span>
+        );
+    }
+
     return (
         <>
             <Head>
