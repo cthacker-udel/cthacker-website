@@ -17,16 +17,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 10vw;
 }
 
 .landing_section_header {
-    font-size: 2em;
+    font-size: 3.5vw;
     font-weight: bold;
 }
 
 .landing_section_content {
-    padding: 3em;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
     border: 1px solid black;
     border-radius: 1em;
     height: fit-content;

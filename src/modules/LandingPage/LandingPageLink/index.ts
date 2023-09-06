@@ -1,0 +1,1 @@
+export { LandingPageLink } from "./LandingPageLink";
