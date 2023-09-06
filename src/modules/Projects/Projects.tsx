@@ -28,6 +28,8 @@ import { MonthCount } from "./Repository/MonthCount";
 
 const allRepositoryQuerySelector = "#repository";
 
+// TODO: Add slow request time handlers (like loading icons) for each section while the data is loading
+
 /**
  * The projects page, which will detail ongoing projects, as well as old ones.
  *
