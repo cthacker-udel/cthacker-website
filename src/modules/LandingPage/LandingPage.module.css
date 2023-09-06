@@ -11,13 +11,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    gap: 5em;
 }
 
 .landing_section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 10vw;
+    width: 33vw;
+    height: 75%;
 }
 
 .landing_section_header {
@@ -32,6 +34,9 @@
     padding-bottom: 2.5vh;
     border: 1px solid black;
     border-radius: 1em;
-    height: fit-content;
-    width: fit-content;
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }
