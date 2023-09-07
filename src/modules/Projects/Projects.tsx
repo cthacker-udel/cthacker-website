@@ -16,6 +16,7 @@ import {
     removeCurrentlySelectedClassName,
     repoCountByMonth,
 } from "@/helpers/repo";
+import { sortCodeResultsByLines } from "@/helpers/repo/sortCodeResultsByLines";
 import { useRepoLanguagesBulk } from "@/hooks/useRepoLanguagesBulk";
 import { useRepos } from "@/hooks/useRepos";
 import { BasicLayout } from "@/modules/common";
@@ -27,8 +28,6 @@ import { CodeCount } from "./Repository/CodeCount";
 import { MonthCount } from "./Repository/MonthCount";
 
 const allRepositoryQuerySelector = "#repository";
-
-// TODO: Add slow request time handlers (like loading icons) for each section while the data is loading
 
 /**
  * The projects page, which will detail ongoing projects, as well as old ones.
@@ -230,8 +229,6 @@ const Projects = (): JSX.Element => {
         deselectCurrentlySelectedByHover,
     ]);
 
-    const repoMonthCount = repoCountByMonth(repos);
-
     if (failed) {
         return (
             <span>
@@ -241,6 +238,9 @@ const Projects = (): JSX.Element => {
             </span>
         );
     }
+
+    const repoMonthCount = repoCountByMonth(repos);
+    const sortedLanguageCount = sortCodeResultsByLines(languagesCount);
 
     return (
         <>
@@ -272,8 +272,9 @@ const Projects = (): JSX.Element => {
                                 <div
                                     className={styles.repo_language_stats_list}
                                 >
-                                    {Object.keys(languagesCount).length > 0 &&
-                                        Object.keys(languagesCount).map(
+                                    {Object.keys(sortedLanguageCount).length >
+                                        0 &&
+                                        Object.keys(sortedLanguageCount).map(
                                             (
                                                 eachLanguage,
                                                 eachLanguageIndex,
@@ -283,7 +284,7 @@ const Projects = (): JSX.Element => {
                                                     key={eachLanguage}
                                                     language={eachLanguage}
                                                     totalCount={
-                                                        languagesCount[
+                                                        sortedLanguageCount[
                                                             eachLanguage
                                                         ]
                                                     }
