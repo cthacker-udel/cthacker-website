@@ -12,6 +12,7 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5em;
+    min-height: 90vh;
     max-height: 90vh;
     overflow-y: scroll;
     min-width: 50vw;
@@ -70,15 +71,18 @@
 .repo_language_stats {
     display: flex;
     flex-direction: column;
-    min-height: fit-content;
-    max-height: 95vh;
-    overflow-y: auto;
     min-width: 15vw;
+    max-height: 95vh;
+    min-height: 95vh;
 }
 
 .repo_language_stats_list {
     display: flex;
     flex-direction: column;
+    min-height: fit-content;
+    max-height: 95vh;
+    overflow-y: auto;
+    scrollbar-width: none;
     gap: 0.25em;
 }
 
@@ -111,7 +115,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    min-height: 85vh;
+    min-height: 95vh;
     max-height: 95vh;
     overflow-y: auto;
 }
@@ -122,4 +126,10 @@
     font-weight: bold;
     font-size: 1.25em;
     animation: appear_anim 0.5s ease-in-out;
+}
+
+.repo_loading_display {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
 }

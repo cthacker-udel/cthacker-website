@@ -16,6 +16,7 @@ import {
     removeCurrentlySelectedClassName,
     repoCountByMonth,
 } from "@/helpers/repo";
+import { sortCodeResultsByLines } from "@/helpers/repo/sortCodeResultsByLines";
 import { useRepoLanguagesBulk } from "@/hooks/useRepoLanguagesBulk";
 import { useRepos } from "@/hooks/useRepos";
 import { BasicLayout } from "@/modules/common";
@@ -228,7 +229,18 @@ const Projects = (): JSX.Element => {
         deselectCurrentlySelectedByHover,
     ]);
 
+    if (failed) {
+        return (
+            <span>
+                {
+                    "No github token detected in env, please contact author of website"
+                }
+            </span>
+        );
+    }
+
     const repoMonthCount = repoCountByMonth(repos);
+    const sortedLanguageCount = sortCodeResultsByLines(languagesCount);
 
     return (
         <>
@@ -260,8 +272,9 @@ const Projects = (): JSX.Element => {
                                 <div
                                     className={styles.repo_language_stats_list}
                                 >
-                                    {Object.keys(languagesCount).length > 0 &&
-                                        Object.keys(languagesCount).map(
+                                    {Object.keys(sortedLanguageCount).length >
+                                        0 &&
+                                        Object.keys(sortedLanguageCount).map(
                                             (
                                                 eachLanguage,
                                                 eachLanguageIndex,
@@ -271,7 +284,7 @@ const Projects = (): JSX.Element => {
                                                     key={eachLanguage}
                                                     language={eachLanguage}
                                                     totalCount={
-                                                        languagesCount[
+                                                        sortedLanguageCount[
                                                             eachLanguage
                                                         ]
                                                     }
@@ -297,15 +310,16 @@ const Projects = (): JSX.Element => {
                             </div>
                         </div>
                         <div className={styles.repo_display}>
-                            {repos.map(
-                                (eachRepo: Repo, eachRepoIndex: number) => (
-                                    <Repository
-                                        key={eachRepo.id}
-                                        tab={eachRepoIndex}
-                                        {...eachRepo}
-                                    />
-                                ),
-                            )}
+                            {!isLoading &&
+                                repos.map(
+                                    (eachRepo: Repo, eachRepoIndex: number) => (
+                                        <Repository
+                                            key={eachRepo.id}
+                                            tab={eachRepoIndex}
+                                            {...eachRepo}
+                                        />
+                                    ),
+                                )}
                         </div>
                     </div>
                     <div className={styles.repo_month_frequency}>

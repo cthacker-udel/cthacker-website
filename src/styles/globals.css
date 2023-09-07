@@ -27,7 +27,7 @@ Landing Page
 
 */
 
-.section_link {
+#section_link {
     color: black;
     text-decoration: none;
     position: relative;
@@ -35,7 +35,7 @@ Landing Page
     cursor: pointer;
 }
 
-.section_link::after {
+#section_link::after {
     position: absolute;
     content: "";
     border-bottom: .1em solid  #A3362A;
@@ -46,10 +46,10 @@ Landing Page
     transition: right .5s ease-in-out;
 }
 
-.section_link:hover::after {
+#section_link:hover::after {
     right: 0;
 }
 
-.section_link:hover {
+#section_link:hover {
     color: #A3362A;
 }
