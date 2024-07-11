@@ -72,7 +72,7 @@ const repoCountByMonth = (
     const orderedMonth: Partial<{ [_key in MonthKeys]: number }> = {};
 
     for (const eachMonth of monthOrder) {
-        orderedMonth[eachMonth] = monthCount[eachMonth];
+        orderedMonth[eachMonth] = monthCount[eachMonth] ?? 0;
     }
 
     return orderedMonth;
