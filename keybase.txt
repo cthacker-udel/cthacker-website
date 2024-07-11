@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/dalizardking
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://cthacker.vercel.app
+  * I am dalizardking (https://keybase.io/dalizardking) on keybase.
+  * I have a public key ASBF5njYJq7gVHdQvFXNBl09fnEIRwa7TsgI7qa5Yv6lmgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01208e25f8a94a047d7e3daa6f0f7b9d087c8cb6de0a2f3ba53ed4a380cab128186b0a",
+      "host": "keybase.io",
+      "kid": "012045e678d826aee0547750bc55cd065d3d7e71084706bb4ec808eea6b962fea59a0a",
+      "uid": "74730d49a28a5eb745f057284a885e19",
+      "username": "dalizardking"
+    },
+    "merkle_root": {
+      "ctime": 1720707904,
+      "hash": "a89e8a45a8fc81a3a4aee73cc2f0a923a62c93564e69add36480ab831224c4ad0e832a10c826b48da8b8cb6fedd047349b7a0034999714eecb10742a327adc6c",
+      "hash_meta": "a3b149e641dc8933a0d6dc117e95ffe35a14f68bb0b68ba09f52bd7de3861c01",
+      "seqno": 25911402
+    },
+    "service": {
+      "entropy": "yZUn1A5vHyxaPbrICaZcLdt1",
+      "hostname": "cthacker.vercel.app",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.3.1"
+  },
+  "ctime": 1720707931,
+  "expire_in": 504576000,
+  "prev": "2a04f6dd77939b81e2e498cf0307d6c87270b66149caf1f27881365d2b7f7f69",
+  "seqno": 8,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgReZ42Cau4FR3ULxVzQZdPX5xCEcGu07ICO6muWL+pZoKp3BheWxvYWTESpcCCMQgKgT23XeTm4Hi5JjPAwfWyHJwtmFJyvHyeIE2XSt/f2nEIGc2zBnkJxfzzn82snntVOUBbQcA9JvpTrcUBSCcaeHTAgHCo3NpZ8RA56haLe66vstIlXgZ5pNankBaqLwFsaJDQHpMUs6IVm1LMIibiWFY5RrquKyvdGQDyUDsxwzL6N2+NZR9ZGShA6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIPAbiCCfhCrZuv9dYUKDqtSJQn541Ep1jfNZnaJtFmwmo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dalizardking
+
+==================================================================
