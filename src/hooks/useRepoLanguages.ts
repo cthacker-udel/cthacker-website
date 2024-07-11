@@ -25,7 +25,7 @@ export const useRepoLanguages = (
     const [_, startTransition] = React.useTransition();
 
     const getRepoLanguages = React.useMemo(
-        () => async () => {
+        () => async (): Promise<void> => {
             const auth = createTokenAuth(
                 process.env.NEXT_PUBLIC_GITHUB_API_TOKEN ?? "",
             );

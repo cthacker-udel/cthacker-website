@@ -212,7 +212,7 @@ const Projects = (): JSX.Element => {
             );
         }
 
-        return () => {
+        return (): void => {
             document.removeEventListener("keydown", keyPressedDocument);
             document.removeEventListener(
                 "updateSelection",

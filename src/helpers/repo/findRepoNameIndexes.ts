@@ -23,9 +23,8 @@ export const findRepoNameIndexes = (
     for (const eachRepo of repos) {
         const { reponame } = eachRepo.dataset;
         if (
-            reponame !== undefined &&
             reponame
-                .toLocaleLowerCase()
+                ?.toLocaleLowerCase()
                 .startsWith(repoName.toLocaleLowerCase())
         ) {
             if (updateFirst) {

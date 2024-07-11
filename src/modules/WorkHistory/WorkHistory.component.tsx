@@ -79,7 +79,7 @@ export const WorkHistory = (): JSX.Element => {
             window.addEventListener("scroll", debouncedMemo);
         }
 
-        return () => {
+        return (): void => {
             window.removeEventListener("scroll", debouncedMemo);
         };
     }, [debouncedMemo]);

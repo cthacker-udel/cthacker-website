@@ -34,7 +34,7 @@ export const useRepos = (): useReposReturn => {
      * to overcome the limit they set on get requests, as it comes paginated
      */
     const getRepos = React.useMemo(
-        () => async () => {
+        () => async (): Promise<void> => {
             if (process.env.NEXT_PUBLIC_GITHUB_API_TOKEN === undefined) {
                 throw new Error("No github token present in env");
             }
