@@ -17,4 +17,5 @@
     padding: 1em;
     min-width: 12vw;
     max-width: 12vw;
+    white-space: nowrap;
 }
